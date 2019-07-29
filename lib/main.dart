@@ -33,12 +33,8 @@ class MyHomePage extends BaseWidget {
   @override
   BaseWidgetState<BaseWidget> getState() {
     // TODO: implement getState
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("sdf"),
-      ),
-      body: ,
-    );
+    return null;
   }
+
 
 }

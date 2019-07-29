@@ -23,7 +23,7 @@ abstract class BaseWidgetState <T extends BaseWidget> extends State<T>{
   //内容控件显示
   bool _isLoadingWidgetShow = false;
   bool _isEmptyWidgetShow = false;
-  String _emptyWidgetCintent = "暂无数据";
+  String _emptyWidgetContent = "暂无数据";
   //自己根据需求变更
   String _emptyImgPath = "images/ic_empty.png";
   //错误页面和空页面的字体加粗
@@ -120,8 +120,75 @@ abstract class BaseWidgetState <T extends BaseWidget> extends State<T>{
     );
   }
   ///点击错误页面后展示的内容
-  void onClickErrorWidget() {}
+  void onClickErrorWidget();
+  ///设置错误的提示信息
+  void setErrorContent(String content){
+    if(content != null){
+      setState(() {
+        _errorContentMessage = content;
+      });
+    }
+  }
+  ///设置导航栏的显示或者隐藏
+  void setAppBarVisible(bool isVisible){
+    setState(() {
+      _isAppBarShow = isVisible;
+    });
+  }
+  ///显示内容
+  void showContent(){
+    setState(() {
+      _isEmptyWidgetShow = false;
+      _isLoadingWidgetShow = false;
+      _isErrorWidgetShow = false;
+    });
+  }
+  ///加载
+  void showLoading(){
+    setState(() {
+      _isErrorWidgetShow = false;
+      _isEmptyWidgetShow = false;
+      _isLoadingWidgetShow = true;
+    });
+  }
+  ///显示空页面
+  void showEmpty(){
+    setState(() {
+      _isLoadingWidgetShow = false;
+      _isEmptyWidgetShow = true;
+      _isErrorWidgetShow = false;
+    });
+  }
+  ///显示错误页面
+  void showError(){
+    setState(() {
+      _isLoadingWidgetShow = false;
+      _isEmptyWidgetShow = false;
+      _isErrorWidgetShow = true;
+    });
+  }
+  ///设置空页面内容和图片
+  void setEmptyWidgetContent({String content,String imagePath}){
+    if(content != null){
+      setState(() {
+        _emptyWidgetContent = content;
+      });
+    }
 
+    if(imagePath != null){
+      setState(() {
+        _emptyImgPath = imagePath;
+      });
+    }
+  }
+  /// 设置错误页面图片
+  void setErrorWidgetContent(String imagePath){
+    if(imagePath != null){
+      setState(() {
+        _errImgPath = imagePath;
+      });
+    }
+  }
   _getBaseEmptyWidget() {
     return Offstage(
       offstage: !_isEmptyWidgetShow,
@@ -151,7 +218,7 @@ abstract class BaseWidgetState <T extends BaseWidget> extends State<T>{
               Container(
                 margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
                 child: Text(
-                  _emptyWidgetCintent,
+                  _emptyWidgetContent,
                   style: TextStyle(
                     color: Colors.grey,
                     fontWeight: _fontWeight
@@ -182,4 +249,6 @@ abstract class BaseWidgetState <T extends BaseWidget> extends State<T>{
   //导航栏
 
   AppBar getAppBar();
+
+
 }
