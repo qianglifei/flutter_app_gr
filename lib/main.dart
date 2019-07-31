@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_app_gr/ui/app.dart';
 import 'package:flutter_app_gr/ui/loading.dart';
 
 import 'base/base_widget.dart';
@@ -51,6 +52,9 @@ class MyApp extends StatelessWidget {
       ),
       color: Colors.pink,
       home: LoadingPage(),
+      routes: <String,WidgetBuilder>{
+        "app" : (BuildContext context) => new App(),
+      },
     );
   }
 }

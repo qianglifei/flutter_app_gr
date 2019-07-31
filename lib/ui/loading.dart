@@ -45,7 +45,7 @@ class _LoadingPageState extends State<LoadingPage> {
       ///另一个例子是从 SplashScreen 转到 HomeScreen。 它应该只显示一次，
       ///用户不能再从 HomeScreen 返回它。 在这种情况下，由于我们要进入一个
       ///全新的屏幕，我们可能需要借助此方法。
-      Navigator.of(context).pushReplacementNamed("splash");
+      Navigator.of(context).pushReplacementNamed("app");
     }else{
       ///用户已经登陆进入 HomeScreen ，然后经过一系列操作回到配合只界面想要退出登录，
       ///你不能够直接 Push 进入 LoginScreen 吧？你需要将之前路由中的实例全部删除是的用户不会在回到先前的路由中。
