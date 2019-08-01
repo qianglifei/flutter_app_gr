@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app_gr/ui/app.dart';
 import 'package:flutter_app_gr/ui/loading.dart';
+import 'package:flutter_app_gr/ui/splash_screen/SplashPage.dart';
 
 import 'base/base_widget.dart';
 
@@ -54,6 +55,9 @@ class MyApp extends StatelessWidget {
       home: LoadingPage(),
       routes: <String,WidgetBuilder>{
         "app" : (BuildContext context) => new App(),
+        "splash":(BuildContext context){
+          return new SplashPage();
+        }
       },
     );
   }
