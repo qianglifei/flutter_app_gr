@@ -51,6 +51,19 @@ flutter:
     - images/arrow_right.png
     - images/ic_error.png
     - images/ic_empty.png
+    - images/bg_ydy1.png
+    - images/bg_ydy2.png
+    - images/bg_ydy3.png
+    - images/bg_ydy4.png
+    - images/rczc.png
+    - images/rcgy.png
+    - images/rclk.png
+    - images/zmyz.png
+    - images/zgz.png
+    - images/xlrz.png
+    - images/dafw.png
+    - images/xxpx.png
+    - images/gd.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
