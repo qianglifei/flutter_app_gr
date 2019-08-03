@@ -48,7 +48,7 @@ class _LoadingPageState extends State<LoadingPage> {
       Navigator.of(context).pushReplacementNamed("app");
     }else{
       ///用户已经登陆进入 HomeScreen ，然后经过一系列操作回到配合只界面想要退出登录，
-      ///你不能够直接 Push 进入 LoginScreen 吧？你需要将之前路由中的实例全部删除是的用户不会在回到先前的路由中。
+      ///你不能够直接 Push 进入LoginScreen 吧？你需要将之前路由中的实例全部删除是的用户不会在回到先前的路由中。
       Navigator.of(context).pushAndRemoveUntil(new MaterialPageRoute(builder: (context){
         return App();
       }),(route) => route == null);
