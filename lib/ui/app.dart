@@ -3,8 +3,7 @@ import 'package:flutter_app_gr/ui/first_page/first_screen.dart';
 
 import 'consult_page/consult_screen.dart';
 import 'mine_page/mine_screen.dart';
-import 'service_center/service_center_screen.dart';
-
+import 'service_center_page/service_center_screen.dart';
 ///应用页面使用有状态的Widget
 class App extends StatefulWidget{
   @override

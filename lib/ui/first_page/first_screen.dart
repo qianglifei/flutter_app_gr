@@ -28,13 +28,13 @@ class FirstPageState extends BaseWidgetState<FirstPage> {
       body: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(20)),
-          color: Colors.blue
         ),
         width: double.infinity,
         height: 140,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
+            BannerWidget(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
@@ -57,11 +57,6 @@ class FirstPageState extends BaseWidgetState<FirstPage> {
             ),
           ],
         )
-
-
-
-
-
       ),
     );
   }
