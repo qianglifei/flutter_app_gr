@@ -16,9 +16,7 @@ class FirstPageState extends BaseWidgetState<FirstPage> {
   @override
   AppBar getAppBar() {
     // TODO: implement getAppBar
-    return AppBar(
-      title: Text("不显示"),
-    );
+    return null;
   }
 
   @override
@@ -28,40 +26,35 @@ class FirstPageState extends BaseWidgetState<FirstPage> {
       body: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(20)),
-          color: Colors.blue
         ),
         width: double.infinity,
         height: 140,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                _createPicTextButton("images/rczc.png","人才政策"),
-                _createPicTextButton("images/rcgy.png","人才公寓"),
-                _createPicTextButton("images/zmyz.png","人才绿卡"),
-                _createPicTextButton("images/rczc.png","筑梦驿站"),
-                _createPicTextButton("images/zjfw.png","专家服务"),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                _createPicTextButton("images/zgz.png","找工作"),
-                _createPicTextButton("images/xlrz.png","学历认证"),
-                _createPicTextButton("images/dafw.png","档案服务"),
-                _createPicTextButton("images/xxpx.png","学习培训"),
-                _createPicTextButton("images/gd.png","更多"),
-              ],
-            ),
+            BannerWidget(),
+//            Row(
+//              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//              children: <Widget>[
+//                _createPicTextButton("images/rczc.png","人才政策"),
+//                _createPicTextButton("images/rcgy.png","人才公寓"),
+//                _createPicTextButton("images/zmyz.png","人才绿卡"),
+//                _createPicTextButton("images/rczc.png","筑梦驿站"),
+//                _createPicTextButton("images/zjfw.png","专家服务"),
+//              ],
+//            ),
+//            Row(
+//              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//              children: <Widget>[
+//                _createPicTextButton("images/zgz.png","找工作"),
+//                _createPicTextButton("images/xlrz.png","学历认证"),
+//                _createPicTextButton("images/dafw.png","档案服务"),
+//                _createPicTextButton("images/xxpx.png","学习培训"),
+//                _createPicTextButton("images/gd.png","更多"),
+//              ],
+//            ),
           ],
         )
-
-
-
-
-
       ),
     );
   }
