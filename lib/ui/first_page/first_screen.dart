@@ -16,7 +16,9 @@ class FirstPageState extends BaseWidgetState<FirstPage> {
   @override
   AppBar getAppBar() {
     // TODO: implement getAppBar
-    return null;
+    return AppBar(
+      title: Text("无标题"),
+    );
   }
 
   @override
@@ -31,7 +33,7 @@ class FirstPageState extends BaseWidgetState<FirstPage> {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-          color: Colors.pinkAccent
+          color: Colors.white
         ),
         width: MediaQuery
             .of(context)
@@ -39,27 +41,69 @@ class FirstPageState extends BaseWidgetState<FirstPage> {
             .width,
         child: Column(
           children: <Widget>[
-            BannerWidget(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            Stack(
               children: <Widget>[
-                _createPicTextButton("images/rczc.png","人才政策"),
-                _createPicTextButton("images/rcgy.png","人才公寓"),
-                _createPicTextButton("images/zmyz.png","人才绿卡"),
-                _createPicTextButton("images/rczc.png","筑梦驿站"),
-                _createPicTextButton("images/zjfw.png","专家服务"),
+                BannerWidget(),
+                Container(
+                  color: Colors.transparent,
+                  padding: EdgeInsets.fromLTRB(30, 40, 0, 0),
+                  child: Row(
+                    children: <Widget>[
+                      Image.asset(
+                          "images/kefubai.png",
+                          height: 25,
+                          width: 25,
+                          fit: BoxFit.cover,
+                      ),
+                      Align(
+                        alignment: FractionalOffset.center,
+                        child: Container(
+                          width: 200,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage(
+                                  "images/yuanjiaojuxing1.png",
+                                ),
+                                fit: BoxFit.cover,
+                            )
+                          ),
+                          child: Text("搜索关键词，关键字",style: TextStyle(color: Colors.white)),
+                          margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                        ),
+                      )
+
+                    ],
+                  ),
+                )
               ],
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                _createPicTextButton("images/zgz.png","找工作"),
-                _createPicTextButton("images/xlrz.png","学历认证"),
-                _createPicTextButton("images/dafw.png","档案服务"),
-                _createPicTextButton("images/xxpx.png","学习培训"),
-                _createPicTextButton("images/gd.png","更多"),
-              ],
+            Padding(
+                padding: new EdgeInsets.fromLTRB(0, 10, 0, 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    _createPicTextButton("images/rczc.png","人才政策"),
+                    _createPicTextButton("images/rcgy.png","人才公寓"),
+                    _createPicTextButton("images/zmyz.png","人才绿卡"),
+                    _createPicTextButton("images/rczc.png","筑梦驿站"),
+                    _createPicTextButton("images/zjfw.png","专家服务"),
+                  ],
+                ),
             ),
+            Padding(
+                padding: new EdgeInsets.fromLTRB(0, 10, 0, 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    _createPicTextButton("images/zgz.png","找工作"),
+                    _createPicTextButton("images/xlrz.png","学历认证"),
+                    _createPicTextButton("images/dafw.png","档案服务"),
+                    _createPicTextButton("images/xxpx.png","学习培训"),
+                    _createPicTextButton("images/gd.png","更多"),
+                  ],
+                ),
+            ),
+
           ],
         )
       ),
@@ -84,10 +128,13 @@ class FirstPageState extends BaseWidgetState<FirstPage> {
                 height: 40,
                 fit: BoxFit.fill,
               ),
-              Text(name)
+              Text(name,style: TextStyle())
             ],
           ),
-        )
+        ),
+        onTap: (){
+          //TODO 点击事件
+        },
     );
   }
 

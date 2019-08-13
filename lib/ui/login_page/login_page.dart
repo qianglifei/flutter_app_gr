@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_gr/base/base_widget.dart';
 
-class ServiceCenterPage extends BaseWidget{
+class LoginPage extends BaseWidget{
   @override
   BaseWidgetState<BaseWidget> getState() {
     // TODO: implement getState
-    return ServiceCenterPageState();
+    return LoginPageState();
   }
 
 }
 
-class ServiceCenterPageState extends BaseWidgetState<ServiceCenterPage> {
+class LoginPageState extends BaseWidgetState<LoginPage> {
   @override
   AppBar getAppBar() {
     // TODO: implement getAppBar
@@ -20,12 +20,20 @@ class ServiceCenterPageState extends BaseWidgetState<ServiceCenterPage> {
   @override
   Widget getContentWidget(BuildContext context) {
     // TODO: implement getContentWidget
-    return null;
+    return Scaffold(
+      body: Container(
+        child: Column(
+          children: <Widget>[
+            Image.asset("images/bj.png",width: double.infinity,height: 200.0,fit: BoxFit.cover),
+
+          ],
+        ),
+      ),
+    );
   }
 
   @override
   void onClickErrorWidget() {
     // TODO: implement onClickErrorWidget
-
   }
 }
