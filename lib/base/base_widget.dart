@@ -15,7 +15,7 @@ abstract class BaseWidget extends StatefulWidget{
 
 abstract class BaseWidgetState <T extends BaseWidget> extends State<T>{
   //导航栏是否显示
-  bool _isAppBarShow = true;
+  bool _isAppBarShow = false;
   //错误信息是否显示
   bool _isErrorWidgetShow = false;
   String _errorContentMessage = "网络请求失败，请检查网络";
@@ -38,7 +38,7 @@ abstract class BaseWidgetState <T extends BaseWidget> extends State<T>{
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-      appBar: _getBaseAppBar(),
+      appBar: getBaseAppBar(),
       body: Container(
         //背景颜色，自己可以更具需求变更
         color: Colors.white,
@@ -54,7 +54,7 @@ abstract class BaseWidgetState <T extends BaseWidget> extends State<T>{
     );
   }
 
-  PreferredSizeWidget _getBaseAppBar() {
+  PreferredSizeWidget getBaseAppBar() {
     //如果AppBar设置高度，在AppBar外包一层PreferredSize，设置PreferredSize的属性为想要的高度即可
     return PreferredSize(
       //控制child是否显示
@@ -66,7 +66,7 @@ abstract class BaseWidgetState <T extends BaseWidget> extends State<T>{
           offstage: !_isAppBarShow,
           child: getAppBar(),
         ),
-        preferredSize: Size.fromHeight(50)
+        preferredSize: Size.fromHeight(0)
     );
   }
   ///加载内容控件
@@ -247,7 +247,6 @@ abstract class BaseWidgetState <T extends BaseWidget> extends State<T>{
     );
   }
   //导航栏
-
   AppBar getAppBar();
 
 
