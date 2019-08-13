@@ -21,40 +21,50 @@ class _BannerWidgetState  extends State<BannerWidget>{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Swiper(
-      itemWidth: double.infinity,
-      itemHeight: 100,
-      itemBuilder: (BuildContext context,int index){
-        if(_bannerList[index] == null || _bannerList[index].ggtpsclj == null){
-          return Container(
-            color: Colors.white,
-          );
-        }else{
-          return buildItemImageWidget(context,index);
-        }
-      },
-      itemCount: _bannerList.length,
-      autoplay: true,
-      pagination: new SwiperPagination(),
+    return Container(
+        height: 200,
+        child:Swiper(
+          itemBuilder: (BuildContext context,int index){
+            if(_bannerList[index] == null || _bannerList[index].ggtpsclj == null){
+              return Container(
+                color: Colors.blue,
+              );
+            }else{
+              return buildItemImageWidget(context,index);
+            }
+          },
+          itemCount: _bannerList.length,
+          autoplay: true,
+          pagination: new SwiperPagination(),
+          onTap: (index){
+
+          },
+        )
     );
+
+
   }
 
-  Future<Null> _getBanner() {
-    CommonService().getBannerList((BannerDataEntity _bannerModel){
+  Future<Null> _getBanner() async{
+  CommonService().getBannerList((BannerDataEntity _bannerModel){
         setState(() {
-          print(_bannerModel.toString());
-        //  _bannerList = _bannerModel.returnData.banners;
-         // print(_bannerList.length.toString());
+          _bannerList = _bannerModel.returnData.banners;
+            for (var i = 0; i < _bannerList.length; ++i) {
+              var o = _bannerList[i];
+              print(o.ggtpsclj + o.ggtpfwdmc);
+            }
         });
     });
   }
 
   Widget buildItemImageWidget(BuildContext context, int index) {
     return new InkWell(
-      child: Image.network(_bannerList[index].ggtpsclj,fit: BoxFit.fill),
-      onTap: (){
-
-      },
+      child: Container(
+        child: Image.network(
+            _bannerList[index].ggtpsclj + _bannerList[index].ggtpfwdmc,
+            fit: BoxFit.fill,
+        ),
+      ),
     );
   }
 }

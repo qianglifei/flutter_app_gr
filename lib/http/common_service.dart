@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter_app_gr/banner/banner_data_entity.dart';
 import 'package:flutter_app_gr/banner/entity_factory.dart';
 
 import 'api.dart';
@@ -11,7 +12,9 @@ class CommonService{
        dio.
        get(Api.FIRST_BANNER,options: new Options()).
        then((response){
-         callBack(EntityFactory.generateOBJ(response.data));
+         BannerDataEntity bannerDataEntity = EntityFactory.generateOBJ(response.data);
+         callBack(bannerDataEntity);
+         print(response.toString());
        });
     }
 }
