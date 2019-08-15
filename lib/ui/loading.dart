@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'app.dart';
@@ -17,9 +18,12 @@ class _LoadingPageState extends State<LoadingPage> {
     new Future.delayed(Duration(seconds: 3),(){
       _getHasSkip();
     });
+
   }
   @override
   Widget build(BuildContext context) {
+    //设置适配尺寸 (填入设计稿中设备的屏幕尺寸) 假如设计稿是按iPhone6的尺寸设计的(iPhone6 750*1334)
+    ScreenUtil.instance = ScreenUtil(width: 1080, height: 1920)..init(context);
     // TODO: implement build
     return Center(
       child: Stack(

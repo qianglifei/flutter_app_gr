@@ -5,12 +5,15 @@ import 'package:flutter/services.dart';
 import 'package:flutter_app_gr/ui/app.dart';
 import 'package:flutter_app_gr/ui/loading.dart';
 import 'package:flutter_app_gr/ui/splash_page/SplashPage.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
 import 'base/base_widget.dart';
 
 void main(){
   runApp(MyApp());
+
+
   if(Platform.isAndroid){
     ///设置Android状态栏为透明的沉浸，写在组件渲染之后
     ///是为了在渲染后进行set赋值，覆盖状态栏，如果写在渲染之前MaterialApp组件会覆盖掉这个值
@@ -33,6 +36,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
       title: 'Flutter Demo',
       ///Flutter去除右上角Debug标签

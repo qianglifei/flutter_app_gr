@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_gr/base/base_widget.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'banner.dart';
 
@@ -46,67 +47,73 @@ class FirstPageState extends BaseWidgetState<FirstPage> {
                 BannerWidget(),
                 Container(
                   color: Colors.transparent,
-                  padding: EdgeInsets.fromLTRB(10, 40, 0, 0),
+                  padding: EdgeInsets.fromLTRB(15, 40, 0, 0),
                   child: Row(
+                    mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
-                      Image.asset(
-                          "images/kefubai.png",
-                          height: 35,
-                          width: 35,
-                          fit: BoxFit.cover,
-                      ),
-                      Container(
-                        width: 300,
-                        padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-                        child: Stack(
-                          alignment: AlignmentDirectional.center,
-                          children: <Widget>[
-                            Opacity(
-                              opacity: 0.75,
-                              child:Image.asset(
-                                "images/yuanjiaojuxing1.png",
-                                fit: BoxFit.fill,
-                                height: 40,
-                                width: 300,
-                              ),
-                            ),
-                            Positioned(
-                                left: 40,
-                                top: 5,
-                                child: Text("搜索关键词，关键字",style: TextStyle(color: Colors.white,fontSize: 18)),
-                            ),
-                            Positioned(
-                              right: 15,
-                              top: 7,
-                              child: Image.asset(
-                                "images/saoyisao.png",
-                                height: 25,
-                                width: 25,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                            Positioned(
-                                top: 7,
-                                left: 12,
-                                child: Image.asset(
-                                  "images/sousuo.png",
-                                  height: 25,
-                                  width: 25,
-                                  fit: BoxFit.cover,
+//                      Image.asset(
+//                          "images/kefubai.png",
+//                          height: 35,
+//                          width: 35,
+//                          fit: BoxFit.cover,
+//                          color: Colors.cyan,
+//                      ),
+                     Align(
+                      alignment: Alignment.center,
+                      child: Container(
+                            color: Colors.pinkAccent,
+                            width: ScreenUtil().setWidth(800),
+                            child: Stack(
+                              alignment: AlignmentDirectional.center,
+                              children: <Widget>[
+                                Opacity(
+                                  opacity: 0.75,
+                                  child:Image.asset(
+                                    "images/yuanjiaojuxing1.png",
+                                    fit: BoxFit.cover,
+                                    height: 40,
+                                    width: ScreenUtil().setWidth(800),
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 40,
+                                  top: 5,
+                                  child: Text("搜索关键词，关键字",style: TextStyle(color: Colors.white,fontSize: 18)),
+                                ),
+                                Positioned(
+                                  right: 15,
+                                  top: 7,
+                                  child: Image.asset(
+                                    "images/saoyisao.png",
+                                    height: 25,
+                                    width: 25,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                Positioned(
+                                    top: 7,
+                                    left: 12,
+                                    child: Image.asset(
+                                      "images/sousuo.png",
+                                      height: 25,
+                                      width: 25,
+                                      fit: BoxFit.cover,
+                                    )
                                 )
+                              ],
                             )
-                          ],
-                        )
-                      ),
-                      Container(
-                        margin: EdgeInsets.fromLTRB(5, 0, 0, 0),
-                        child: Image.asset(
-                          "images/xiaoxi.png",
-                          height: 35,
-                          width: 35,
-                          fit: BoxFit.cover,
                         ),
-                      )
+                     ),
+//                      Container(
+//                        color: Colors.blue,
+//                        margin: EdgeInsets.fromLTRB(5, 0, 0, 0),
+//                        child: Image.asset(
+//                          "images/xiaoxi.png",
+//                          height: 35,
+//                          width: 35,
+//                          fit: BoxFit.cover,
+//                        ),
+//                      )
                     ],
                   ),
                 )
