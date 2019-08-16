@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_gr/banner/banner_data_entity.dart';
+import 'package:flutter_app_gr/entity/banner_data_entity.dart';
 import 'package:flutter_app_gr/http/common_service.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 

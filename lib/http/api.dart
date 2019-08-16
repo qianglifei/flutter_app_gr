@@ -4,5 +4,8 @@ class Api{
   //const 意味着对象的整个状态可以在编译时完全确定，并且对象将被冻结并完全不可完。
   static const String IP = "app.gyrc.cn";
   static const String BASE_URL = "http://" + IP + "/grapp/";
+  //首页轮播
   static const String FIRST_BANNER = BASE_URL + "rcfw/rczc/zcxctCx";
+  //首页通知公告
+  static const String MASS_ANNOUNCEMENT = BASE_URL + "tjsy/tjsy/zxhyCx";
 }

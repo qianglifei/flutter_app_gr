@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_gr/base/base_widget.dart';
+import 'package:flutter_app_gr/http/common_service.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'banner.dart';
-
+import 'package:flutter_app_gr/entity/notice_data_entity.dart';
 class FirstPage extends BaseWidget{
   @override
   BaseWidgetState<BaseWidget> getState() {
@@ -14,6 +15,7 @@ class FirstPage extends BaseWidget{
 }
 
 class FirstPageState extends BaseWidgetState<FirstPage> {
+  List<NoticeDataReturndataZzzx> _noticeListData = new List();
   @override
   AppBar getAppBar() {
     // TODO: implement getAppBar
@@ -26,6 +28,9 @@ class FirstPageState extends BaseWidgetState<FirstPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    _noticeListData.add(null);
+    //通知公告
+    _getNoticeInfo();
   }
 
   @override
@@ -47,7 +52,7 @@ class FirstPageState extends BaseWidgetState<FirstPage> {
                 BannerWidget(),
                 Container(
                   color: Colors.transparent,
-                  padding: EdgeInsets.fromLTRB(10, 30, 0, 0),
+                  padding: EdgeInsets.fromLTRB(15, 30, 0, 15),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
@@ -172,7 +177,6 @@ class FirstPageState extends BaseWidgetState<FirstPage> {
   void onClickErrorWidget() {
     // TODO: implement onClickErrorWidget
   }
-
   Widget _createPicTextButton(String imgPath,String name) {
     return InkWell(
         child: Container(
@@ -199,6 +203,19 @@ class FirstPageState extends BaseWidgetState<FirstPage> {
           Fluttertoast.showToast(msg: "点击事件");
         },
     );
+  }
+
+  ///加载首页通知公告
+  Future<Null> _getNoticeInfo () async{
+    CommonService().getNoticeData((NoticeDataEntity _entityDataEntity){
+        setState(() {
+          _noticeListData = _entityDataEntity.returnData.zzzx;
+          for(var i = 0 ; i < _noticeListData.length ; i++){
+            var s = _noticeListData[i];
+            print(s.bt);
+          }
+        });
+    });
   }
 
 }
