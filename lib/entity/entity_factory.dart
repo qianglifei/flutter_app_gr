@@ -1,4 +1,5 @@
 import 'banner_data_entity.dart';
+import 'key_service_enterprises_entity.dart';
 import 'notice_data_entity.dart';
 class EntityFactory {
   static T generateOBJ<T>(json) {
@@ -9,6 +10,9 @@ class EntityFactory {
     } else if(T.toString() == "NoticeDataEntity"){
       //类型转换
       return NoticeDataEntity.fromJson(json) as T;
+    } else if(T.toString() == "KeyServiceEnterprisesEntity"){
+      //类型转换
+      return KeyServiceEnterprisesEntity.fromJson(json) as T;
     } else {
       return null;
     }

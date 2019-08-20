@@ -8,4 +8,6 @@ class Api{
   static const String FIRST_BANNER = BASE_URL + "rcfw/rczc/zcxctCx";
   //首页通知公告
   static const String MASS_ANNOUNCEMENT = BASE_URL + "tjsy/tjsy/zxhyCx";
+  //重点服务企业列表
+  static const String Key_SERVICE_ENTERPRIESE = BASE_URL + "qz/qzsy/zdqylbCx";
 }

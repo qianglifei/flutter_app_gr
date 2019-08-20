@@ -47,28 +47,28 @@ import 'package:flutter_app_gr/http/common_service.dart';
 //  }
 //}
 
-class MarqueeContinuous extends StatefulWidget {
+class MarqueeContinuousWidget extends StatefulWidget {
   final Widget child;
   final Duration duration;
   final double stepOffset;
   List<NoticeDataReturndataZzzx> listData;
-  MarqueeContinuous({Key key,
+  MarqueeContinuousWidget({Key key,
         this.child,
-        this.duration = const Duration(seconds: 2),
-        this.stepOffset = 50.0,
+        this.duration = const Duration(seconds: 3),
+        this.stepOffset = 40.0,
         this.listData,
       }) : super(key: key);
 
   @override
-  _MarqueeContinuousState createState() => _MarqueeContinuousState();
+  _MarqueeContinuousWidgetState createState() => _MarqueeContinuousWidgetState();
 }
 
-class _MarqueeContinuousState extends State<MarqueeContinuous> {
+class _MarqueeContinuousWidgetState extends State<MarqueeContinuousWidget> {
   List<NoticeDataReturndataZzzx> _noticeListData = new List();
   ScrollController _controller;
   Timer _timer;
   double _offset = 0.0;
-
+  int _index = 0;
   @override
   void initState() {
     super.initState();
@@ -76,12 +76,11 @@ class _MarqueeContinuousState extends State<MarqueeContinuous> {
     _getNoticeInfo ();
     _controller = ScrollController(initialScrollOffset: _offset);
     _timer = Timer.periodic(widget.duration, (timer) {
-      double newOffset = _controller.offset + widget.stepOffset;
+      double newOffset = _controller.offset + 2 * widget.stepOffset;
       if (newOffset != _offset) {
         _offset = newOffset;
-        _controller.animateTo(_offset,
-            duration: widget.duration, curve: Curves.linear);
-        _controller.jumpTo()
+        _controller.animateTo(_offset, duration: widget.duration, curve: Curves.linear);
+       // _controller.jumpTo(1);
       }
     });
   }
@@ -95,31 +94,38 @@ class _MarqueeContinuousState extends State<MarqueeContinuous> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 80,
-      child: ListView.builder(
-          scrollDirection: Axis.vertical,
-          controller: _controller,
-          itemBuilder: (context, index) {
-            return Container(
-              height: 40,
-              margin: EdgeInsets.fromLTRB(100, 0, 0, 0),
-              color: Colors.blue,
-              child: Text(_noticeListData[index].bt),
-            );
-          })
-    );
+      return Container(
+        height: 60,
+        color: Colors.transparent,
+        child: Row(
+          children: <Widget>[
+            Container(
+              margin: EdgeInsets.fromLTRB(20, 0, 0, 0),
+              child: Image.asset(
+                  "images/rencaizixun.png",
+                  height: 40,
+                  width: 40,
+                  fit: BoxFit.cover,
+                ),
+            ),
+//            Container(
+//              height: 40,
+//              color: Colors.orange,
+//              child: ListView.builder(
+//                itemCount: _noticeListData.length,
+//                scrollDirection: Axis.vertical,
+//                controller: _controller,
+//                itemBuilder: (context,index){
+//                  return Container(
+//                  color: Colors.pink,
+//                  child: Text(_noticeListData[index].bt),
+//                  );
+//                })
+//            )
+          ],
+        ),
+      );
   }
-
-//  Widget buildItemWidget(BuildContext context, int index) {
-//   // print("nimabi" + _noticeListData[index].toString());
-//    return Container(
-//      height: 1000,
-//      width: 300,
-//      color: Colors.blue,
-//      child: Text(_noticeListData[index].bt),
-//    );
-//  }
 
   ///加载首页通知公告
   Future<Null> _getNoticeInfo () async{
@@ -128,10 +134,6 @@ class _MarqueeContinuousState extends State<MarqueeContinuous> {
         _noticeListData = _entityDataEntity.returnData.zzzx;
         _noticeListData.insert(0 , _noticeListData[_noticeListData.length - 1]);
         _noticeListData.insert(_noticeListData.length , _noticeListData[0]);
-        for(var i = 0 ; i < _noticeListData.length ; i++){
-          var s = _noticeListData[i];
-          print(s.bt);
-        }
       });
     });
   }

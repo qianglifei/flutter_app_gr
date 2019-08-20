@@ -6,6 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'banner.dart';
 import 'package:flutter_app_gr/entity/notice_data_entity.dart';
 
+import 'key_service_enterprises_widget.dart';
 import 'marquee.dart';
 class FirstPage extends BaseWidget{
   @override
@@ -165,7 +166,8 @@ class FirstPageState extends BaseWidgetState<FirstPage> {
                   ],
                 ),
             ),
-            MarqueeContinuous(),
+            MarqueeContinuousWidget(),
+            KeyServiceEnterPrisesWidget(),
           ],
         )
       ),
@@ -193,7 +195,6 @@ class FirstPageState extends BaseWidgetState<FirstPage> {
                 padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
                 child: Text(name,style: TextStyle()),
               )
-
             ],
           ),
         ),

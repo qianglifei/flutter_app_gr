@@ -75,6 +75,9 @@ flutter:
     - images/saoyisao.png
     - images/sousuo.png
     - images/xiaoxi.png
+    - images/zdqy.png
+    - images/jiantou.png
+    - images/rencaizixun.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
