@@ -22,6 +22,8 @@ class _KeyServiceEnterPrisesWidget extends State<KeyServiceEnterPrisesWidget>{
   Widget build(BuildContext context) {
     // TODO: implement build
     return Container(
+      height: 190,
+      color: Colors.white,
       child: Column(
         children: <Widget>[
           _titleBarWidget(),
@@ -97,23 +99,37 @@ class _KeyServiceEnterPrisesWidget extends State<KeyServiceEnterPrisesWidget>{
 
   Widget buildItemWidget(BuildContext context, int index) {
     return Container(
-      height: 105,
+      height: 160,
       width: 105,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-            Image.network(
-              _listData[index].dwlgsc + _listData[index].dwlgfwdmc,
-              height: 65,
-              width: 65,
-              fit: BoxFit.fill,
-            ),
-            Text(
+      color: Colors.white,
+      child:Center(
+        child: Container(
+          width: 75,
+
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(9)),
+            color: Colors.black12
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Image.network(
+                _listData[index].dwlgsc + _listData[index].dwlgfwdmc,
+                height: 49,
+                width: 49,
+                fit: BoxFit.fill,
+              ),
+              Text(
                 _listData[index].dwmc,
-                style: TextStyle()
-            )
-        ],
-      ),
+                maxLines: 2,
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+              )
+            ],
+          ),
+        )
+
+      )
     );
   }
 }

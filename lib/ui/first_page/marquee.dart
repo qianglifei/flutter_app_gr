@@ -104,23 +104,24 @@ class _MarqueeContinuousWidgetState extends State<MarqueeContinuousWidget> {
   @override
   Widget build(BuildContext context) {
       return Container(
-        height: 60,
+        height: 63,
+        margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
         width: MediaQuery.of(context).size.width,
-        color: Colors.transparent,
+        color: Colors.white,
         child: Row(
           children: <Widget>[
             Container(
               margin: EdgeInsets.fromLTRB(20, 0, 0, 0),
               child: Image.asset(
                   "images/rencaizixun.png",
-                  height: 40,
-                  width: 40,
+                  height: 41,
+                  width: 36,
                   fit: BoxFit.cover,
                 ),
             ),
             Container(
               height: 40,
-              width: 330,
+              width: 300,
               margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
               child: ListView.builder(
                 itemCount: _noticeListData.length,
@@ -139,7 +140,7 @@ class _MarqueeContinuousWidgetState extends State<MarqueeContinuousWidget> {
                           ),
                         ),
                         Container(
-                          width: 300,
+                          width: 280,
                           padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
                           child: Text(
                             _noticeListData[index].bt,
