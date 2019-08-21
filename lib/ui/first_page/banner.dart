@@ -22,7 +22,7 @@ class _BannerWidgetState  extends State<BannerWidget>{
   Widget build(BuildContext context) {
     // TODO: implement build
     return Container(
-        height: 200,
+        height: 220,
         child:Swiper(
           itemBuilder: (BuildContext context,int index){
             if(_bannerList[index] == null || _bannerList[index].ggtpsclj == null){

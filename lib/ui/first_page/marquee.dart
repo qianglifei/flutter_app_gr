@@ -54,8 +54,8 @@ class MarqueeContinuousWidget extends StatefulWidget {
   List<NoticeDataReturndataZzzx> listData;
   MarqueeContinuousWidget({Key key,
         this.child,
-        this.duration = const Duration(seconds: 3),
-        this.stepOffset = 40.0,
+        this.duration = const Duration(seconds: 2),
+        this.stepOffset = 42.0,
         this.listData,
       }) : super(key: key);
 
@@ -76,11 +76,20 @@ class _MarqueeContinuousWidgetState extends State<MarqueeContinuousWidget> {
     _getNoticeInfo ();
     _controller = ScrollController(initialScrollOffset: _offset);
     _timer = Timer.periodic(widget.duration, (timer) {
-      double newOffset = _controller.offset + 2 * widget.stepOffset;
+      double newOffset = _controller.offset + widget.stepOffset;
       if (newOffset != _offset) {
         _offset = newOffset;
-        _controller.animateTo(_offset, duration: widget.duration, curve: Curves.linear);
+        _controller.animateTo(_offset, duration: Duration(seconds: 1), curve: Curves.linear);
        // _controller.jumpTo(1);
+        _index++;
+        print(_index++);
+        if(_index == _noticeListData.length){
+          _index = 0;
+          _controller.jumpTo(0);
+          //_controller.animateTo(0.0, duration: widget.duration, curve: Curves.linear);
+        }else{
+
+        }
       }
     });
   }
@@ -96,6 +105,7 @@ class _MarqueeContinuousWidgetState extends State<MarqueeContinuousWidget> {
   Widget build(BuildContext context) {
       return Container(
         height: 60,
+        width: MediaQuery.of(context).size.width,
         color: Colors.transparent,
         child: Row(
           children: <Widget>[
@@ -108,20 +118,40 @@ class _MarqueeContinuousWidgetState extends State<MarqueeContinuousWidget> {
                   fit: BoxFit.cover,
                 ),
             ),
-//            Container(
-//              height: 40,
-//              color: Colors.orange,
-//              child: ListView.builder(
-//                itemCount: _noticeListData.length,
-//                scrollDirection: Axis.vertical,
-//                controller: _controller,
-//                itemBuilder: (context,index){
-//                  return Container(
-//                  color: Colors.pink,
-//                  child: Text(_noticeListData[index].bt),
-//                  );
-//                })
-//            )
+            Container(
+              height: 40,
+              width: 330,
+              margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
+              child: ListView.builder(
+                itemCount: _noticeListData.length,
+                scrollDirection: Axis.vertical,
+                controller: _controller,
+                itemBuilder: (context,index){
+                  return Container(
+                    child: Row(
+                      children: <Widget>[
+                        Container(
+                          width: 6,
+                          height: 6,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.black
+                          ),
+                        ),
+                        Container(
+                          width: 300,
+                          padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                          child: Text(
+                            _noticeListData[index].bt,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        )
+                      ],
+                    )
+                  );
+                })
+            )
           ],
         ),
       );
