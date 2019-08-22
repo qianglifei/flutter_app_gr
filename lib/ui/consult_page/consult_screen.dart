@@ -14,13 +14,17 @@ class ConsultPageState extends BaseWidgetState<ConsultPage> {
   @override
   AppBar getAppBar() {
     // TODO: implement getAppBar
-    return null;
+    return AppBar(
+      title: Text("不显示"),
+    );
   }
 
   @override
   Widget getContentWidget(BuildContext context) {
     // TODO: implement getContentWidget
-    return null;
+    return Scaffold(
+
+    );
   }
 
   @override

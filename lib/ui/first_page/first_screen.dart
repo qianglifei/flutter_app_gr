@@ -42,19 +42,22 @@ class FirstPageState extends BaseWidgetState<FirstPage> {
           color: Color.fromARGB(1, 288, 242, 248)
         ),
         width: MediaQuery.of(context).size.width,
-        child: Column(
-          children: <Widget>[
-            Stack(
-              children: <Widget>[
-                BannerWidget(),
-                _titleBar(),
-                _chooseTab(),
-              ],
-            ),
-            MarqueeContinuousWidget(),
-            KeyServiceEnterPrisesWidget(),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              Stack(
+                children: <Widget>[
+                  BannerWidget(),
+                  _titleBar(),
+                  _chooseTab(),
+                ],
+              ),
+              MarqueeContinuousWidget(),
+              KeyServiceEnterPrisesWidget(),
+            ],
+          )
         )
+
       ),
     );
   }
@@ -134,14 +137,14 @@ class FirstPageState extends BaseWidgetState<FirstPage> {
   Widget _titleBar() {
     return Container(
       color: Colors.transparent,
-      padding: EdgeInsets.fromLTRB(15, 30, 0, 15),
+      padding: EdgeInsets.fromLTRB(15, 25, 0, 15),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Image.asset(
             "images/kefubai.png",
-            height: 35,
-            width: 35,
+            height: 23,
+            width: 21,
             fit: BoxFit.cover,
           ),
           Align(
@@ -158,24 +161,22 @@ class FirstPageState extends BaseWidgetState<FirstPage> {
                         child:Image.asset(
                           "images/yuanjiaojuxing1.png",
                           fit: BoxFit.cover,
-                          height: 40,
+                          height: 30,
                           width: ScreenUtil().setWidth(800),
                         ),
                       ),
                       Positioned(
                         left: 40,
-                        top: 5,
                         child: Text("搜索关键词，关键字",style: TextStyle(color: Colors.white,fontSize: 18)),
                       ),
                       Positioned(
                           right: 15,
-                          top: 7,
                           child: GestureDetector(
                             behavior: HitTestBehavior.translucent,
                             child: Image.asset(
                               "images/saoyisao.png",
-                              height: 25,
-                              width: 25,
+                              height: 20,
+                              width: 20,
                               fit: BoxFit.cover,
                             ),
                             onTap: (){
@@ -184,7 +185,6 @@ class FirstPageState extends BaseWidgetState<FirstPage> {
                           )
                       ),
                       Positioned(
-                          top: 7,
                           left: 12,
                           child: Image.asset(
                             "images/sousuo.png",
@@ -208,8 +208,8 @@ class FirstPageState extends BaseWidgetState<FirstPage> {
                 behavior: HitTestBehavior.translucent,
                 child:Image.asset(
                   "images/xiaoxi.png",
-                  height: 35,
-                  width: 35,
+                  height: 25,
+                  width: 25,
                   fit: BoxFit.cover,
                 ),
                 onTap: (){

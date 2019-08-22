@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_app_gr/entity/notice_data_entity.dart';
 import 'package:flutter_app_gr/http/common_service.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 //class MarqueeSingle<T> extends StatefulWidget {
 //  final Widget child;
@@ -103,59 +104,66 @@ class _MarqueeContinuousWidgetState extends State<MarqueeContinuousWidget> {
 
   @override
   Widget build(BuildContext context) {
-      return Container(
-        height: 63,
-        margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
-        width: MediaQuery.of(context).size.width,
-        color: Colors.white,
-        child: Row(
-          children: <Widget>[
-            Container(
-              margin: EdgeInsets.fromLTRB(20, 0, 0, 0),
-              child: Image.asset(
-                  "images/rencaizixun.png",
-                  height: 41,
-                  width: 36,
-                  fit: BoxFit.cover,
+      return GestureDetector(
+            child: Container(
+            height: 63,
+            margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
+            width: MediaQuery.of(context).size.width,
+            color: Colors.white,
+            child: Row(
+              children: <Widget>[
+                Container(
+                  margin: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                  child: Image.asset(
+                    "images/rencaizixun.png",
+                    height: 41,
+                    width: 36,
+                    fit: BoxFit.cover,
+                  ),
                 ),
+                Container(
+                    height: 40,
+                    width: 300,
+                    margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                    child: ListView.builder(
+                        itemCount: _noticeListData.length,
+                        scrollDirection: Axis.vertical,
+                        controller: _controller,
+                        physics: new NeverScrollableScrollPhysics(),
+                        itemBuilder: (context,index){
+                          return Container(
+                              child: Row(
+                                children: <Widget>[
+                                  Container(
+                                    width: 6,
+                                    height: 6,
+                                    decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Colors.black
+                                    ),
+                                  ),
+                                  Container(
+                                    width: 280,
+                                    padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                    child: Text(
+                                      _noticeListData[index].bt,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  )
+                                ],
+                              )
+                          );
+                        })
+                )
+              ],
             ),
-            Container(
-              height: 40,
-              width: 300,
-              margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
-              child: ListView.builder(
-                itemCount: _noticeListData.length,
-                scrollDirection: Axis.vertical,
-                controller: _controller,
-                itemBuilder: (context,index){
-                  return Container(
-                    child: Row(
-                      children: <Widget>[
-                        Container(
-                          width: 6,
-                          height: 6,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.black
-                          ),
-                        ),
-                        Container(
-                          width: 280,
-                          padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                          child: Text(
-                            _noticeListData[index].bt,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        )
-                      ],
-                    )
-                  );
-                })
-            )
-          ],
-        ),
-      );
+          ),
+          onTap: (){
+              Fluttertoast.showToast(msg: "item 点击事件");
+          },
+        );
+
   }
 
   ///加载首页通知公告
