@@ -54,6 +54,12 @@ class FirstPageState extends BaseWidgetState<FirstPage> {
               ),
               MarqueeContinuousWidget(),
               KeyServiceEnterPrisesWidget(),
+              Container(
+                height: 80  ,
+                margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                color: Colors.white,
+                child: null,
+              )
             ],
           )
         )
@@ -137,7 +143,7 @@ class FirstPageState extends BaseWidgetState<FirstPage> {
   Widget _titleBar() {
     return Container(
       color: Colors.transparent,
-      padding: EdgeInsets.fromLTRB(15, 25, 0, 15),
+      padding: EdgeInsets.fromLTRB(15, 49, 0, 15),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[

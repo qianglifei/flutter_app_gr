@@ -11,7 +11,7 @@ class ServiceCenterPage extends BaseWidget{
 }
 
 class ServiceCenterPageState extends BaseWidgetState<ServiceCenterPage> {
-  List<String> _list = new List();
+  List<String> _titleList = new List();
   ScrollController _scrollController = new ScrollController();
   @override
   AppBar getAppBar() {
@@ -22,10 +22,28 @@ class ServiceCenterPageState extends BaseWidgetState<ServiceCenterPage> {
   }
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _titleList..
+    add("人才服务")..
+    add("专家服务")..
+    add("就业服务")..
+    add("培训服务")..
+    add("档案服务")..
+    add("中介服务")..
+    add("综合服务");
+  }
+  @override
   Widget getContentWidget(BuildContext context) {
     // TODO: implement getContentWidget
     return Scaffold(
       body: Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        decoration: BoxDecoration(
+          color: Color.fromARGB(1,238, 242, 248)
+        ),
         child: Column(
           children: <Widget>[
               Stack(
@@ -33,11 +51,11 @@ class ServiceCenterPageState extends BaseWidgetState<ServiceCenterPage> {
                   Image.asset(
                     "images/bq.png",
                     width: MediaQuery.of(context).size.width,
-                    height: 82,
+                    height: 85,
                     fit: BoxFit.fill,
                   ),
                   Padding(
-                    padding: EdgeInsets.fromLTRB(12, 39, 0, 0),
+                    padding: EdgeInsets.fromLTRB(12, 45, 0, 0),
                     child: Image.asset(
                       "images/kefubai.png",
                       width: 34,
@@ -45,19 +63,28 @@ class ServiceCenterPageState extends BaseWidgetState<ServiceCenterPage> {
                     )
                   ),
                   Container(
-                     padding: EdgeInsets.fromLTRB(0, 39, 0, 0),
+                     padding: EdgeInsets.fromLTRB(0, 47, 0, 0),
                      child: Align(
                        child: Text("服务大厅",style: TextStyle(color: Colors.white,fontSize: 20)),
                      )
                   )
                 ],
               ),
-//              ListView.builder(
-//                  scrollDirection: Axis.vertical,
-//                  itemCount: 10,
-//                  itemBuilder: (context,index){
-//                return Text("asklkdfk");
-//              }),
+              Container(
+                height: 1000,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    ListView.builder(
+                        itemCount: _titleList.length,
+                        shrinkWrap: true,
+                        itemBuilder: (BuildContext context,int index){
+                          return Text(_titleList[index].toString());
+                        }
+                    ),
+                  ],
+                ),
+              )
           ],
         ),
       ),
