@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_gr/base/base_widget.dart';
+import 'package:flutter_app_gr/custom_widget/custom_app_bar.dart';
 
 class MinePage extends BaseWidget {
   @override
@@ -12,10 +13,9 @@ class MinePage extends BaseWidget {
 
 class MinePageState extends BaseWidgetState<MinePage> {
   @override
-  AppBar getAppBar() {
+  CustomAppBar getAppBar() {
     // TODO: implement getAppBar
-    return AppBar(
-      title: Text("不显示"),
+    return CustomAppBar(
     );
   }
 

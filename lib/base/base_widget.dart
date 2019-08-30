@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app_gr/custom_widget/custom_app_bar.dart';
 
 abstract class BaseWidget extends StatefulWidget{
   BaseWidgetState baseWidgetState;
@@ -64,7 +65,7 @@ abstract class BaseWidgetState <T extends BaseWidget> extends State<T>{
        */
         child: Offstage(
           offstage: !_isAppBarShow,
-          child: getAppBar(),
+          child: getAppBar()
         ),
         preferredSize: Size.fromHeight(0)
     );
@@ -247,7 +248,6 @@ abstract class BaseWidgetState <T extends BaseWidget> extends State<T>{
     );
   }
   //导航栏
-  AppBar getAppBar();
-
+  CustomAppBar getAppBar();
 
 }

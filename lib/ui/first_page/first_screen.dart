@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_gr/base/base_widget.dart';
+import 'package:flutter_app_gr/custom_widget/custom_app_bar.dart';
 import 'package:flutter_app_gr/http/common_service.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -20,10 +21,9 @@ class FirstPage extends BaseWidget{
 class FirstPageState extends BaseWidgetState<FirstPage> {
 
   @override
-  AppBar getAppBar() {
+  CustomAppBar getAppBar() {
     // TODO: implement getAppBar
-    return AppBar(
-      title: Text("无标题"),
+    return CustomAppBar(
     );
   }
 

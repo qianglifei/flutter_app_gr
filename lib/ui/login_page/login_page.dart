@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_gr/base/base_widget.dart';
+import 'package:flutter_app_gr/custom_widget/custom_app_bar.dart';
 
 class LoginPage extends BaseWidget{
   @override
@@ -12,9 +13,10 @@ class LoginPage extends BaseWidget{
 
 class LoginPageState extends BaseWidgetState<LoginPage> {
   @override
-  AppBar getAppBar() {
+  CustomAppBar getAppBar() {
     // TODO: implement getAppBar
-    return null;
+    return CustomAppBar(
+    );
   }
 
   @override
