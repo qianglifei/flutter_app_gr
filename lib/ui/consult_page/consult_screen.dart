@@ -16,7 +16,7 @@ class ConsultPageState extends BaseWidgetState<ConsultPage> {
   CustomAppBar getAppBar() {
     // TODO: implement getAppBar
     return CustomAppBar(
-      child: ,
+      child: Text("klsakjdf"),
     );
   }
 

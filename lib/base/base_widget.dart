@@ -16,7 +16,7 @@ abstract class BaseWidget extends StatefulWidget{
 
 abstract class BaseWidgetState <T extends BaseWidget> extends State<T>{
   //导航栏是否显示
-  bool _isAppBarShow = false;
+  bool _isAppBarShow = true;
   //错误信息是否显示
   bool _isErrorWidgetShow = false;
   String _errorContentMessage = "网络请求失败，请检查网络";
@@ -55,20 +55,13 @@ abstract class BaseWidgetState <T extends BaseWidget> extends State<T>{
     );
   }
 
-  PreferredSizeWidget getBaseAppBar() {
+  Widget getBaseAppBar() {
     //如果AppBar设置高度，在AppBar外包一层PreferredSize，设置PreferredSize的属性为想要的高度即可
-    return PreferredSize(
-      //控制child是否显示
-      /**
-       * 当offstage 为true时，控件隐藏，为false是，控件显示
-       * offstage 为不可见时，如果child有动画，需要手动把动画停掉
-       */
-        child: Offstage(
-          offstage: !_isAppBarShow,
-          child: getAppBar()
-        ),
-        preferredSize: Size.fromHeight(0)
-    );
+    /**
+     * 当offstage 为true时，控件隐藏，为false是，控件显示
+     * offstage 为不可见时，如果child有动画，需要手动把动画停掉
+     */
+    return getAppBar();
   }
   ///加载内容控件
   Widget getContentWidget(BuildContext context);

@@ -19,6 +19,29 @@ class ServiceCenterPageState extends BaseWidgetState<ServiceCenterPage> {
   CustomAppBar getAppBar() {
     // TODO: implement getAppBar
     return CustomAppBar(
+      child:Stack(
+          children: <Widget>[
+            Image.asset(
+              "images/bq.png",
+              width: MediaQuery.of(context).size.width,
+              height: 80,
+              fit: BoxFit.fill,
+            ),
+            Padding(
+                padding: EdgeInsets.fromLTRB(12, 45, 0, 0),
+                child: Image.asset(
+                  "images/kefubai.png",
+                  width: 34,
+                  height: 31,
+                )
+            ),
+            Container(
+                padding: EdgeInsets.fromLTRB(0, 47, 0, 0),
+                child: Align(
+                  child: Text("服务大厅",style: TextStyle(color: Colors.white,fontSize: 20)),
+                )
+            )
+          ]),
     );
   }
 
@@ -45,29 +68,7 @@ class ServiceCenterPageState extends BaseWidgetState<ServiceCenterPage> {
           ),
           child: Column(
             children: <Widget>[
-              Stack(
-                children: <Widget>[
-                  Image.asset(
-                  "images/bq.png",
-                  width: MediaQuery.of(context).size.width,
-                  height: 80,
-                  fit: BoxFit.fill,
-                  ),
-                  Padding(
-                      padding: EdgeInsets.fromLTRB(12, 45, 0, 0),
-                      child: Image.asset(
-                        "images/kefubai.png",
-                        width: 34,
-                        height: 31,
-                      )
-                  ),
-                  Container(
-                      padding: EdgeInsets.fromLTRB(0, 47, 0, 0),
-                      child: Align(
-                        child: Text("服务大厅",style: TextStyle(color: Colors.white,fontSize: 20)),
-                      )
-                  )
-              ]),
+
               Container(
                 child:Container(
                   child: Row(

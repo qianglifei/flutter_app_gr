@@ -23,8 +23,7 @@ class FirstPageState extends BaseWidgetState<FirstPage> {
   @override
   CustomAppBar getAppBar() {
     // TODO: implement getAppBar
-    return CustomAppBar(
-    );
+    return null;
   }
 
   @override

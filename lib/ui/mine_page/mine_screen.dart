@@ -16,6 +16,7 @@ class MinePageState extends BaseWidgetState<MinePage> {
   CustomAppBar getAppBar() {
     // TODO: implement getAppBar
     return CustomAppBar(
+      child: Text("klsakjdf"),
     );
   }
 
