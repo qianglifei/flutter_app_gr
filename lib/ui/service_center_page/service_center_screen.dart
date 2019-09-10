@@ -66,76 +66,52 @@ class ServiceCenterPageState extends BaseWidgetState<ServiceCenterPage> {
           decoration: BoxDecoration(
               color: Color.fromARGB(1,238, 242, 248)
           ),
-          child: Column(
-            children: <Widget>[
-
-              Container(
-                child:Container(
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
-                        flex: 15,
-                        child:Container(
-                          height: 650,
-                          child: ListView.builder(
-                              controller: _scrollController,
-                              itemCount: _titleList.length,
-                              shrinkWrap: true,
-                              itemBuilder: (BuildContext context,int index){
-                                return Material(
-                                    child: InkWell(
-                                        child: Container(
-                                            height: 50,
-                                            color: Colors.white,
-                                            child: Center(
-                                              child: Text(
-                                                _titleList[index].toString(),
-                                                style: TextStyle(fontSize: ScreenUtil().setSp(40)),
-                                              ),
-                                            )
-                                        )
+          child: Row(
+              children: <Widget>[
+                SizedBox(
+                  width: 100,
+                  child: ListView.builder(
+                      controller: _scrollController,
+                      itemCount: _titleList.length,
+                      scrollDirection: Axis.vertical,
+                      itemBuilder: (BuildContext context,int index){
+                        return Material(
+                            child: InkWell(
+                                child: Container(
+                                    height: 50,
+                                    color: Colors.white,
+                                    child: Center(
+                                      child: Text(
+                                        _titleList[index].toString(),
+                                        style: TextStyle(fontSize: ScreenUtil().setSp(45)),
+                                      ),
                                     )
-                                );
-                              }
-                          ),
-                        ) ,
-                      ),
-                      Expanded(
-                        child: Container(
-                          width: 1,
-                          height: 650,
-                          color: Colors.grey,
-                          child: Text(""),
-                        )
-                      ),
-                      Expanded(
-                        flex: 50,
-                        child: Container(
-                          height: 650,
-                          child: GridView.count(
-                              shrinkWrap: true,
-                              //一行Widget的数量
-                              crossAxisCount: 3,
-                              //水平子Widget之间间距
-                              crossAxisSpacing: 10.0,
-                              //垂直子Widget之间间距
-                              mainAxisSpacing: 10.0,
-                              //GridView 内边距
-                              padding: EdgeInsets.all(10.0),
-                              //子Widget宽高比
-                              childAspectRatio: 1.0,
-                              //子Widget列表
-                              children: getWidgetList()
-                          )
-                        )
-                      ),
-                    ],
+                                )
+                            )
+                        );
+                      }
                   ),
-                ) ,
-              )
+                ),
+               SizedBox(
+                 width: MediaQuery.of(context).size.width - 100,
+                 child: GridView.count(
+                     //一行Widget的数量
+                     crossAxisCount: 3,
+                     //水平子Widget之间间距
+                     crossAxisSpacing: 10.0,
+                     //垂直子Widget之间间距
+                     mainAxisSpacing: 10.0,
+                     //GridView 内边距
+                     padding: EdgeInsets.all(10.0),
+                     //子Widget宽高比
+                     childAspectRatio: 1.0,
+                     //子Widget列表
+                     children: getWidgetList()
+                 ),
+               )
             ],
-          ),
-        ),
+          )
+      )
     );
   }
 
@@ -146,7 +122,7 @@ class ServiceCenterPageState extends BaseWidgetState<ServiceCenterPage> {
   }
   List<String> getDataList() {
     List<String> list = [];
-    for (int i = 0; i < 12; i++) {
+    for (int i = 0; i < 100; i++) {
       list.add(i.toString());
     }
     return list;
