@@ -1,6 +1,12 @@
+import 'dart:core' as prefix0;
+import 'dart:core';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_gr/base/base_widget.dart';
 import 'package:flutter_app_gr/custom_widget/custom_app_bar.dart';
+import 'package:flutter_app_gr/ui/service_center_page/service_data_add.dart';
+import 'package:flutter_app_gr/ui/service_center_page/service_entity.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -17,7 +23,8 @@ class ServiceCenterPageState extends BaseWidgetState<ServiceCenterPage> {
   List<String> _titleList = new List();
   ScrollController _scrollController = new ScrollController();
   Color _ItemColor;
-  bool check = true;
+  bool check = false;
+  List<ServiceEntity> _list = [];
   @override
   CustomAppBar getAppBar() {
     // TODO: implement getAppBar
@@ -78,25 +85,15 @@ class ServiceCenterPageState extends BaseWidgetState<ServiceCenterPage> {
                       itemCount: _titleList.length,
                       scrollDirection: Axis.vertical,
                       itemBuilder: (BuildContext context,int index){
-                        return  Material(
-                              child: InkWell(
-                                  child: GestureDetector(
-                                    child: Container(
-                                        height: 50,
-                                        color: _ItemColor,
-                                        child: Center(
-                                          child: Text(
-                                            _titleList[index].toString(),
-                                            style: TextStyle(fontSize: ScreenUtil().setSp(45)),
-                                          ),
-                                        )
-                                    ),
-                                    onTap: (){
+                        return ListTile(
+                          title: Text(_titleList[index]),
+                          selected: check,
+                          onTap: (){
+                              updateContentData(context,index);
+                              Fluttertoast.showToast(msg: _titleList[index]);
 
-                                    },
-                                  )
-                              )
-                          );
+                          },
+                        );
                       }
                   ),
                 ),
@@ -114,7 +111,7 @@ class ServiceCenterPageState extends BaseWidgetState<ServiceCenterPage> {
                      //子Widget宽高比
                      childAspectRatio: 1.0,
                      //子Widget列表
-                     children: getWidgetList()
+                     children: getWidgetList(_list)
                  ),
                )
             ],
@@ -129,26 +126,77 @@ class ServiceCenterPageState extends BaseWidgetState<ServiceCenterPage> {
 
   }
 
-  List<String> getDataList() {
-    List<String> list = [];
-    for (int i = 0; i < 100; i++) {
-      list.add(i.toString());
+  List<ServiceEntity> getDataList(List<ServiceEntity> listData) {
+    List<ServiceEntity> list = [];
+    if(list != null && list.length != null){
+        list = listData;
     }
     return list;
   }
 
-  List<Widget> getWidgetList() {
-    return getDataList().map((item) => getItemContainer(item)).toList();
+  List<Widget> getWidgetList(List<ServiceEntity> list) {
+    return getDataList(_list).map((serviceEntity) => getItemContainer(serviceEntity)).toList();
   }
 
-  Widget getItemContainer(String item) {
+  Widget getItemContainer(ServiceEntity serviceEntity) {
     return Container(
       alignment: Alignment.center,
-      child: Text(
-        item,
-        style: TextStyle(color: Colors.white, fontSize: 20),
+      child: _createPicTextBtn(serviceEntity.picUrl,serviceEntity.titleName),
+    );
+  }
+
+  void updateContentData(BuildContext context, int index) {
+    switch(index) {
+    //人才服务
+      case 0:
+        setState(() {
+          _list = getDataList(ServiceDataContents.getListTalents());
+        });
+        break;
+    //专家服务
+      case 1:
+        setState(() {
+          _list = getDataList(ServiceDataContents.getListSpecialist());
+        });
+        break;
+    //就业服务
+      case 2:
+        setState(() {
+          _list = getDataList(ServiceDataContents.getListEmploymentList());
+        });
+        break;
+    //培训服务
+      case 3:
+        break;
+    //档案服务
+      case 4:
+        break;
+    //中介服务
+      case 5:
+        break;
+    //综合服务
+      case 6:
+        break;
+    }
+  }
+
+  Widget _createPicTextBtn(String imgUrl,String item) {
+    return Container(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          Image.asset(
+            imgUrl,
+            width: 40,
+            height: 40,
+            fit: BoxFit.fill,
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
+            child: Text(item,style: TextStyle()),
+          )
+        ],
       ),
-      color: Colors.blue,
     );
   }
 }
