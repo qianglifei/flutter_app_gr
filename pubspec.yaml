@@ -87,12 +87,29 @@ flutter:
     - images/rclc.png
     - images/hd.png
     - images/ycgzz.png
-    - images/xlrz.png
+    - images/xlrzs.png
     - images/tstd.png
     - images/zjfc.png
     - images/zjjt.png
     - images/zjjy.png
     - images/zjfp.png
+    - images/ncsyrc.png
+    - images/jnrcpx.png
+    - images/zgzs.png
+    - images/xczp.png
+    - images/ks.png
+    - images/xyzph.png
+    - images/grxx.png
+    - images/grhj.png
+    - images/kjddh.png
+    - images/datg.png
+    - images/dazs.png
+    - images/qtqk.png
+    - images/dyhd.png
+    - images/dyjn.png
+    - images/dyzm.png
+    - images/dzzgx.png
+    - images/dzcy.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

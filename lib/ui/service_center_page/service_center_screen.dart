@@ -80,7 +80,7 @@ class ServiceCenterPageState extends BaseWidgetState<ServiceCenterPage> {
               children: <Widget>[
                 SizedBox(
                   width: 100,
-                  child: ListView.builder(
+                    child: ListView.builder(
                       controller: _scrollController,
                       itemCount: _titleList.length,
                       scrollDirection: Axis.vertical,
@@ -91,7 +91,6 @@ class ServiceCenterPageState extends BaseWidgetState<ServiceCenterPage> {
                           onTap: (){
                               updateContentData(context,index);
                               Fluttertoast.showToast(msg: _titleList[index]);
-
                           },
                         );
                       }
@@ -167,9 +166,15 @@ class ServiceCenterPageState extends BaseWidgetState<ServiceCenterPage> {
         break;
     //培训服务
       case 3:
+        setState(() {
+          _list = getDataList(ServiceDataContents.getListTrainList());
+        });
         break;
     //档案服务
       case 4:
+        setState(() {
+          _list = getDataList(ServiceDataContents.getListRecord());
+        });
         break;
     //中介服务
       case 5:
