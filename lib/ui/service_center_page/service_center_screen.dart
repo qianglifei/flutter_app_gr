@@ -68,6 +68,7 @@ class ServiceCenterPageState extends BaseWidgetState<ServiceCenterPage> {
     add("档案服务")..
     add("中介服务")..
     add("综合服务");
+    updateContentData(context,0);
   }
   @override
   Widget getContentWidget(BuildContext context) {
@@ -163,7 +164,6 @@ class ServiceCenterPageState extends BaseWidgetState<ServiceCenterPage> {
   void updateContentData(BuildContext context, int index) {
     setState((){
       position = index;
-      _ItemColor = Color.fromRGBO(238, 242, 248, 1);
     });
 
     switch(index) {
