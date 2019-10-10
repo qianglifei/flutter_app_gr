@@ -77,4 +77,22 @@ class ServiceDataContents{
       return mRecordList;
     }
 
+    ///获取中介服务
+    static List<ServiceEntity> getListIntermediaryAgent(){
+      mIntermediaryAgentList.clear();
+      mIntermediaryAgentList.add(ServiceEntity("images/cxzj.png","诚信中介"));
+      mIntermediaryAgentList.add(ServiceEntity("images/gyzj.png","贵阳中介机构名单"));
+      mIntermediaryAgentList.add(ServiceEntity("images/zczx.png","政策法规"));
+      mIntermediaryAgentList.add(ServiceEntity("images/jggs.png","抽查公示"));
+      mIntermediaryAgentList.add(ServiceEntity("images/tstd.png","投诉通道"));
+      return mIntermediaryAgentList;
+    }
+
+    ///获取综合服务
+    static List<ServiceEntity> getListSynthesize(){
+      mSynthesizeList.clear();
+      mSynthesizeList.add(ServiceEntity("images/xz.png","小筑"));
+      mSynthesizeList.add(ServiceEntity("images/zx.png","咨询"));
+      return mSynthesizeList;
+    }
 }

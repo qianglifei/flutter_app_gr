@@ -110,6 +110,13 @@ flutter:
     - images/dyzm.png
     - images/dzzgx.png
     - images/dzcy.png
+    - images/cxzj.png
+    - images/gyzj.png
+    - images/zczx.png
+    - images/jggs.png
+    - images/tstd.png
+    - images/xz.png
+    - images/zx.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

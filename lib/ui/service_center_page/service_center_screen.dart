@@ -178,9 +178,11 @@ class ServiceCenterPageState extends BaseWidgetState<ServiceCenterPage> {
         break;
     //中介服务
       case 5:
+        _list = getDataList(ServiceDataContents.getListIntermediaryAgent());
         break;
     //综合服务
       case 6:
+        _list = getDataList(ServiceDataContents.getListSynthesize());
         break;
     }
   }
