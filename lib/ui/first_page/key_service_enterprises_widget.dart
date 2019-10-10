@@ -107,7 +107,7 @@ class _KeyServiceEnterPrisesWidget extends State<KeyServiceEnterPrisesWidget>{
           width: 75,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(9)),
-            color: Colors.black12
+            color: Color.fromRGBO(238, 242, 248, 1)
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,

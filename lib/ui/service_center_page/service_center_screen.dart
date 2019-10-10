@@ -22,9 +22,10 @@ class ServiceCenterPage extends BaseWidget{
 class ServiceCenterPageState extends BaseWidgetState<ServiceCenterPage> {
   List<String> _titleList = new List();
   ScrollController _scrollController = new ScrollController();
-  Color _ItemColor;
+  Color _ItemColor = Colors.white;
   bool check = false;
   List<ServiceEntity> _list = [];
+  int position = 100;
   @override
   CustomAppBar getAppBar() {
     // TODO: implement getAppBar
@@ -74,7 +75,7 @@ class ServiceCenterPageState extends BaseWidgetState<ServiceCenterPage> {
     return Scaffold(
       body: Container(
           decoration: BoxDecoration(
-              color: Color.fromARGB(1,238, 242, 248)
+              color: Colors.white
           ),
           child: Row(
               children: <Widget>[
@@ -85,19 +86,34 @@ class ServiceCenterPageState extends BaseWidgetState<ServiceCenterPage> {
                       itemCount: _titleList.length,
                       scrollDirection: Axis.vertical,
                       itemBuilder: (BuildContext context,int index){
-                        return ListTile(
-                          title: Text(_titleList[index]),
-                          selected: check,
-                          onTap: (){
+                        return Container(
+                          child: ListTile(
+                            title: Text(
+                              _titleList[index],
+                            ),
+                            selected: index == position ? true : false,
+                            onTap: (){
                               updateContentData(context,index);
-                              Fluttertoast.showToast(msg: _titleList[index]);
-                          },
+                            },
+                          ),
+                          decoration: BoxDecoration(
+                            color: index == position ? Color.fromRGBO(238, 242, 248, 1) : Colors.white,
+                          ),
                         );
                       }
                   ),
                 ),
                SizedBox(
-                 width: MediaQuery.of(context).size.width - 100,
+                 width: 8,
+                 height: MediaQuery.of(context).size.height,
+                 child: Container(
+                   decoration: BoxDecoration(
+                     color: Color.fromRGBO(238, 242, 248, 1)
+                   ),
+                 ),
+               ),
+               SizedBox(
+                 width: MediaQuery.of(context).size.width - 108,
                  child: GridView.count(
                      //一行Widget的数量
                      crossAxisCount: 3,
@@ -145,45 +161,61 @@ class ServiceCenterPageState extends BaseWidgetState<ServiceCenterPage> {
   }
 
   void updateContentData(BuildContext context, int index) {
+    setState((){
+      position = index;
+      _ItemColor = Color.fromRGBO(238, 242, 248, 1);
+    });
+
     switch(index) {
     //人才服务
-      case 0:
+      case 0:{
         setState(() {
           _list = getDataList(ServiceDataContents.getListTalents());
         });
-        break;
+      }
+      break;
     //专家服务
-      case 1:
+      case 1:{
         setState(() {
           _list = getDataList(ServiceDataContents.getListSpecialist());
         });
-        break;
+      }
+      break;
     //就业服务
-      case 2:
+      case 2:{
         setState(() {
           _list = getDataList(ServiceDataContents.getListEmploymentList());
         });
-        break;
+      }
+      break;
     //培训服务
-      case 3:
+      case 3:{
         setState(() {
           _list = getDataList(ServiceDataContents.getListTrainList());
         });
-        break;
+      }
+      break;
     //档案服务
-      case 4:
+      case 4:{
         setState(() {
           _list = getDataList(ServiceDataContents.getListRecord());
         });
-        break;
+      }
+      break;
     //中介服务
-      case 5:
-        _list = getDataList(ServiceDataContents.getListIntermediaryAgent());
-        break;
+      case 5:{
+        setState(() {
+          _list = getDataList(ServiceDataContents.getListIntermediaryAgent());
+        });
+      }
+      break;
     //综合服务
-      case 6:
-        _list = getDataList(ServiceDataContents.getListSynthesize());
-        break;
+      case 6:{
+        setState(() {
+          _list = getDataList(ServiceDataContents.getListSynthesize());
+        });
+      }
+      break;
     }
   }
 
@@ -200,7 +232,7 @@ class ServiceCenterPageState extends BaseWidgetState<ServiceCenterPage> {
           ),
           Padding(
             padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
-            child: Text(item,style: TextStyle()),
+            child: Text(item,overflow: TextOverflow.ellipsis),
           )
         ],
       ),
