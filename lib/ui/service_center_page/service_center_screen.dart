@@ -39,7 +39,7 @@ class ServiceCenterPageState extends BaseWidgetState<ServiceCenterPage> {
               fit: BoxFit.fill,
             ),
             Padding(
-                padding: EdgeInsets.fromLTRB(12, 35, 0, 10),
+                padding: EdgeInsets.fromLTRB(12, 38, 0, 10),
                 child: Image.asset(
                   "images/kefubai.png",
                   width: 34,
@@ -47,7 +47,7 @@ class ServiceCenterPageState extends BaseWidgetState<ServiceCenterPage> {
                 )
             ),
             Container(
-                padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
+                padding: EdgeInsets.fromLTRB(0, 35, 0, 0),
                 child: Align(
                   child: Text("服务大厅",style: TextStyle(color: Colors.white,fontSize: 20)),
                 )
@@ -80,6 +80,7 @@ class ServiceCenterPageState extends BaseWidgetState<ServiceCenterPage> {
           ),
           child: Row(
               children: <Widget>[
+                ///能强制子控件具有特定宽度、高度或两者都有,使子控件设置的宽高失效
                 SizedBox(
                   width: 100,
                     child: ListView.builder(
@@ -88,14 +89,29 @@ class ServiceCenterPageState extends BaseWidgetState<ServiceCenterPage> {
                       scrollDirection: Axis.vertical,
                       itemBuilder: (BuildContext context,int index){
                         return Container(
-                          child: ListTile(
-                            title: Text(
-                              _titleList[index],
-                            ),
-                            selected: index == position ? true : false,
-                            onTap: (){
-                              updateContentData(context,index);
-                            },
+                          child: Stack(
+                            children: <Widget>[
+                              Offstage(
+                                offstage: index == position ? false : true,
+                                child: Container(
+                                  width: 4,
+                                  height: 11,
+                                  margin: EdgeInsets.fromLTRB(0, 23, 0, 0),
+                                  decoration: BoxDecoration(
+                                      color: Colors.blue
+                                  ),
+                                ),
+                              ),
+                              ListTile(
+                                title: Text(
+                                  _titleList[index],
+                                ),
+                                selected: index == position ? true : false,
+                                onTap: (){
+                                  updateContentData(context,index);
+                                },
+                              ),
+                            ],
                           ),
                           decoration: BoxDecoration(
                             color: index == position ? Color.fromRGBO(238, 242, 248, 1) : Colors.white,
@@ -104,6 +120,7 @@ class ServiceCenterPageState extends BaseWidgetState<ServiceCenterPage> {
                       }
                   ),
                 ),
+                ///能强制子控件具有特定宽度、高度或两者都有,使子控件设置的宽高失效
                SizedBox(
                  width: 8,
                  height: MediaQuery.of(context).size.height,
@@ -113,22 +130,34 @@ class ServiceCenterPageState extends BaseWidgetState<ServiceCenterPage> {
                    ),
                  ),
                ),
+               ///能强制子控件具有特定宽度、高度或两者都有,使子控件设置的宽高失效
                SizedBox(
                  width: MediaQuery.of(context).size.width - 108,
-                 child: GridView.count(
-                     //一行Widget的数量
-                     crossAxisCount: 3,
-                     //水平子Widget之间间距
-                     crossAxisSpacing: 10.0,
-                     //垂直子Widget之间间距
-                     mainAxisSpacing: 10.0,
-                     //GridView 内边距
-                     padding: EdgeInsets.all(10.0),
-                     //子Widget宽高比
-                     childAspectRatio: 1.0,
-                     //子Widget列表
-                     children: getWidgetList(_list)
-                 ),
+                 child: Stack(
+                   children: <Widget>[
+                     Padding(
+                       child:  Text("服务项目",style: TextStyle(fontSize: 16)),
+                       padding: EdgeInsets.fromLTRB(15, 10, 0, 15),
+                     ),
+                     Padding(
+                       padding: EdgeInsets.fromLTRB(0, 30, 0, 20),
+                       child: GridView.count(
+                         //一行Widget的数量
+                           crossAxisCount: 3,
+                           //水平子Widget之间间距
+                           crossAxisSpacing: 10.0,
+                           //垂直子Widget之间间距
+                           mainAxisSpacing: 10.0,
+                           //GridView 内边距
+                           padding: EdgeInsets.all(10.0),
+                           //子Widget宽高比
+                           childAspectRatio: 1.0,
+                           //子Widget列表
+                           children: getWidgetList(_list)
+                       ),
+                     )
+                   ],
+                 )
                )
             ],
           )
@@ -165,7 +194,6 @@ class ServiceCenterPageState extends BaseWidgetState<ServiceCenterPage> {
     setState((){
       position = index;
     });
-
     switch(index) {
     //人才服务
       case 0:{
