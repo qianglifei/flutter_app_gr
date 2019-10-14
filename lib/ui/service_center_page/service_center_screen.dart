@@ -30,7 +30,11 @@ class ServiceCenterPageState extends BaseWidgetState<ServiceCenterPage> {
   CustomAppBar getAppBar() {
     // TODO: implement getAppBar
     return CustomAppBar(
-      child:Stack(
+      child:Container(
+        width: MediaQuery.of(context).size.width,
+        height: 80,
+        color: Colors.red,
+        child: Stack(
           children: <Widget>[
             Image.asset(
               "images/bq.png",
@@ -38,21 +42,25 @@ class ServiceCenterPageState extends BaseWidgetState<ServiceCenterPage> {
               height: 80,
               fit: BoxFit.fill,
             ),
-            Padding(
-                padding: EdgeInsets.fromLTRB(12, 38, 0, 10),
-                child: Image.asset(
-                  "images/kefubai.png",
-                  width: 34,
-                  height: 31,
-                )
+            SafeArea(
+              child: Padding(
+                  padding: EdgeInsets.fromLTRB(12, 4, 0, 0),
+                  child: Image.asset(
+                    "images/kefubai.png",
+                    width: 23,
+                    height: 21,
+                    fit: BoxFit.cover,
+                  )
+              ),
             ),
-            Container(
-                padding: EdgeInsets.fromLTRB(0, 35, 0, 0),
-                child: Align(
-                  child: Text("服务大厅",style: TextStyle(color: Colors.white,fontSize: 20)),
-                )
-            )
+            SafeArea(
+              child: Align(
+                alignment: AlignmentDirectional.center,
+                child: Text("服务大厅",style: TextStyle(color: Colors.white,fontSize: 20)
+              )
+            ))
           ]),
+      )
     );
   }
 
@@ -109,6 +117,8 @@ class ServiceCenterPageState extends BaseWidgetState<ServiceCenterPage> {
                                 selected: index == position ? true : false,
                                 onTap: (){
                                   updateContentData(context,index);
+                                  double topPadding = MediaQuery.of(context).padding.top;
+                                  print(topPadding.toString());
                                 },
                               ),
                             ],
@@ -136,13 +146,13 @@ class ServiceCenterPageState extends BaseWidgetState<ServiceCenterPage> {
                  child: Stack(
                    children: <Widget>[
                      Padding(
-                       child:  Text("服务项目",style: TextStyle(fontSize: 16)),
+                       child: Text("服务项目",style: TextStyle(fontSize: 16)),
                        padding: EdgeInsets.fromLTRB(15, 10, 0, 15),
                      ),
                      Padding(
                        padding: EdgeInsets.fromLTRB(0, 30, 0, 20),
                        child: GridView.count(
-                         //一行Widget的数量
+                           //一行Widget的数量
                            crossAxisCount: 3,
                            //水平子Widget之间间距
                            crossAxisSpacing: 10.0,
