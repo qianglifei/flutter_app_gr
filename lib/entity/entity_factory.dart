@@ -1,3 +1,5 @@
+import 'package:flutter_app_gr/entity/news_parent_list_entity.dart';
+
 import 'banner_data_entity.dart';
 import 'key_service_enterprises_entity.dart';
 import 'notice_data_entity.dart';
@@ -13,7 +15,9 @@ class EntityFactory {
     } else if(T.toString() == "KeyServiceEnterprisesEntity"){
       //类型转换
       return KeyServiceEnterprisesEntity.fromJson(json) as T;
-    } else {
+    } else if(T.toString() == "NewsParentListEntity"){
+      return NewsParentListEntity.fromJson(json) as T;
+    }else {
       return null;
     }
   }

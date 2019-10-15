@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_app_gr/entity/banner_data_entity.dart';
 import 'package:flutter_app_gr/entity/entity_factory.dart';
 import 'package:flutter_app_gr/entity/key_service_enterprises_entity.dart';
+import 'package:flutter_app_gr/entity/news_parent_list_entity.dart';
 import 'package:flutter_app_gr/entity/notice_data_entity.dart';
 
 import 'api.dart';
@@ -45,5 +46,15 @@ class CommonService{
          callBack(enterprisesEntity);
          print(response.toString());
        });
+    }
+    ///获取新闻列表标题
+    void getNewsListTitleData(Function callBack){
+      dio.
+      get(Api.GET_NEWS_PARENT_LIST).
+      then((response){
+        NewsParentListEntity newsParentListEntity = EntityFactory.generateOBJ(response.data);
+        callBack(newsParentListEntity);
+        print(response.toString());
+      });
     }
 }

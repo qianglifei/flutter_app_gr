@@ -10,4 +10,10 @@ class Api{
   static const String MASS_ANNOUNCEMENT = BASE_URL + "tjsy/tjsy/zxhyCx";
   //重点服务企业列表
   static const String Key_SERVICE_ENTERPRIESE = BASE_URL + "qz/qzsy/zdqylbCx";
+  //获取新闻父类导航数据接
+  static const String GET_NEWS_PARENT_LIST = BASE_URL + "zx/xxzx/flxlbCx";
+  //获取新闻子类导航数据接口
+  static const String GET_NEWS_CHILD_LIST = BASE_URL + "zx/xxzx/zlxlbCx";
+  //获取新闻列表数据
+  static const String GET_NEWS_LIST = BASE_URL + "zx/xxzx/xxzxlbCx";
 }
