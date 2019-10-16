@@ -126,7 +126,6 @@ class ConsultPageState extends BaseWidgetState<ConsultPage> {
                    color: Color.fromRGBO(238, 242, 248, 1)
                  ),
                ),
-
                Container(
                  color: Colors.white,
                  child: Row(
@@ -139,11 +138,14 @@ class ConsultPageState extends BaseWidgetState<ConsultPage> {
                          indicatorColor: Colors.blue,
                          labelColor: Colors.blue,
                          unselectedLabelColor: Colors.grey,
-//                         indicator: const BoxDecoration(
-//                            image: DecorationImage(
-//                              image: Image.
-//                            ),
-//                         ),
+                         indicator: const BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage("images/icon_line.png"),
+                              alignment: Alignment.bottomCenter,
+                            ),
+                         ),
+                          indicatorSize:  TabBarIndicatorSize.label,
+                          indicatorPadding: EdgeInsets.fromLTRB(0, 0, 0, 10),
                        ),
                      ),
                      Container(
