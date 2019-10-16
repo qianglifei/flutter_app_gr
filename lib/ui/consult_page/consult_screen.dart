@@ -15,14 +15,14 @@ class ConsultPage extends BaseWidget{
 
 class ConsultPageState extends BaseWidgetState<ConsultPage> {
   List<NewsParentListEntityReturndataFlxlb> _tabTitleLists = new List();
-  List<Tab> _tabsLists = new List();
+  List<Tab> _tabsLists = [];
 
   @override
   void initState() {
     // TODO: implement initState
-    _tabTitleLists.add(null);
     //获取网络数据
     _getNewsListTitle();
+    _tabsLists.add(Tab(text: "nimabi"));
     super.initState();
   }
   @override
@@ -118,6 +118,7 @@ class ConsultPageState extends BaseWidgetState<ConsultPage> {
        body: DefaultTabController(
            length: _tabsLists.length,
            child: Column(
+             mainAxisSize: MainAxisSize.max,
              children: <Widget>[
                Container(
                  width: MediaQuery.of(context).size.width,
@@ -131,21 +132,21 @@ class ConsultPageState extends BaseWidgetState<ConsultPage> {
                  child: Row(
                    children: <Widget>[
                      Container(
-                       width:350,
+                       width:320,
                        child: TabBar(
                          tabs: _tabsLists,
                          isScrollable: true,
                          indicatorColor: Colors.blue,
                          labelColor: Colors.blue,
-                         unselectedLabelColor: Colors.grey,
+                         unselectedLabelColor: Colors.amberAccent,
                          indicator: const BoxDecoration(
                             image: DecorationImage(
                               image: AssetImage("images/icon_line.png"),
                               alignment: Alignment.bottomCenter,
                             ),
                          ),
-                          indicatorSize:  TabBarIndicatorSize.label,
-                          indicatorPadding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                         indicatorSize:  TabBarIndicatorSize.label,
+
                        ),
                      ),
                      Container(
@@ -166,7 +167,7 @@ class ConsultPageState extends BaseWidgetState<ConsultPage> {
                    ],
                  )
                ),
-                ///使用TabBarView是有条件的，TabBarView的父Widget必须知道宽高才能布局，
+               ///使用TabBarView是有条件的，TabBarView的父Widget必须知道宽高才能布局，
                ///但是一般我们在市级项目中又不会把宽高写死，因此我们一般会在一个Expanded中
                ///加入TabBarView
 //               TabBarView(
@@ -197,6 +198,7 @@ class ConsultPageState extends BaseWidgetState<ConsultPage> {
             _tabTitleLists = newsParentListEntity.returnData.flxlb;
             for(int i = 0 ; i < _tabTitleLists.length ; i ++){
               _tabsLists.add(Tab(text: _tabTitleLists[i].flxmc));
+              print(_tabTitleLists[i].flxmc);
             }
         });
     });
