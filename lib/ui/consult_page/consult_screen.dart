@@ -13,17 +13,17 @@ class ConsultPage extends BaseWidget{
 
 }
 
-class ConsultPageState extends BaseWidgetState<ConsultPage> {
+class ConsultPageState extends BaseWidgetState<ConsultPage> with TickerProviderStateMixin{
   List<NewsParentListEntityReturndataFlxlb> _tabTitleLists = new List();
-  List<Tab> _tabsLists = [];
-
+  List<Tab> _tabsLists = new List();
+  TabController _tabController;
   @override
   void initState() {
     // TODO: implement initState
+    super.initState();
     //获取网络数据
     _getNewsListTitle();
-    _tabsLists.add(Tab(text: "nimabi"));
-    super.initState();
+    _tabController = TabController(length: _tabTitleLists.length, vsync: this);
   }
   @override
   CustomAppBar getAppBar() {
@@ -115,10 +115,8 @@ class ConsultPageState extends BaseWidgetState<ConsultPage> {
   Widget getContentWidget(BuildContext context) {
     // TODO: implement getContentWidget
     return Scaffold(
-       body: DefaultTabController(
-           length: _tabsLists.length,
-           child: Column(
-             mainAxisSize: MainAxisSize.max,
+       body: Column(
+             mainAxisSize: MainAxisSize.min,
              children: <Widget>[
                Container(
                  width: MediaQuery.of(context).size.width,
@@ -133,20 +131,28 @@ class ConsultPageState extends BaseWidgetState<ConsultPage> {
                    children: <Widget>[
                      Container(
                        width:320,
+                       color: Colors.white,
                        child: TabBar(
-                         tabs: _tabsLists,
+                         controller: _tabController,
+                         tabs: _tabTitleLists.map<Tab>((NewsParentListEntityReturndataFlxlb tab){
+                           return Tab(
+                             text: tab.flxmc,
+                           );
+                         }).toList(),
                          isScrollable: true,
                          indicatorColor: Colors.blue,
                          labelColor: Colors.blue,
-                         unselectedLabelColor: Colors.amberAccent,
+                         unselectedLabelColor: Colors.grey,
                          indicator: const BoxDecoration(
+
                             image: DecorationImage(
                               image: AssetImage("images/icon_line.png"),
                               alignment: Alignment.bottomCenter,
                             ),
                          ),
+                         indicatorWeight: 0.1,
+                         indicatorPadding: EdgeInsets.zero,
                          indicatorSize:  TabBarIndicatorSize.label,
-
                        ),
                      ),
                      Container(
@@ -176,11 +182,11 @@ class ConsultPageState extends BaseWidgetState<ConsultPage> {
                Expanded(
                  flex: 1,
                  child: TabBarView(
+                     controller: _tabController,
                      children: _tabsLists.map((Tab tab) => Center(child: Text(tab.text,style: TextStyle(fontSize: 27)))).toList(),
                  )
                )
-             ],
-           )
+             ]
        ),
     );
 
@@ -196,6 +202,7 @@ class ConsultPageState extends BaseWidgetState<ConsultPage> {
     CommonService().getNewsListTitleData((NewsParentListEntity newsParentListEntity){
         setState(() {
             _tabTitleLists = newsParentListEntity.returnData.flxlb;
+            _tabController = new TabController(length: _tabTitleLists.length, vsync: this);
             for(int i = 0 ; i < _tabTitleLists.length ; i ++){
               _tabsLists.add(Tab(text: _tabTitleLists[i].flxmc));
               print(_tabTitleLists[i].flxmc);
