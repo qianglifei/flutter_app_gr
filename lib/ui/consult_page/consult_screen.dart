@@ -1,8 +1,13 @@
+import 'dart:core';
+import 'dart:core';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_app_gr/base/base_widget.dart';
 import 'package:flutter_app_gr/custom_widget/custom_app_bar.dart';
+import 'package:flutter_app_gr/custom_widget/custom_indicator.dart';
 import 'package:flutter_app_gr/entity/news_parent_list_entity.dart';
 import 'package:flutter_app_gr/http/common_service.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 class ConsultPage extends BaseWidget{
   @override
@@ -116,10 +121,10 @@ class ConsultPageState extends BaseWidgetState<ConsultPage> with TickerProviderS
     // TODO: implement getContentWidget
     return Scaffold(
        body: Column(
-             mainAxisSize: MainAxisSize.min,
+             mainAxisSize: MainAxisSize.max,
              children: <Widget>[
                Container(
-                 width: MediaQuery.of(context).size.width,
+                 width: MediaQuery.of(context).size.width - 100,
                  height: 2,
                  decoration: BoxDecoration(
                    color: Color.fromRGBO(238, 242, 248, 1)
@@ -130,7 +135,7 @@ class ConsultPageState extends BaseWidgetState<ConsultPage> with TickerProviderS
                  child: Row(
                    children: <Widget>[
                      Container(
-                       width:320,
+                       width:MediaQuery.of(context).size.width - 62,
                        color: Colors.white,
                        child: TabBar(
                          controller: _tabController,
@@ -144,14 +149,11 @@ class ConsultPageState extends BaseWidgetState<ConsultPage> with TickerProviderS
                          labelColor: Colors.blue,
                          unselectedLabelColor: Colors.grey,
                          indicator: const BoxDecoration(
-
                             image: DecorationImage(
                               image: AssetImage("images/icon_line.png"),
                               alignment: Alignment.bottomCenter,
                             ),
                          ),
-                         indicatorWeight: 0.1,
-                         indicatorPadding: EdgeInsets.zero,
                          indicatorSize:  TabBarIndicatorSize.label,
                        ),
                      ),
@@ -183,7 +185,11 @@ class ConsultPageState extends BaseWidgetState<ConsultPage> with TickerProviderS
                  flex: 1,
                  child: TabBarView(
                      controller: _tabController,
-                     children: _tabsLists.map((Tab tab) => Center(child: Text(tab.text,style: TextStyle(fontSize: 27)))).toList(),
+                     children: _tabTitleLists.map((item){
+                       return Center(
+                         child: _ContentList(item.flxmc,item.flxbh),
+                       );
+                     }).toList(),
                  )
                )
              ]
@@ -195,6 +201,8 @@ class ConsultPageState extends BaseWidgetState<ConsultPage> with TickerProviderS
   @override
   void onClickErrorWidget() {
     // TODO: implement onClickErrorWidget
+    showLoading();
+    //TODO: 重新加载数据内容
   }
 
   ///网络请求
@@ -209,5 +217,74 @@ class ConsultPageState extends BaseWidgetState<ConsultPage> with TickerProviderS
             }
         });
     });
+  }
+}
+
+class _ContentList extends StatefulWidget{
+  String flxmc = "";
+  String flxbh = "";
+
+  _ContentList(String flxmc,String flxbh){
+    this.flxmc = flxmc;
+    this.flxbh = flxbh;
+  }
+
+  @override
+  _ContentListState createState() {
+    // TODO: implement createState
+    return _ContentListState();
+  }
+}
+
+class _ContentListState extends State<_ContentList> {
+  GlobalKey<EasyRefreshState> _easyRefreshKey = new GlobalKey<EasyRefreshState>();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  Future<Null> _getData () async{
+
+  }
+
+  Future<Null> _getMoreData() async{
+
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return EasyRefresh(
+      key: _easyRefreshKey,
+      child: ListView.separated(
+          itemBuilder: _renderItem,
+          //设置physics 属性，总是可以滚动
+          physics: new AlwaysScrollableScrollPhysics(),
+          //分割线
+          separatorBuilder: (BuildContext context,int index){
+            return Container(
+              height: 0.5,
+              color: Colors.blue,
+            );
+          },
+          itemCount: 40
+      ),
+      onRefresh: () async{
+        _getData();
+      },
+
+      loadMore: () async{
+        _getMoreData();
+      },
+
+    );
+  }
+
+
+  Widget _renderItem(BuildContext context, int index) {
+    return Container(
+      child: Text("你好吗，傻吊"),
+    );
   }
 }
