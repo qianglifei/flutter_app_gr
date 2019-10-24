@@ -16,4 +16,6 @@ class Api{
   static const String GET_NEWS_CHILD_LIST = BASE_URL + "zx/xxzx/zlxlbCx";
   //获取新闻列表数据
   static const String GET_NEWS_LIST = BASE_URL + "zx/xxzx/xxzxlbCx";
+  //新闻列表猜你喜欢接口
+  static const String LIKE_LIST = BASE_URL + "zx/cnxh/cnxhzxlbCx";
 }

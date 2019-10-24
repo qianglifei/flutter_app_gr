@@ -8,6 +8,7 @@ import 'package:flutter_app_gr/custom_widget/custom_indicator.dart';
 import 'package:flutter_app_gr/entity/news_parent_list_entity.dart';
 import 'package:flutter_app_gr/http/common_service.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_app_gr/entity/favourite_entity.dart';
 
 class ConsultPage extends BaseWidget{
   @override
@@ -238,14 +239,24 @@ class _ContentList extends StatefulWidget{
 
 class _ContentListState extends State<_ContentList> {
   GlobalKey<EasyRefreshState> _easyRefreshKey = new GlobalKey<EasyRefreshState>();
+  List<FavouriteReturndataZx> _likeList = new List();
+  String ITEM_TYPE_ONE = "1";
+  String ITEM_TYPE_TWO = "2";
+  String ITEM_TYPE_THREE = "3";
+  String ITEM_TYPE_FOURE = "4";
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    _getData();
   }
 
   Future<Null> _getData () async{
-
+    CommonService().getLikeListData((FavouriteEntity favouriteEntity){
+        setState(() {
+          _likeList = favouriteEntity.returnData.zxs;
+        });
+    });
   }
 
   Future<Null> _getMoreData() async{
@@ -265,7 +276,7 @@ class _ContentListState extends State<_ContentList> {
           separatorBuilder: (BuildContext context,int index){
             return Container(
               height: 0.5,
-              color: Colors.blue,
+              color: Colors.grey,
             );
           },
           itemCount: 40
@@ -283,8 +294,18 @@ class _ContentListState extends State<_ContentList> {
 
 
   Widget _renderItem(BuildContext context, int index) {
-    return Container(
-      child: Text("你好吗，傻吊"),
-    );
+    Widget widget;
+    switch(_likeList[index].fmmblx){
+      case "1" :{
+
+      }break;
+      case "2" :{
+
+      }break;
+      case "3" :{
+
+      }break;
+    }
+    return widget;
   }
 }

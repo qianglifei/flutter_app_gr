@@ -3,6 +3,8 @@ import 'package:flutter_app_gr/entity/news_parent_list_entity.dart';
 import 'banner_data_entity.dart';
 import 'key_service_enterprises_entity.dart';
 import 'notice_data_entity.dart';
+import 'favourite_entity.dart';
+
 class EntityFactory {
   static T generateOBJ<T>(json) {
     if (1 == 0) {
@@ -17,6 +19,8 @@ class EntityFactory {
       return KeyServiceEnterprisesEntity.fromJson(json) as T;
     } else if(T.toString() == "NewsParentListEntity"){
       return NewsParentListEntity.fromJson(json) as T;
+    }else if (T.toString() == "FavouriteEntity") {
+      return FavouriteEntity.fromJson(json) as T;
     }else {
       return null;
     }

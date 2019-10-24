@@ -57,4 +57,12 @@ class CommonService{
         print(response.toString());
       });
     }
+    
+    ///获取踩你喜欢列表数据
+    void getLikeListData(Function callBack){
+      dio.get(Api.LIKE_LIST).
+      then((response){
+          print("哇哈哈" + response.toString());
+      });
+    }
 }
