@@ -1,6 +1,7 @@
 import 'dart:core';
 import 'dart:core';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_gr/base/base_widget.dart';
 import 'package:flutter_app_gr/custom_widget/custom_app_bar.dart';
@@ -255,6 +256,7 @@ class _ContentListState extends State<_ContentList> {
     CommonService().getLikeListData((FavouriteEntity favouriteEntity){
         setState(() {
           _likeList = favouriteEntity.returnData.zxs;
+          print("nimabi" + _likeList[0].fmmblx);
         });
     });
   }
@@ -275,11 +277,11 @@ class _ContentListState extends State<_ContentList> {
           //分割线
           separatorBuilder: (BuildContext context,int index){
             return Container(
-              height: 0.5,
-              color: Colors.grey,
+              height: 1.5,
+              color: Colors.greenAccent,
             );
           },
-          itemCount: 40
+          itemCount: _likeList.length
       ),
       onRefresh: () async{
         _getData();
@@ -294,18 +296,76 @@ class _ContentListState extends State<_ContentList> {
 
 
   Widget _renderItem(BuildContext context, int index) {
-    Widget widget;
-    switch(_likeList[index].fmmblx){
-      case "1" :{
-
-      }break;
-      case "2" :{
-
-      }break;
-      case "3" :{
-
-      }break;
+    var itemTypeStr = _likeList[index].fmmblx;
+    print("item" + itemTypeStr);
+    if(itemTypeStr == null || itemTypeStr == ""){
+       return Container(
+         child: Text(""),
+       );
     }
-    return widget;
+    if(itemTypeStr == "10"){
+      return Container(
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+            color: Color.fromRGBO(238, 242, 248, 1),
+            image: DecorationImage(
+              image: AssetImage(""),
+              fit: BoxFit.cover
+            ),
+            borderRadius: BorderRadius.circular(3) ,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.fromLTRB(10, 8, 0, 0),
+                child: Text(_likeList[index].bt,style: TextStyle(fontSize:  16)),
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(10, 8, 0, 0),
+                child: Text(_likeList[index].fbsj),
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(12, 8, 0, 0),
+                child: Row(
+                  children: <Widget>[
+                    Text(_likeList[index].fbr),
+                  ],
+                )
+              )
+            ],
+          )
+      );
+    }else if(itemTypeStr == "13"){
+      return Container(
+          height: 154,
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+            color: Colors.grey,
+            borderRadius: BorderRadius.circular(5) ,
+          ),
+          child: Text("张二狗")
+      );
+    }else if(itemTypeStr == "12"){
+      return Container(
+          height: 154,
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+            color: Colors.grey,
+            borderRadius: BorderRadius.circular(5) ,
+          ),
+          child: Text("张四狗")
+      );
+    }else{
+      return Container(
+          height: 154,
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+            color: Colors.grey,
+            borderRadius: BorderRadius.circular(5) ,
+          ),
+          child: Text("张五狗")
+      );
+    }
   }
 }

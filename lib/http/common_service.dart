@@ -5,7 +5,7 @@ import 'package:flutter_app_gr/entity/entity_factory.dart';
 import 'package:flutter_app_gr/entity/key_service_enterprises_entity.dart';
 import 'package:flutter_app_gr/entity/news_parent_list_entity.dart';
 import 'package:flutter_app_gr/entity/notice_data_entity.dart';
-
+import 'package:flutter_app_gr/entity/favourite_entity.dart';
 import 'api.dart';
 import 'dio_manager.dart';
 class CommonService{
@@ -62,6 +62,8 @@ class CommonService{
     void getLikeListData(Function callBack){
       dio.get(Api.LIKE_LIST).
       then((response){
+        FavouriteEntity favouriteEntity = EntityFactory.generateOBJ(response.data);
+        callBack(favouriteEntity);
           print("哇哈哈" + response.toString());
       });
     }
