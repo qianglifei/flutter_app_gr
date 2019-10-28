@@ -307,29 +307,44 @@ class _ContentListState extends State<_ContentList> {
       return Container(
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
-            color: Color.fromRGBO(238, 242, 248, 1),
+            color: Colors.white,
             image: DecorationImage(
-              image: AssetImage(""),
+              image: _likeList[index].fmtp.length <= 0  ? AssetImage("") : AssetImage(_likeList[index].fmtp[0].fmtplj + _likeList[index].fmtp[0].fmtpfwdmc),
               fit: BoxFit.cover
             ),
-            borderRadius: BorderRadius.circular(3) ,
+            borderRadius: BorderRadius.circular(2) ,
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Padding(
-                padding: EdgeInsets.fromLTRB(10, 8, 0, 0),
+              Container(
+                margin: EdgeInsets.fromLTRB(12, 10, 0, 0),
                 child: Text(_likeList[index].bt,style: TextStyle(fontSize:  16)),
               ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(10, 8, 0, 0),
-                child: Text(_likeList[index].fbsj),
+              Container(
+                margin: EdgeInsets.fromLTRB(12, 8, 0, 0),
+                child: Text(_likeList[index].fbr,style: TextStyle(fontSize:  14)),
               ),
               Padding(
-                padding: EdgeInsets.fromLTRB(12, 8, 0, 0),
+                padding: EdgeInsets.fromLTRB(12, 8, 0, 8),
                 child: Row(
                   children: <Widget>[
-                    Text(_likeList[index].fbr),
+                    Image.asset(
+                      "images/zxzd.png",
+                      width: 16,
+                      height: 16,
+                      fit: BoxFit.cover,
+                    ),
+                    Padding(
+                      child: Text("置顶"),
+                      padding: EdgeInsets.fromLTRB(4, 0, 0, 0)
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(17, 0, 0, 0),
+                      child: Text(_likeList[index].fbsj),
+                    ),
                   ],
                 )
               )
@@ -338,33 +353,189 @@ class _ContentListState extends State<_ContentList> {
       );
     }else if(itemTypeStr == "13"){
       return Container(
-          height: 154,
+          height: 102,
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
-            color: Colors.grey,
+            color: Colors.white,
             borderRadius: BorderRadius.circular(5) ,
           ),
-          child: Text("张二狗")
+          child: Row(
+            children: <Widget>[
+              Container(
+                width: MediaQuery.of(context).size.width - 100,
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(12, 10, 0, 25),
+                      child: Text(_likeList[index].bt,style: TextStyle(fontSize: 14,color: Colors.black)),
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(12, 0, 0, 0),
+                          child: Image.asset(
+                            "images/zxzd.png",
+                            width: 16,
+                            height: 16,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        Padding(
+                            child: Text("置顶"),
+                            padding: EdgeInsets.fromLTRB(4, 0, 0, 0)
+                        ),
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
+                          child: Text(_likeList[index].fbr),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(27, 0, 0, 0),
+                          child: Text(_likeList[index].fbsj),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              ),
+              Image.
+              network(
+                _likeList[index].fmtp[0].fmtplj + _likeList[index].fmtp[0].fmtpfwdmc,
+                width: 91,
+                height: 75,
+                fit: BoxFit.cover,
+              )
+            ],
+          )
       );
     }else if(itemTypeStr == "12"){
       return Container(
-          height: 154,
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
-            color: Colors.grey,
+            color: Colors.white,
             borderRadius: BorderRadius.circular(5) ,
           ),
-          child: Text("张四狗")
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.fromLTRB(12, 10, 0, 10),
+                child: Text(_likeList[index].bt,style: TextStyle(fontSize: 14,color: Colors.black)),
+              ),
+              Container(
+                margin: EdgeInsets.fromLTRB(12, 0, 12, 0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Image.
+                    network(
+                      _likeList[index].fmtp[0].fmtplj + _likeList[index].fmtp[0].fmtpfwdmc,
+                      width: 125,
+                      height: 80,
+                      fit: BoxFit.cover,
+                    ),
+                    Image.
+                    network(
+                      _likeList[index].fmtp[0].fmtplj + _likeList[index].fmtp[0].fmtpfwdmc,
+                      width: 125,
+                      height: 80,
+                      fit: BoxFit.cover,
+                    ),
+                    Image.
+                    network(
+                      _likeList[index].fmtp[0].fmtplj + _likeList[index].fmtp[0].fmtpfwdmc,
+                      width: 125,
+                      height: 80,
+                      fit: BoxFit.cover,
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.fromLTRB(0, 10, 0, 5),
+                child: Row(
+                  children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(12, 0, 0, 0),
+                      child: Image.asset(
+                        "images/zxzd.png",
+                        width: 16,
+                        height: 16,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    Padding(
+                        child: Text("置顶"),
+                        padding: EdgeInsets.fromLTRB(4, 0, 0, 0)
+                    ),
+                  ],
+                ),
+              )
+            ],
+          )
       );
     }else{
       return Container(
-          height: 154,
+          height: 102,
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
-            color: Colors.grey,
+            color: Colors.white,
             borderRadius: BorderRadius.circular(5) ,
           ),
-          child: Text("张五狗")
+          child: Row(
+            children: <Widget>[
+              Container(
+                width: MediaQuery.of(context).size.width - 100,
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(12, 10, 0, 25),
+                      child: Text(_likeList[index].bt,style: TextStyle(fontSize: 14,color: Colors.black)),
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(12, 0, 0, 0),
+                          child: Image.asset(
+                            "images/zxzd.png",
+                            width: 16,
+                            height: 16,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        Padding(
+                            child: Text("置顶"),
+                            padding: EdgeInsets.fromLTRB(4, 0, 0, 0)
+                        ),
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
+                          child: Text(_likeList[index].fbr),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(27, 0, 0, 0),
+                          child: Text(_likeList[index].fbsj),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              ),
+              Image.
+              network(
+                _likeList[index].fmtp[0].fmtplj + _likeList[index].fmtp[0].fmtpfwdmc,
+                width: 91,
+                height: 75,
+                fit: BoxFit.cover,
+              )
+            ],
+          )
       );
     }
   }

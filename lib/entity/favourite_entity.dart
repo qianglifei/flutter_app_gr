@@ -85,7 +85,7 @@ class FavouriteReturndataZx {
 	int pageNum;
 	String sfdl;
 	String webDjs;
-	List<Null> fmtp;
+	List<FavouriteReturndataZxsFmtp> fmtp;
 	String webFmmblx;
 	String appSffb;
 	String webSffb;
@@ -133,7 +133,7 @@ class FavouriteReturndataZx {
 		sfdl = json['sfdl'];
 		webDjs = json['web_djs'];
 		if (json['fmtp'] != null) {
-			fmtp = new List<Null>();
+			fmtp = new List<FavouriteReturndataZxsFmtp>();(json['fmtp'] as List).forEach((v) { fmtp.add(new FavouriteReturndataZxsFmtp.fromJson(v)); });
 		}
 		webFmmblx = json['web_fmmblx'];
 		appSffb = json['app_sffb'];
@@ -182,7 +182,7 @@ class FavouriteReturndataZx {
 		data['sfdl'] = this.sfdl;
 		data['web_djs'] = this.webDjs;
 		if (this.fmtp != null) {
-      data['fmtp'] =  [];
+      data['fmtp'] =  this.fmtp.map((v) => v.toJson()).toList();
     }
 		data['web_fmmblx'] = this.webFmmblx;
 		data['app_sffb'] = this.appSffb;
@@ -199,6 +199,40 @@ class FavouriteReturndataZx {
 		data['app_djs'] = this.appDjs;
 		data['app_zxnr'] = this.appZxnr;
 		data['app_fmmblx'] = this.appFmmblx;
+		return data;
+	}
+}
+
+class FavouriteReturndataZxsFmtp {
+	String fmtpkhdmc;
+	String cjsj;
+	String zxId;
+	String zxfmtpId;
+	String fmtplj;
+	String xsd;
+	String fmtpfwdmc;
+
+	FavouriteReturndataZxsFmtp({this.fmtpkhdmc, this.cjsj, this.zxId, this.zxfmtpId, this.fmtplj, this.xsd, this.fmtpfwdmc});
+
+	FavouriteReturndataZxsFmtp.fromJson(Map<String, dynamic> json) {
+		fmtpkhdmc = json['fmtpkhdmc'];
+		cjsj = json['cjsj'];
+		zxId = json['zx_id'];
+		zxfmtpId = json['zxfmtp_id'];
+		fmtplj = json['fmtplj'];
+		xsd = json['xsd'];
+		fmtpfwdmc = json['fmtpfwdmc'];
+	}
+
+	Map<String, dynamic> toJson() {
+		final Map<String, dynamic> data = new Map<String, dynamic>();
+		data['fmtpkhdmc'] = this.fmtpkhdmc;
+		data['cjsj'] = this.cjsj;
+		data['zx_id'] = this.zxId;
+		data['zxfmtp_id'] = this.zxfmtpId;
+		data['fmtplj'] = this.fmtplj;
+		data['xsd'] = this.xsd;
+		data['fmtpfwdmc'] = this.fmtpfwdmc;
 		return data;
 	}
 }
