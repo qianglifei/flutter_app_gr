@@ -59,12 +59,36 @@ class CommonService{
     }
     
     ///获取踩你喜欢列表数据
-    void getLikeListData(Function callBack){
-      dio.get(Api.LIKE_LIST).
+    void getLikeListData(Function callBack, String _pageSize,String _pageNum){
+      Map<String,dynamic> map = new Map();
+      map.addAll({
+        "pageSize": _pageSize,
+        "pageNum" : _pageNum
+      });
+      dio.get(Api.LIKE_LIST,queryParameters: map).
       then((response){
         FavouriteEntity favouriteEntity = EntityFactory.generateOBJ(response.data);
         callBack(favouriteEntity);
-          print("哇哈哈" + response.toString());
+        print("哇哈哈" + response.toString());
+      });
+    }
+
+    ///获取新闻列表数据
+    void getNewsListData(Function callBack, String _fwbh,String _pageNum,String _pageSize){
+      Map<String,dynamic> map = new Map();
+      map.addAll({
+        "flxbh" : _fwbh,
+        "pageSize" : _pageSize,
+        "pageNum" : _pageNum
+      });
+
+      dio.
+      get(Api.GET_NEWS_LIST,queryParameters: map).
+      then((response){
+        FavouriteEntity favouriteEntity = EntityFactory.generateOBJ(response.data);
+        callBack(favouriteEntity);
+        print("哇哈哈" + response.toString());
+        print("哇哈哈:" + _fwbh);
       });
     }
 }

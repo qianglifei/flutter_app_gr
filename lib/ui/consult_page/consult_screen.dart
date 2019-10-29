@@ -5,11 +5,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_gr/base/base_widget.dart';
 import 'package:flutter_app_gr/custom_widget/custom_app_bar.dart';
-import 'package:flutter_app_gr/custom_widget/custom_indicator.dart';
 import 'package:flutter_app_gr/entity/news_parent_list_entity.dart';
 import 'package:flutter_app_gr/http/common_service.dart';
+import 'package:flutter_app_gr/ui/dialog_custom/menu_dialog.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_app_gr/entity/favourite_entity.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class ConsultPage extends BaseWidget{
   @override
@@ -167,12 +168,27 @@ class ConsultPageState extends BaseWidgetState<ConsultPage> with TickerProviderS
                      ),
                      Container(
                        margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                       child: Image.asset(
-                         "images/caidan.png",
-                         width: 30,
-                         height: 30,
-                         fit: BoxFit.cover,
-                       ),
+                       child: GestureDetector(
+                          //TODO behavior, 什么意思
+                          behavior: HitTestBehavior.deferToChild,
+                          child: Image.
+                          asset(
+                            "images/caidan.png",
+                            width: 30,
+                            height: 30,
+                            fit: BoxFit.cover,
+                          ),
+                         onTap: (){
+                            Fluttertoast.showToast(msg: "菜单被点击了");
+                            showDialog<Null>(
+                                context: context, //BuildContext对象
+                                builder: (BuildContext context) {
+                                  return new MenuDialog( //调用对话框
+
+                                );
+                            });
+                         },
+                       )
                      )
                    ],
                  )
@@ -245,24 +261,48 @@ class _ContentListState extends State<_ContentList> {
   String ITEM_TYPE_TWO = "2";
   String ITEM_TYPE_THREE = "3";
   String ITEM_TYPE_FOURE = "4";
+  String _pageSize = "10";
+  int _pageNum = 1;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    _getData();
+    _getData("10","1");
   }
 
-  Future<Null> _getData () async{
-    CommonService().getLikeListData((FavouriteEntity favouriteEntity){
+  Future<Null> _getData (String _pageSize,String _pageNum) async{
+    _likeList.clear();
+    if(widget.flxmc == "猜你喜欢"){
+      CommonService().getLikeListData((FavouriteEntity favouriteEntity){
         setState(() {
           _likeList = favouriteEntity.returnData.zxs;
-          print("nimabi" + _likeList[0].fmmblx);
         });
-    });
+      },_pageSize , _pageNum);
+      print(widget.flxmc);
+    }else{
+      CommonService().getNewsListData((FavouriteEntity favouriteEntity){
+        setState(() {
+          _likeList = favouriteEntity.returnData.zxs;
+        });
+      },widget.flxbh,_pageNum, _pageSize);
+      print(widget.flxmc);
+    }
   }
 
-  Future<Null> _getMoreData() async{
-
+  Future<Null> _getMoreData(String _pageSize,String _pageNum) async{
+    if(widget.flxmc == "猜你喜欢"){
+      CommonService().getLikeListData((FavouriteEntity favouriteEntity){
+        setState(() {
+          _likeList.addAll(favouriteEntity.returnData.zxs);
+        });
+      },_pageSize , _pageNum);
+    }else{
+      CommonService().getNewsListData((FavouriteEntity favouriteEntity){
+        setState(() {
+          _likeList.addAll(favouriteEntity.returnData.zxs);
+        });
+      },widget.flxbh,_pageSize , _pageNum);
+    }
   }
 
   @override
@@ -277,18 +317,20 @@ class _ContentListState extends State<_ContentList> {
           //分割线
           separatorBuilder: (BuildContext context,int index){
             return Container(
-              height: 1.5,
-              color: Colors.greenAccent,
+              height: 10,
+              color: Color.fromRGBO(238, 242, 248, 1),
             );
           },
           itemCount: _likeList.length
       ),
       onRefresh: () async{
-        _getData();
+        _getData("10","1");
       },
 
       loadMore: () async{
-        _getMoreData();
+        _pageNum++;
+        print("页数：" + _pageNum.toString());
+        _getMoreData(_pageSize,_pageNum.toString());
       },
 
     );
@@ -351,7 +393,7 @@ class _ContentListState extends State<_ContentList> {
             ],
           )
       );
-    }else if(itemTypeStr == "13"){
+    }else if(itemTypeStr == "12"){
       return Container(
           height: 102,
           width: MediaQuery.of(context).size.width,
@@ -410,7 +452,7 @@ class _ContentListState extends State<_ContentList> {
             ],
           )
       );
-    }else if(itemTypeStr == "12"){
+    }else if(itemTypeStr == "13"){
       return Container(
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
@@ -440,14 +482,14 @@ class _ContentListState extends State<_ContentList> {
                     ),
                     Image.
                     network(
-                      _likeList[index].fmtp[0].fmtplj + _likeList[index].fmtp[0].fmtpfwdmc,
+                      _likeList[index].fmtp[1].fmtplj + _likeList[index].fmtp[1].fmtpfwdmc,
                       width: 125,
                       height: 80,
                       fit: BoxFit.cover,
                     ),
                     Image.
                     network(
-                      _likeList[index].fmtp[0].fmtplj + _likeList[index].fmtp[0].fmtpfwdmc,
+                      _likeList[index].fmtp[2].fmtplj + _likeList[index].fmtp[2].fmtpfwdmc,
                       width: 125,
                       height: 80,
                       fit: BoxFit.cover,
