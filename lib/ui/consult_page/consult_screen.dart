@@ -23,7 +23,7 @@ class ConsultPage extends BaseWidget{
 
 class ConsultPageState extends BaseWidgetState<ConsultPage> with TickerProviderStateMixin{
   List<NewsParentListEntityReturndataFlxlb> _tabTitleLists = new List();
-  List<Tab> _tabsLists = new List();
+  List<String> _tabsLists = new List();
   TabController _tabController;
   @override
   void initState() {
@@ -183,9 +183,9 @@ class ConsultPageState extends BaseWidgetState<ConsultPage> with TickerProviderS
                             showDialog<Null>(
                                 context: context, //BuildContext对象
                                 builder: (BuildContext context) {
-                                  return new MenuDialog( //调用对话框
-
-                                );
+                                  return MenuDialog(
+                                    _tabsLists
+                                  );
                             });
                          },
                        )
@@ -230,8 +230,7 @@ class ConsultPageState extends BaseWidgetState<ConsultPage> with TickerProviderS
             _tabTitleLists = newsParentListEntity.returnData.flxlb;
             _tabController = new TabController(length: _tabTitleLists.length, vsync: this);
             for(int i = 0 ; i < _tabTitleLists.length ; i ++){
-              _tabsLists.add(Tab(text: _tabTitleLists[i].flxmc));
-              print(_tabTitleLists[i].flxmc);
+              _tabsLists.add(_tabTitleLists[i].flxmc);
             }
         });
     });
