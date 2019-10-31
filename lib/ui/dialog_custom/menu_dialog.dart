@@ -101,7 +101,7 @@ class MenuDialogState extends State<MenuDialog>{
     final List<Widget> _list = List<Widget>();
     for(int x = 0; x < list.length; x ++){
       _list.add(
-        CustomDraggableTarget(list[x])
+        CustomDraggableTarget(list,data: list[x])
       );
     }
     return _list;
