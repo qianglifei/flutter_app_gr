@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/cupertino.dart' as prefix0;
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 
@@ -34,11 +35,19 @@ class _CustomDraggableTargetState<T> extends State<CustomDraggableTarget> {
         //仅用于保持样式，可以使用DragTarget作为直接child
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.blue,
+            color: Color.fromRGBO(234, 242, 253, 1),
             border: Border.all(
               width: 1.0,
-              color: Color(0xffff1234),
-            )
+              color: Color.fromRGBO(172, 172, 195, 1),
+            ),
+            borderRadius: BorderRadius.circular(4),
+            //阴影
+            boxShadow: [BoxShadow(
+                color:Colors.black12,
+                offset: Offset(2.0,2.0),
+                blurRadius: 4.0
+              )
+            ]
           ),
           child: DragTarget(
               onWillAccept: (moveData){
@@ -58,9 +67,11 @@ class _CustomDraggableTargetState<T> extends State<CustomDraggableTarget> {
               },
               builder: (context,candidateData,rejectedData){
                 return Container(
-                  color: Colors.red[500],
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(3)
+                  ),
                   child: Center(
-                    child: Text(text),
+                    child: Text(text,style: TextStyle(fontSize: 15,color: Color.fromRGBO(98, 132, 182, 1))),
                   ),
                 );
               }
@@ -68,9 +79,21 @@ class _CustomDraggableTargetState<T> extends State<CustomDraggableTarget> {
         ),
         //是拖动时跟随手指移动的Widget
         feedback: Container(
-          color: Colors.blue[500],
+          width: 100,
+          height: 50,
           child: Center(
-            child: Text(text),
+            child: Text(text,style:TextStyle(fontSize: 16,color: Colors.white)),
+          ),
+          decoration: BoxDecoration(
+                color: Colors.blue,
+                borderRadius: BorderRadius.circular(3),
+                //阴影
+                boxShadow: [BoxShadow(
+                    color:Colors.black54,
+                    offset: Offset(2.0,2.0),
+                    blurRadius: 4.0
+                )
+               ]
           ),
         ),
         onDragStarted: (){
@@ -94,6 +117,9 @@ class _CustomDraggableTargetState<T> extends State<CustomDraggableTarget> {
       list.insert(toIndex, moveData);
       if (onAccept) {
         _movingValue = null;
+      }
+      for(int index = 0 ; index < list.length ; index ++){
+        print(list);
       }
     });
   }

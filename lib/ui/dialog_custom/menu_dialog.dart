@@ -67,7 +67,7 @@ class MenuDialogState extends State<MenuDialog>{
                       // item 宽高比
                       childAspectRatio: 2.0,
                       crossAxisSpacing: 8.0,
-                      mainAxisSpacing: 6.0,
+                      mainAxisSpacing: 15.0,
                       // 默认vertical
                       scrollDirection: Axis.vertical,
                       children: _buildGridChildren(context),
