@@ -42,23 +42,28 @@ class ServiceCenterPageState extends BaseWidgetState<ServiceCenterPage> {
               height: 80,
               fit: BoxFit.fill,
             ),
-            SafeArea(
-              child: Padding(
-                  padding: EdgeInsets.fromLTRB(12, 4, 0, 0),
-                  child: Image.asset(
-                    "images/kefubai.png",
-                    width: 23,
-                    height: 21,
-                    fit: BoxFit.cover,
-                  )
-              ),
+            Padding(
+                padding: EdgeInsets.fromLTRB(12, 40, 0, 0),
+                child: Image.asset(
+                  "images/kefubai.png",
+                  width: 23,
+                  height: 21,
+                  fit: BoxFit.cover,
+                )
             ),
-            SafeArea(
-              child: Align(
-                alignment: AlignmentDirectional.center,
-                child: Text("服务大厅",style: TextStyle(color: Colors.white,fontSize: 20)
-              )
-            ))
+            Row(
+              children: <Widget>[
+                Expanded(
+                    flex: 5,
+                    child: new Container(
+                      alignment: Alignment.center,
+                      margin: EdgeInsets.fromLTRB(0, 18, 0, 0),
+                      color: Colors.transparent,
+                      child: Text("服务大厅",style: TextStyle(color: Colors.white,fontSize: 20)),
+                    )
+                )
+              ],
+            )
           ]),
       )
     );

@@ -34,14 +34,14 @@ class MenuDialogState extends State<MenuDialog>{
           width: 280.0,
           height:350.0,
           child: Container(
-             decoration: ShapeDecoration(
-               color: Color(0xffffffff),
-               shape: RoundedRectangleBorder(
-                 borderRadius: BorderRadius.all(
-                   Radius.circular(8.0)
-                 )
-               )
-             ),
+            decoration: ShapeDecoration(
+                color: Color(0xffffffff),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(
+                        Radius.circular(8.0)
+                    )
+                )
+            ),
             child: Column(
               children: <Widget>[
                 Padding(
@@ -61,16 +61,16 @@ class MenuDialogState extends State<MenuDialog>{
                 Expanded(
                   flex: 1,
                   child: GridView.count(
-                      padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                      //列数
-                      crossAxisCount: 3,
-                      // item 宽高比
-                      childAspectRatio: 2.0,
-                      crossAxisSpacing: 8.0,
-                      mainAxisSpacing: 15.0,
-                      // 默认vertical
-                      scrollDirection: Axis.vertical,
-                      children: _buildGridChildren(context),
+                    padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                    //列数
+                    crossAxisCount: 3,
+                    // item 宽高比
+                    childAspectRatio: 2.0,
+                    crossAxisSpacing: 8.0,
+                    mainAxisSpacing: 15.0,
+                    // 默认vertical
+                    scrollDirection: Axis.vertical,
+                    children: _buildGridChildren(context),
                   ),
                 ),
                 Container(
@@ -96,6 +96,7 @@ class MenuDialogState extends State<MenuDialog>{
       ),
     );
   }
+
   ///生成widget列表
   List<Widget> _buildGridChildren(BuildContext context) {
     final List<Widget> _list = List<Widget>();
@@ -106,6 +107,4 @@ class MenuDialogState extends State<MenuDialog>{
     }
     return _list;
   }
-
 }
-

@@ -41,13 +41,12 @@ class ConsultPageState extends BaseWidgetState<ConsultPage> with TickerProviderS
         color: Colors.white,
         child: Row(
           children: <Widget>[
-            SafeArea(
-                child: Container(
+             Container(
                     color: Colors.transparent,
                     child: Column(
                       children: <Widget>[
                         Padding(
-                          padding:EdgeInsets.fromLTRB(15, 6, 0,0),
+                          padding:EdgeInsets.fromLTRB(15, 40, 0,0),
                           child:Image.asset(
                             "images/kefu.png",
                             height: 23,
@@ -61,11 +60,9 @@ class ConsultPageState extends BaseWidgetState<ConsultPage> with TickerProviderS
                         )
                       ],
                     )
-                ),
-            ),
-           SafeArea(
-               child: Container(
-                 margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
+             ),
+            Container(
+                 margin: EdgeInsets.fromLTRB(10,20, 0, 0),
                  width: MediaQuery.of(context).size.width - 100,
                  height: 40,
                  decoration: BoxDecoration(
@@ -89,29 +86,26 @@ class ConsultPageState extends BaseWidgetState<ConsultPage> with TickerProviderS
                      )
                    ],
                  ),
-               ),
-           ),
-            SafeArea(
-                child: Container(
-                    color: Colors.transparent,
-                    child: Column(
-                      children: <Widget>[
-                        Padding(
-                          padding:EdgeInsets.fromLTRB(10, 5, 0,0),
-                          child:Image.asset(
-                            "images/b_xinfeng.png",
-                            height: 23,
-                            width: 21,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(10, 0, 0, 2),
-                          child: Text("消息",style: TextStyle(color: Colors.grey)),
-                        )
-                      ],
+            ),
+           Container(
+                color: Colors.transparent,
+                child: Column(
+                  children: <Widget>[
+                    Padding(
+                      padding:EdgeInsets.fromLTRB(10, 40, 0,0),
+                      child:Image.asset(
+                        "images/b_xinfeng.png",
+                        height: 23,
+                        width: 21,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(10, 0, 0, 2),
+                      child: Text("消息",style: TextStyle(color: Colors.grey)),
                     )
-                ),
+                  ],
+                )
             )
           ],
         ),
@@ -341,7 +335,6 @@ class _ContentListState extends State<_ContentList> {
     print("item" + itemTypeStr);
     if(itemTypeStr == null || itemTypeStr == ""){
        return Container(
-         child: Text(""),
        );
     }
     if(itemTypeStr == "10"){

@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/cupertino.dart' as prefix0;
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 
@@ -77,6 +76,7 @@ class _CustomDraggableTargetState<T> extends State<CustomDraggableTarget> {
               }
           ),
         ),
+        childWhenDragging: null,
         //是拖动时跟随手指移动的Widget
         feedback: Container(
           width: 100,
