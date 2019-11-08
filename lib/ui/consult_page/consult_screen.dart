@@ -38,7 +38,7 @@ class ConsultPageState extends BaseWidgetState<ConsultPage> with TickerProviderS
     // TODO: implement getAppBar
     return CustomAppBar(
       child: Container(
-        color: Colors.white,
+        color: Colors.blue,
         child: Row(
           children: <Widget>[
              Container(
@@ -46,7 +46,7 @@ class ConsultPageState extends BaseWidgetState<ConsultPage> with TickerProviderS
                     child: Column(
                       children: <Widget>[
                         Padding(
-                          padding:EdgeInsets.fromLTRB(15, 40, 0,0),
+                          padding:EdgeInsets.fromLTRB(15, 0, 0,0),
                           child:Image.asset(
                             "images/kefu.png",
                             height: 23,
@@ -62,7 +62,7 @@ class ConsultPageState extends BaseWidgetState<ConsultPage> with TickerProviderS
                     )
              ),
             Container(
-                 margin: EdgeInsets.fromLTRB(10,20, 0, 0),
+                 margin: EdgeInsets.fromLTRB(10,0, 0, 0),
                  width: MediaQuery.of(context).size.width - 100,
                  height: 40,
                  decoration: BoxDecoration(
@@ -92,7 +92,7 @@ class ConsultPageState extends BaseWidgetState<ConsultPage> with TickerProviderS
                 child: Column(
                   children: <Widget>[
                     Padding(
-                      padding:EdgeInsets.fromLTRB(10, 40, 0,0),
+                      padding:EdgeInsets.fromLTRB(10, 0, 0,0),
                       child:Image.asset(
                         "images/b_xinfeng.png",
                         height: 23,
