@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_app_gr/entity/banner_data_entity.dart';
 import 'package:flutter_app_gr/entity/entity_factory.dart';
@@ -30,6 +29,15 @@ class CommonService{
          callBack(noticeDataEntity);
          print(response.toString());
        });
+    }
+
+    ///获取首页第二个轮播
+    void getBannerSecondData(Function callBack){
+      dio.
+      get(Api.FIRST_SECOND_BANNER).
+      then((response){
+          print("首页第二个轮播：" + response.toString());
+      });
     }
 
     ///获取重点服务企业的列表
@@ -81,7 +89,6 @@ class CommonService{
         "pageSize" : _pageSize,
         "pageNum" : _pageNum
       });
-
       dio.
       get(Api.GET_NEWS_LIST,queryParameters: map).
       then((response){

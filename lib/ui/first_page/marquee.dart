@@ -86,7 +86,7 @@ class _MarqueeContinuousWidgetState extends State<MarqueeContinuousWidget> {
         print(_index++);
         if(_index == _noticeListData.length){
           _index = 0;
-          _controller.jumpTo(0);
+          _controller.jumpTo(1);
           //_controller.animateTo(0.0, duration: widget.duration, curve: Curves.linear);
         }else{
 
@@ -106,7 +106,7 @@ class _MarqueeContinuousWidgetState extends State<MarqueeContinuousWidget> {
   Widget build(BuildContext context) {
       return GestureDetector(
             child: Container(
-            height: 63,
+            height: 70,
             margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
             width: MediaQuery.of(context).size.width,
             color: Colors.white,
@@ -123,7 +123,7 @@ class _MarqueeContinuousWidgetState extends State<MarqueeContinuousWidget> {
                 ),
                 Container(
                     height: 40,
-                    width: 300,
+                    width: MediaQuery.of(context).size.width - 80,
                     margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
                     child: ListView.builder(
                         itemCount: _noticeListData.length,
@@ -143,12 +143,14 @@ class _MarqueeContinuousWidgetState extends State<MarqueeContinuousWidget> {
                                     ),
                                   ),
                                   Container(
-                                    width: 280,
-                                    padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                    width: MediaQuery.of(context).size.width - 150,
+                                    height: 20,
+                                    padding: EdgeInsets.fromLTRB(10, 0, 0, 10),
+                                    color: Colors.white,
                                     child: Text(
                                       _noticeListData[index].bt,
                                       maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
+                                      overflow: TextOverflow.visible,
                                     ),
                                   )
                                 ],

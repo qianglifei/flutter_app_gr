@@ -124,6 +124,20 @@ flutter:
     - images/caidan.png
     - images/icon_line.png
     - images/zxzd.png
+    - images/wd_bg.png
+    - images/admin.png
+    - images/xiugai.png
+    - images/setting.png
+    - images/b_jianli.png
+    - images/b_toudijilu.png
+    - images/b_guanzhuhe.png
+    - images/b_shoucang.png
+    - images/b_bukejian.png
+    - images/b_wdxz.png
+    - images/b_bkgw.png
+    - images/b_cjcx.png
+    - images/b_kjzm.png
+    - images/b_ly.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

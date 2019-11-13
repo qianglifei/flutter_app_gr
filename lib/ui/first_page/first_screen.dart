@@ -1,14 +1,16 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_gr/base/base_widget.dart';
 import 'package:flutter_app_gr/custom_widget/custom_app_bar.dart';
 import 'package:flutter_app_gr/http/common_service.dart';
+import 'package:flutter_app_gr/ui/first_page/banner_second.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'banner.dart';
 import 'package:flutter_app_gr/entity/notice_data_entity.dart';
-
 import 'key_service_enterprises_widget.dart';
 import 'marquee.dart';
+import 'dart:math' as math;
 class FirstPage extends BaseWidget{
   @override
   BaseWidgetState<BaseWidget> getState() {
@@ -41,28 +43,32 @@ class FirstPageState extends BaseWidgetState<FirstPage> {
           color: Color.fromARGB(1, 288, 242, 248)
         ),
         width: MediaQuery.of(context).size.width,
-        child: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              Stack(
-                children: <Widget>[
-                  BannerWidget(),
-                  _titleBar(),
-                  _chooseTab(),
-                ],
-              ),
-              MarqueeContinuousWidget(),
-              KeyServiceEnterPrisesWidget(),
-              Container(
-                height: 80  ,
-                margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                color: Colors.white,
-                child: null,
-              )
-            ],
-          )
+        child: Stack(
+          children: <Widget>[
+            SingleChildScrollView(
+                child: Column(
+                  children: <Widget>[
+                    Stack(
+                      children: <Widget>[
+                        BannerWidget(),
+                        _chooseTab(),
+                      ],
+                    ),
+                    MarqueeContinuousWidget(),
+                    BannerSecond(),
+                    KeyServiceEnterPrisesWidget(),
+                    Container(
+                      height: 80,
+                      margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                      color: Colors.white,
+                      child: null,
+                    )
+                  ],
+                )
+            ),
+            _titleBar(),
+          ],
         )
-
       ),
     );
   }
@@ -103,7 +109,7 @@ class FirstPageState extends BaseWidgetState<FirstPage> {
       height: 180,
       margin: EdgeInsets.fromLTRB(0,210,0,0),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.only(topLeft: Radius.circular(9),topRight: Radius.circular(9)),
+        borderRadius: BorderRadius.only(topLeft: Radius.circular(10),topRight: Radius.circular(9)),
         color: Colors.white
       ),
       child: Column(
@@ -140,35 +146,45 @@ class FirstPageState extends BaseWidgetState<FirstPage> {
   }
 
   Widget _titleBar() {
+    EdgeInsets padding = MediaQuery.of(context).padding;
+    double top = math.max(padding.top, EdgeInsets.zero.top);
     return Container(
       color: Colors.transparent,
-      padding: EdgeInsets.fromLTRB(15, 49, 0, 15),
+      padding: EdgeInsets.fromLTRB(0, top, 0, 0),
+      height: 110,
+      width: MediaQuery.of(context).size.width,
       child: Row(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           Image.asset(
             "images/kefubai.png",
-            height: 23,
-            width: 21,
+            height: 33,
+            width: 31,
             fit: BoxFit.cover,
           ),
-          Align(
-            alignment: Alignment.center,
-            child: GestureDetector(
+          GestureDetector(
               behavior: HitTestBehavior.deferToChild,
               child: Container(
-                  width: ScreenUtil().setWidth(800),
+                  width: MediaQuery.of(context).size.width - 100,
+                  height: 35,
                   child: Stack(
                     alignment: AlignmentDirectional.center,
                     children: <Widget>[
-                      Opacity(
-                        opacity: 0.75,
-                        child:Image.asset(
-                          "images/yuanjiaojuxing1.png",
-                          fit: BoxFit.cover,
-                          height: 30,
-                          width: ScreenUtil().setWidth(800),
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(3),
+                          color: Color.fromRGBO(255, 255, 255, 0.6)
                         ),
+                      ),
+                      Positioned(
+                          left: 8,
+                          child: Image.asset(
+                            "images/sousuo.png",
+                            height: 25,
+                            width: 25,
+                            fit: BoxFit.cover,
+                          )
                       ),
                       Positioned(
                         left: 40,
@@ -189,32 +205,22 @@ class FirstPageState extends BaseWidgetState<FirstPage> {
                             },
                           )
                       ),
-                      Positioned(
-                          left: 12,
-                          child: Image.asset(
-                            "images/sousuo.png",
-                            height: 25,
-                            width: 25,
-                            fit: BoxFit.cover,
-                          )
-                      )
+
                     ],
                   )
               ),
               onTap: (){
                 Fluttertoast.showToast(msg: "搜索");
               },
-            ),
-
           ),
           Container(
-              margin: EdgeInsets.fromLTRB(5, 0, 0, 0),
+              margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
               child: GestureDetector(
                 behavior: HitTestBehavior.translucent,
                 child:Image.asset(
                   "images/xiaoxi.png",
-                  height: 25,
-                  width: 25,
+                  height: 30,
+                  width: 30,
                   fit: BoxFit.cover,
                 ),
                 onTap: (){

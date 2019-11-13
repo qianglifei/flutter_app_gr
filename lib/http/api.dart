@@ -7,6 +7,8 @@ class Api{
   static const String BASE_URL = "http://" + IP + "/grapp/";
   //首页轮播
   static const String FIRST_BANNER = BASE_URL + "rcfw/rczc/zcxctCx";
+  //首页第二个轮播
+  static const String FIRST_SECOND_BANNER = BASE_URL + "tjsy/tjsy/bannerCx";
   //首页通知公告
   static const String MASS_ANNOUNCEMENT = BASE_URL + "tjsy/tjsy/zxhyCx";
   //重点服务企业列表

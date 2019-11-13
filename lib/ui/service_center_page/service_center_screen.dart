@@ -28,22 +28,22 @@ class ServiceCenterPageState extends BaseWidgetState<ServiceCenterPage> {
   int position = 100;
   @override
   CustomAppBar getAppBar() {
+    EdgeInsets padding = MediaQuery.of(context).padding;
+    double top = padding.top + 6.0;
     // TODO: implement getAppBar
     return CustomAppBar(
       child:Container(
         width: MediaQuery.of(context).size.width,
-        height: 80,
-        color: Colors.red,
         child: Stack(
           children: <Widget>[
             Image.asset(
               "images/bq.png",
               width: MediaQuery.of(context).size.width,
-              height: 80,
-              fit: BoxFit.fill,
+              height: 100,
+              fit: BoxFit.cover,
             ),
             Padding(
-                padding: EdgeInsets.fromLTRB(12, 40, 0, 0),
+                padding: EdgeInsets.fromLTRB(12, top, 0, 0),
                 child: Image.asset(
                   "images/kefubai.png",
                   width: 23,
@@ -52,13 +52,14 @@ class ServiceCenterPageState extends BaseWidgetState<ServiceCenterPage> {
                 )
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Expanded(
                     flex: 5,
                     child: new Container(
+                      margin: EdgeInsets.fromLTRB(0, top -30, 0, 0),
                       alignment: Alignment.center,
-                      margin: EdgeInsets.fromLTRB(0, 18, 0, 0),
-                      color: Colors.transparent,
                       child: Text("服务大厅",style: TextStyle(color: Colors.white,fontSize: 20)),
                     )
                 )

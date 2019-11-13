@@ -29,6 +29,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
 
   @override
   Widget build(BuildContext context) {
+    return widget.child;
 //    EdgeInsets padding = MediaQuery.of(context).padding;
 //    // 计算状态栏的高度
 //    double top = math.max(padding.top,EdgeInsets.zero.top);
@@ -40,20 +41,20 @@ class _CustomAppBarState extends State<CustomAppBar> {
 //        child: widget.child,
 //      )
 //    );
-    EdgeInsets padding = MediaQuery.of(context).padding;
-    // 计算状态栏的高度
-    double top = math.max(padding.top,EdgeInsets.zero.top);
-    // TODO: implement build
-    return Flex(
-      direction: Axis.vertical,
-      children: <Widget>[
-        Container(
-          width: double.infinity,
-          height: top,
-          color: widget.color,
-        ),
-        Expanded(child: widget.child)
-      ],
-    );
+//    EdgeInsets padding = MediaQuery.of(context).padding;
+//    // 计算状态栏的高度
+//    double top = math.max(padding.top,EdgeInsets.zero.top);
+//    // TODO: implement build
+//    return Flex(
+//      direction: Axis.vertical,
+//      children: <Widget>[
+//        Container(
+//          width: double.infinity,
+//          height: top,
+//          color: widget.color,
+//        ),
+//        Expanded(child: widget.child)
+//      ],
+//    );
   }
 }
