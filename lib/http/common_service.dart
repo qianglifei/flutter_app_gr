@@ -5,6 +5,7 @@ import 'package:flutter_app_gr/entity/key_service_enterprises_entity.dart';
 import 'package:flutter_app_gr/entity/news_parent_list_entity.dart';
 import 'package:flutter_app_gr/entity/notice_data_entity.dart';
 import 'package:flutter_app_gr/entity/favourite_entity.dart';
+import 'package:flutter_app_gr/entity/second_banner_entity.dart';
 import 'api.dart';
 import 'dio_manager.dart';
 class CommonService{
@@ -36,6 +37,8 @@ class CommonService{
       dio.
       get(Api.FIRST_SECOND_BANNER).
       then((response){
+          SecondBannerEntity secondBannerEntity = EntityFactory.generateOBJ(response.data);
+          callBack(secondBannerEntity);
           print("首页第二个轮播：" + response.toString());
       });
     }

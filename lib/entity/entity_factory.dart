@@ -4,7 +4,7 @@ import 'banner_data_entity.dart';
 import 'key_service_enterprises_entity.dart';
 import 'notice_data_entity.dart';
 import 'favourite_entity.dart';
-
+import 'second_banner_entity.dart';
 class EntityFactory {
   static T generateOBJ<T>(json) {
     if (1 == 0) {
@@ -21,7 +21,9 @@ class EntityFactory {
       return NewsParentListEntity.fromJson(json) as T;
     }else if (T.toString() == "FavouriteEntity") {
       return FavouriteEntity.fromJson(json) as T;
-    }else {
+    }else if (T.toString() == "SecondBannerEntity") {
+      return SecondBannerEntity.fromJson(json) as T;
+    } else {
       return null;
     }
   }
