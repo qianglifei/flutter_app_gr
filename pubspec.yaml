@@ -28,8 +28,9 @@ dependencies:
   flutter_swiper: ^1.1.4
   flutter_screenutil: ^0.4.2
   flutter_easyrefresh: ^1.2.7
-#  qrscan: ^0.1.3
   fluttertoast: ^2.1.1
+  qr_flutter: ^3.0.1
+  barcode_scan: ^0.0.3
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -138,6 +139,14 @@ flutter:
     - images/b_cjcx.png
     - images/b_kjzm.png
     - images/b_ly.png
+    - images/icon_sy_x.png
+    - images/icon_sy_n.png
+    - images/icon_hd_x.png
+    - images/icon_hd_n.png
+    - images/icon_zx_x.png
+    - images/icon_zx_n.png
+    - images/icon_wd_x.png
+    - images/icon_wd_n.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

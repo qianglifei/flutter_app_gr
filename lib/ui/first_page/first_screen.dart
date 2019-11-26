@@ -11,6 +11,7 @@ import 'package:flutter_app_gr/entity/notice_data_entity.dart';
 import 'key_service_enterprises_widget.dart';
 import 'marquee.dart';
 import 'dart:math' as math;
+import 'package:barcode_scan/barcode_scan.dart';
 class FirstPage extends BaseWidget{
   @override
   BaseWidgetState<BaseWidget> getState() {
@@ -201,6 +202,7 @@ class FirstPageState extends BaseWidgetState<FirstPage> {
                               fit: BoxFit.cover,
                             ),
                             onTap: (){
+                              scan();
                               Fluttertoast.showToast(msg: "扫一扫");
                             },
                           )
@@ -233,5 +235,34 @@ class FirstPageState extends BaseWidgetState<FirstPage> {
     );
   }
 
+  Future scan() async {
+    try {
+      String barcode = await BarcodeScanner.scan();
+      print('扫码结果：' + barcode);
+    } catch (e) {
+      if (e.code == BarcodeScanner.CameraAccessDenied) {
+        print('未授予APP相机权限');
+      } else {
+        print('扫码错误：$e');
+      }
+    }
+  }
 
 }
+
+//Future scan() async{
+//    try {
+//      String barcode = await BarcodeScanner.scan();
+//      print('扫码结果：' + barcode);
+//    } on PlatformException catch (e) {
+//      if (e.code == BarcodeScanner.CameraAccessDenied) {
+//        print('未授予APP相机权限');
+//      } else {
+//        print('扫码错误：$e');
+//      }
+//    } on FormatException {
+//      print('进入扫码页面后未扫码就返回');
+//    } catch (e) {
+//      print('扫码错误：$e');
+//    }
+//}

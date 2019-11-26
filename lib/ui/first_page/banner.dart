@@ -42,18 +42,17 @@ class _BannerWidgetState  extends State<BannerWidget>{
         )
     );
 
-
   }
 
   Future<Null> _getBanner() async{
-  CommonService().getBannerList((BannerDataEntity _bannerModel){
-        setState(() {
-          _bannerList = _bannerModel.returnData.banners;
-            for (var i = 0; i < _bannerList.length; ++i) {
-              var o = _bannerList[i];
-              print(o.ggtpsclj + o.ggtpfwdmc);
-            }
-        });
+    CommonService().getBannerList((BannerDataEntity _bannerModel){
+          setState(() {
+            _bannerList = _bannerModel.returnData.banners;
+              for (var i = 0; i < _bannerList.length; ++i) {
+                var o = _bannerList[i];
+                print(o.ggtpsclj + o.ggtpfwdmc);
+              }
+          });
     });
   }
 

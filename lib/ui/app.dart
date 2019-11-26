@@ -36,19 +36,63 @@ class AppState extends State<App> {
           bottomNavigationBar: BottomNavigationBar(
               items: <BottomNavigationBarItem>[
                 BottomNavigationBarItem(
-                    icon: Icon(Icons.home),
+                    icon: Image.asset(
+                      "images/icon_sy_n.png",
+                      width: 20,
+                      height: 20,
+                      fit: BoxFit.cover,
+                    ),
+                    activeIcon: Image.asset(
+                      "images/icon_sy_x.png",
+                      width: 20,
+                      height: 20,
+                      fit: BoxFit.contain,
+                    ),
                     title: Text("首页")
                 ),
                 BottomNavigationBarItem(
-                    icon: Icon(Icons.room_service),
+                    icon: Image.asset(
+                      "images/icon_hd_n.png",
+                      width: 20,
+                      height: 20,
+                      fit: BoxFit.contain,
+                    ),
+                    activeIcon: Image.asset(
+                      "images/icon_hd_x.png",
+                      width: 20,
+                      height: 20,
+                      fit: BoxFit.contain,
+                    ),
                     title: Text("服务大厅")
                 ),
                 BottomNavigationBarItem(
-                    icon: Icon(Icons.book),
+                    icon: Image.asset(
+                      "images/icon_zx_n.png",
+                      width: 20,
+                      height: 20,
+                      fit: BoxFit.contain,
+                    ),
+                    activeIcon: Image.asset(
+                      "images/icon_zx_x.png",
+                      width: 20,
+                      height: 20,
+                      fit: BoxFit.contain,
+                    ),
                     title: Text("咨询")
                 ),
                 BottomNavigationBarItem(
-                    icon: Icon(Icons.assignment_ind),
+                    icon: Image.asset(
+                      "images/icon_wd_n.png",
+                      width: 20,
+                      height: 20,
+                      fit: BoxFit.contain,
+                    ),
+                    activeIcon: Image.asset(
+                      "images/icon_wd_x.png",
+                      width: 20,
+                      height: 20,
+                      fit: BoxFit.contain,
+                    ),
                     title: Text("我的")
                 ),
               ],

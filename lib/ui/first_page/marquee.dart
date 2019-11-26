@@ -86,7 +86,7 @@ class _MarqueeContinuousWidgetState extends State<MarqueeContinuousWidget> {
         print(_index++);
         if(_index == _noticeListData.length){
           _index = 0;
-          _controller.jumpTo(6);
+          _controller.jumpTo(1);
           //_controller.animateTo(0.0, duration: widget.duration, curve: Curves.linear);
         }else{
 
