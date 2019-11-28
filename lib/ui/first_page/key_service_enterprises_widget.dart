@@ -113,7 +113,7 @@ class _KeyServiceEnterPrisesWidget extends State<KeyServiceEnterPrisesWidget>{
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               Image.network(
-                _listData[index].dwlgsc + _listData[index].dwlgfwdmc,
+                _listData[index].dwlgsc  + _listData[index].dwlgfwdmc,
                 height: 49,
                 width: 49,
                 fit: BoxFit.fill,

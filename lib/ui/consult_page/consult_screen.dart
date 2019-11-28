@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_gr/base/base_widget.dart';
 import 'package:flutter_app_gr/custom_widget/custom_app_bar.dart';
+import 'package:flutter_app_gr/custom_widget/custom_indicator.dart';
 import 'package:flutter_app_gr/entity/news_parent_list_entity.dart';
 import 'package:flutter_app_gr/http/common_service.dart';
 import 'package:flutter_app_gr/ui/dialog_custom/menu_dialog.dart';
@@ -25,6 +26,7 @@ class ConsultPageState extends BaseWidgetState<ConsultPage> with TickerProviderS
   List<NewsParentListEntityReturndataFlxlb> _tabTitleLists = new List();
   List<String> _tabsLists = new List();
   TabController _tabController;
+  
   @override
   void initState() {
     // TODO: implement initState
@@ -137,7 +139,7 @@ class ConsultPageState extends BaseWidgetState<ConsultPage> with TickerProviderS
                  child: Row(
                    children: <Widget>[
                      Container(
-                       width:MediaQuery.of(context).size.width - 62,
+                       width: MediaQuery.of(context).size.width - 62,
                        color: Colors.white,
                        child: TabBar(
                          controller: _tabController,
@@ -150,13 +152,14 @@ class ConsultPageState extends BaseWidgetState<ConsultPage> with TickerProviderS
                          indicatorColor: Colors.blue,
                          labelColor: Colors.blue,
                          unselectedLabelColor: Colors.grey,
-                         indicator: const BoxDecoration(
+                         indicator: BoxDecoration(
                             image: DecorationImage(
-                              image: AssetImage("images/icon_line.png"),
+                              image: ExactAssetImage("images/icon_line.png",scale: 3),
                               alignment: Alignment.bottomCenter,
                             ),
                          ),
-                         indicatorSize:  TabBarIndicatorSize.label,
+                         indicatorWeight: 1.00,
+                         indicatorSize: TabBarIndicatorSize.label,
                        ),
                      ),
                      Container(
