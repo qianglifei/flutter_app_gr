@@ -11,6 +11,8 @@ import 'package:flutter_app_gr/http/common_service.dart';
 import 'package:flutter_app_gr/ui/dialog_custom/menu_dialog.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_app_gr/entity/favourite_entity.dart';
+import 'package:flutter_easyrefresh/material_footer.dart';
+import 'package:flutter_easyrefresh/material_header.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class ConsultPage extends BaseWidget{
@@ -34,13 +36,18 @@ class ConsultPageState extends BaseWidgetState<ConsultPage> with TickerProviderS
     //获取网络数据
     _getNewsListTitle();
     _tabController = TabController(length: _tabTitleLists.length, vsync: this);
+
+    //TabBar 监听器
+    _tabController.addListener((){
+      return _onTabChanged();
+    });
+
   }
   @override
   CustomAppBar getAppBar() {
     // TODO: implement getAppBar
     EdgeInsets padding = MediaQuery.of(context).padding;
     double top = padding.top + 6.0;
-
     return CustomAppBar(
       child: Container(
         color: Colors.white,
@@ -237,6 +244,21 @@ class ConsultPageState extends BaseWidgetState<ConsultPage> with TickerProviderS
         });
     });
   }
+  //顶部导航栏监听事件
+  _onTabChanged() {
+    Fluttertoast.showToast(msg: "导航栏 0");
+    if(_tabController.indexIsChanging){
+      if(this.mounted){  // 判断组建是否被挂载
+        setState(() {
+          switch(_tabController.index){
+            case 0:{
+              Fluttertoast.showToast(msg: "导航栏 0");
+            }break;
+          }
+        });
+      }
+    }
+  }
 }
 
 class _ContentList extends StatefulWidget{
@@ -256,7 +278,10 @@ class _ContentList extends StatefulWidget{
 }
 
 class _ContentListState extends State<_ContentList> {
-  GlobalKey<EasyRefreshState> _easyRefreshKey = new GlobalKey<EasyRefreshState>();
+  GlobalKey<EasyRefreshState> _easyRefreshKey = new GlobalKey();
+  GlobalKey<EasyRefreshState> _headerKey = GlobalKey();
+
+  GlobalKey<EasyRefreshState> _footerKey = GlobalKey();
   List<FavouriteReturndataZx> _likeList = new List();
   String ITEM_TYPE_ONE = "1";
   String ITEM_TYPE_TWO = "2";
@@ -277,6 +302,7 @@ class _ContentListState extends State<_ContentList> {
       CommonService().getLikeListData((FavouriteEntity favouriteEntity){
         setState(() {
           _likeList = favouriteEntity.returnData.zxs;
+
         });
       },_pageSize , _pageNum);
       print(widget.flxmc);
@@ -327,13 +353,11 @@ class _ContentListState extends State<_ContentList> {
       onRefresh: () async{
         _getData("10","1");
       },
-
       loadMore: () async{
         _pageNum++;
         print("页数：" + _pageNum.toString());
         _getMoreData(_pageSize,_pageNum.toString());
       },
-
     );
   }
 

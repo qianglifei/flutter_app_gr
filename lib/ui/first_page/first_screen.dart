@@ -4,6 +4,7 @@ import 'package:flutter_app_gr/base/base_widget.dart';
 import 'package:flutter_app_gr/custom_widget/custom_app_bar.dart';
 import 'package:flutter_app_gr/http/common_service.dart';
 import 'package:flutter_app_gr/ui/first_page/banner_second.dart';
+import 'package:flutter_app_gr/ui/search_page/search_page.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'banner.dart';
@@ -213,6 +214,14 @@ class FirstPageState extends BaseWidgetState<FirstPage> {
               ),
               onTap: (){
                 Fluttertoast.showToast(msg: "搜索");
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context){
+                        return  SearchPage();
+                      }
+                  )
+                );
               },
           ),
           Container(
