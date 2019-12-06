@@ -18,7 +18,7 @@ class SearchPageState extends BaseWidgetState<SearchPage> {
   @override
   CustomAppBar getAppBar() {
     EdgeInsets padding = MediaQuery.of(context).padding;
-    double top = padding.top + 6.0;
+    double top = padding.top;
     // TODO: implement getAppBar
     return CustomAppBar(
         child: Container(
@@ -32,10 +32,10 @@ class SearchPageState extends BaseWidgetState<SearchPage> {
             children: <Widget>[
               Container(
                 width: MediaQuery.of(context).size.width - 60,
-                height: 40,
+                height: 50,
                 margin: EdgeInsets.only(top: top,bottom: 10,left: 10),
                 decoration: BoxDecoration(
-                    color: Colors.white10,
+                    color: Colors.white,
                     border: Border.all(color: Color.fromRGBO(238, 242, 248, 0.6)),
                     borderRadius: BorderRadius.circular(5.0)
                 ),
@@ -75,14 +75,17 @@ class SearchPageState extends BaseWidgetState<SearchPage> {
                   ],
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(8, 20, 0, 0),
-                child:GestureDetector(
-                  child: Text("取消",style: TextStyle(fontSize: 15)),
-                  onTap: (){
-                    Fluttertoast.showToast(msg: "取消按钮！");
-                  },
-                )
+              Container(
+                  width:40,
+                  height: 50,
+                  alignment: Alignment.centerLeft,
+                  margin: EdgeInsets.only(top: top,bottom: 10,left: 6),
+                  child:GestureDetector(
+                    child: Text("取消",style: TextStyle(fontSize: 15)),
+                    onTap: (){
+                      Fluttertoast.showToast(msg: "取消按钮！");
+                    },
+                  )
               ),
             ],
           )
@@ -94,24 +97,75 @@ class SearchPageState extends BaseWidgetState<SearchPage> {
   @override
   Widget getContentWidget(BuildContext context) {
     // TODO: implement getContentWidget
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      color: Colors.white,
-      child: Column(
+    return Scaffold(
+      body: Column(
         children: <Widget>[
           Offstage(
-            offstage: false,
-            child: Container(
-              alignment: Alignment.center,
-              width: MediaQuery.of(context).size.width,
-              height: 30,
-              color: Color(0xD6E9F6),
-              child: Text("搜索到的结果",style: TextStyle(color: Colors.blue,fontSize: 16)),
+              offstage: false,
+              child: Container(
+                alignment: Alignment.center,
+                width: MediaQuery.of(context).size.width,
+                height: 30,
+                color: Colors.white54,
+                child: Text("搜索到的结果",style: TextStyle(color: Colors.blue,fontSize: 16)),
+              )
+          ),
+          Expanded(
+            flex: 1,
+            child: SingleChildScrollView(
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    height: 200,
+                    padding: EdgeInsets.only(top: 6),
+                    color: Colors.white54,
+                    child: Column(
+                      children: <Widget>[
+                          Row(
+                            children: <Widget>[
+                              Padding(
+                                padding: EdgeInsets.only(left: 10),
+                                child:Text("北京-北控",style: TextStyle(fontSize: 18,color: Colors.black)),
+                              ),
+                              Expanded(
+                                flex: 1,
+                                child: Text("")
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(right: 6),
+                                child:Text("更多",style: TextStyle(fontSize: 18,color: Colors.grey)),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(right: 12,top: 3),
+                                child: Image.asset(
+                                  "images/icon_jiantou_you.png",
+                                  width: 18,
+                                  height: 17,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ],
+                          ),
+                       // ListView.separated(itemBuilder: null, separatorBuilder: null, itemCount: null)
+                      ],
+                    ),
+                  ),
+                  Container(
+                    height: 200,
+                    color: Colors.green,
+                  ),
+                  Container(
+                    height: 300,
+                    color: Colors.blue,
+                  )
+                ],
+              )
             )
           ),
-        ]
-      ),
+        ],
+      )
     );
+
   }
 
   @override
