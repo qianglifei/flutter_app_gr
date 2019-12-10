@@ -17,7 +17,8 @@ class BannerSecond extends StatefulWidget{
 
 class _BannerSecondState extends State<BannerSecond>{
   List<SecondBannerReturndataBanner> _listData = new List();
-  bool isVisible = false;
+  bool _isVisible;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -29,20 +30,20 @@ class _BannerSecondState extends State<BannerSecond>{
   Widget build(BuildContext context) {
     // TODO: implement build
     return Offstage(
-      offstage: isVisible,
+      offstage: _isVisible,
       child:Container(
         height: 63,
         margin: EdgeInsets.fromLTRB(15, 0, 15, 10),
         child: Swiper(
-          itemCount: _listData.length,
+          controller: SwiperController(),
+          itemCount: _listData.length == 0 ? 0 : _listData.length,
           itemBuilder: (BuildContext context,int index){
-            if(_listData[index] == null || _listData[index].ggtpfwdmc == null){
-              Fluttertoast.showToast(msg: "没数据的");
-              isVisible = true;
-              return null;
+            if(_listData == null || _listData.length == 0){
+              return Container(
+                width: 0,
+                height: 0,
+              );
             }else{
-              Fluttertoast.showToast(msg: "有数据的");
-              isVisible = false;
               return Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(4),
@@ -57,7 +58,6 @@ class _BannerSecondState extends State<BannerSecond>{
             }
           },
         ),
-
       )
     );
   }
@@ -66,7 +66,12 @@ class _BannerSecondState extends State<BannerSecond>{
     CommonService().getBannerSecondData((SecondBannerEntity secondBannerEntity){
         setState(() {
           _listData = secondBannerEntity.returnData.banners;
-          print("SecondBanner："+_listData[0].ggtpsclj + _listData[0].ggtpfwdmc);
+          if(_listData == null || _listData.length == 0){
+            print("SecondBanner："+ "数据为空");
+            _isVisible = false;
+          }else{
+            _isVisible = true;
+          }
         });
     });
   }

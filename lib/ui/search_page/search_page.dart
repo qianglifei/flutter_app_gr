@@ -106,7 +106,9 @@ class SearchPageState extends BaseWidgetState<SearchPage> {
                 alignment: Alignment.center,
                 width: MediaQuery.of(context).size.width,
                 height: 30,
-                color: Colors.white54,
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey,width: 0.2)
+                ),
                 child: Text("搜索到的结果",style: TextStyle(color: Colors.blue,fontSize: 16)),
               )
           ),
@@ -118,35 +120,59 @@ class SearchPageState extends BaseWidgetState<SearchPage> {
                   Container(
                     height: 200,
                     padding: EdgeInsets.only(top: 6),
-                    color: Colors.white54,
+                    color: Colors.cyanAccent,
                     child: Column(
                       children: <Widget>[
-                          Row(
+                        Container(
+                          child: Row(
                             children: <Widget>[
-                              Padding(
-                                padding: EdgeInsets.only(left: 10),
-                                child:Text("北京-北控",style: TextStyle(fontSize: 18,color: Colors.black)),
-                              ),
-                              Expanded(
-                                flex: 1,
-                                child: Text("")
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(right: 6),
-                                child:Text("更多",style: TextStyle(fontSize: 18,color: Colors.grey)),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(right: 12,top: 3),
-                                child: Image.asset(
-                                  "images/icon_jiantou_you.png",
-                                  width: 18,
-                                  height: 17,
-                                  fit: BoxFit.cover,
+                                Padding(
+                                  padding: EdgeInsets.only(left: 10),
+                                  child:Text("北京-北控",style: TextStyle(fontSize: 18,color: Colors.black)),
                                 ),
-                              ),
+                                Expanded(
+                                    flex: 1,
+                                    child: Text("")
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(right: 6),
+                                  child:Text("更多",style: TextStyle(fontSize: 18,color: Colors.grey)),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(right: 12,top: 3),
+                                  child: Image.asset(
+                                    "images/icon_jiantou_you.png",
+                                    width: 18,
+                                    height: 17,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
                             ],
                           ),
-                       // ListView.separated(itemBuilder: null, separatorBuilder: null, itemCount: null)
+                          width: MediaQuery.of(context).size.width,
+                          height: 35,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            color: Colors.white54,
+                            border: Border.all(color: Colors.grey,width: 0.2)
+                          ),
+                        ),
+                        Expanded(
+                            flex: 1,
+                            child: ListView.
+                            separated(
+                                itemBuilder: _buildWidget,
+                                controller: new ScrollController(),
+                                separatorBuilder: (BuildContext context,int index){
+                                  return Container(
+                                    width: MediaQuery.of(context).size.width,
+                                    height: 0.1,
+                                    color: Colors.greenAccent,
+                                  );
+                                },
+                                itemCount: 20
+                            ),
+                        ),
                       ],
                     ),
                   ),
@@ -174,4 +200,10 @@ class SearchPageState extends BaseWidgetState<SearchPage> {
     showLoading();
   }
 
+
+  Widget _buildWidget(BuildContext context, int index) {
+    return Container(
+      color: Colors.black,
+    );
+  }
 }
