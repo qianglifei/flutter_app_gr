@@ -5,6 +5,7 @@ import 'package:flutter_app_gr/entity/key_service_enterprises_entity.dart';
 import 'package:flutter_app_gr/entity/news_parent_list_entity.dart';
 import 'package:flutter_app_gr/entity/notice_data_entity.dart';
 import 'package:flutter_app_gr/entity/favourite_entity.dart';
+import 'package:flutter_app_gr/entity/search_entity.dart';
 import 'package:flutter_app_gr/entity/second_banner_entity.dart';
 import 'api.dart';
 import 'dio_manager.dart';
@@ -99,6 +100,21 @@ class CommonService{
         callBack(favouriteEntity);
         print("哇哈哈" + response.toString());
         print("哇哈哈:" + _fwbh);
+      });
+    }
+
+    void getSearchResult(Function callBack , String searchContent){
+      Map<String,dynamic> map = new Map();
+      map.addAll({
+        "ssgjz" : searchContent
+      });
+      dio.
+      get(Api.FIRST_SEARCH).
+      then((response){
+        print("搜索结果" + response.headers.toString());
+        SearchEntity entity = EntityFactory.generateOBJ(response.data.toString());
+        callBack(entity);
+
       });
     }
 }

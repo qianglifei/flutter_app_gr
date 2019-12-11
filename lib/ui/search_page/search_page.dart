@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_gr/base/base_widget.dart';
 import 'package:flutter_app_gr/custom_widget/custom_app_bar.dart';
+import 'package:flutter_app_gr/entity/search_entity.dart';
+import 'package:flutter_app_gr/http/common_service.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 
@@ -15,6 +17,15 @@ class SearchPage extends BaseWidget{
 
 class SearchPageState extends BaseWidgetState<SearchPage> {
 
+  List<SearchReturndataZwarr> zwArr = new List();
+  List<SearchReturndataZxarr> zxArr = new List();
+  List<SearchReturndataZcarr> zcArr = new List();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
   @override
   CustomAppBar getAppBar() {
     EdgeInsets padding = MediaQuery.of(context).padding;
@@ -54,8 +65,14 @@ class SearchPageState extends BaseWidgetState<SearchPage> {
                       width: MediaQuery.of(context).size.width - 135,
                       margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
                       child: TextField(
-                         decoration: InputDecoration.collapsed(hintText: "搜索"),
-                         autofocus: true,
+                        decoration: InputDecoration.collapsed(hintText: "搜索"),
+                        autofocus: true,
+                        textInputAction: TextInputAction.search,
+                        //提交按钮(搜索/回车/确认)
+                        onSubmitted: (text){
+                          showLoading();
+                          _searchData(text);
+                        },
                       )
                     ),
                     Padding(
@@ -118,17 +135,17 @@ class SearchPageState extends BaseWidgetState<SearchPage> {
               child: Column(
                 children: <Widget>[
                   Container(
-                    height: 200,
-                    padding: EdgeInsets.only(top: 6),
                     color: Colors.cyanAccent,
                     child: Column(
                       children: <Widget>[
-                        Container(
-                          child: Row(
-                            children: <Widget>[
+                        Offstage(
+                          offstage: false,
+                          child: Container(
+                            child: Row(
+                              children: <Widget>[
                                 Padding(
                                   padding: EdgeInsets.only(left: 10),
-                                  child:Text("北京-北控",style: TextStyle(fontSize: 18,color: Colors.black)),
+                                  child:Text("北控-职位",style: TextStyle(fontSize: 18,color: Colors.black)),
                                 ),
                                 Expanded(
                                     flex: 1,
@@ -147,43 +164,139 @@ class SearchPageState extends BaseWidgetState<SearchPage> {
                                     fit: BoxFit.cover,
                                   ),
                                 ),
-                            ],
-                          ),
-                          width: MediaQuery.of(context).size.width,
-                          height: 35,
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            color: Colors.white54,
-                            border: Border.all(color: Colors.grey,width: 0.2)
+                              ],
+                            ),
+                            width: MediaQuery.of(context).size.width,
+                            height: 35,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                                color: Colors.white54,
+                                border: Border.all(color: Colors.grey,width: 0.2)
+                            ),
                           ),
                         ),
-                        Expanded(
-                            flex: 1,
-                            child: ListView.
-                            separated(
-                                itemBuilder: _buildWidget,
-                                controller: new ScrollController(),
-                                separatorBuilder: (BuildContext context,int index){
-                                  return Container(
-                                    width: MediaQuery.of(context).size.width,
-                                    height: 0.1,
-                                    color: Colors.greenAccent,
-                                  );
-                                },
-                                itemCount: 20
+                       ListView.
+                        separated(
+                            itemBuilder: _buildWidget,
+                            shrinkWrap: true,
+                            controller: new ScrollController(),
+                            physics: NeverScrollableScrollPhysics(),
+                            separatorBuilder: (BuildContext context,int index){
+                              return Container(
+                                width: MediaQuery.of(context).size.width,
+                                height: 0.1,
+                                color: Colors.greenAccent,
+                              );
+                            },
+                            itemCount: zwArr.length
+                       ),
+                        Offstage(
+                          offstage: false,
+                          child: Container(
+                            child: Row(
+                              children: <Widget>[
+                                Padding(
+                                  padding: EdgeInsets.only(left: 10),
+                                  child:Text("北控-政策",style: TextStyle(fontSize: 18,color: Colors.black)),
+                                ),
+                                Expanded(
+                                    flex: 1,
+                                    child: Text("")
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(right: 6),
+                                  child:Text("更多",style: TextStyle(fontSize: 18,color: Colors.grey)),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(right: 12,top: 3),
+                                  child: Image.asset(
+                                    "images/icon_jiantou_you.png",
+                                    width: 18,
+                                    height: 17,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ],
                             ),
+                            width: MediaQuery.of(context).size.width,
+                            height: 35,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                                color: Colors.white54,
+                                border: Border.all(color: Colors.grey,width: 0.2)
+                            ),
+                          ),
+                        ),
+                        ListView.
+                        separated(
+                            itemBuilder: _buildWidget,
+                            shrinkWrap: true,
+                            controller: new ScrollController(),
+                            physics: NeverScrollableScrollPhysics(),
+                            separatorBuilder: (BuildContext context,int index){
+                              return Container(
+                                width: MediaQuery.of(context).size.width,
+                                height: 0.1,
+                                color: Colors.greenAccent,
+                              );
+                            },
+                            itemCount: zcArr.length
+                        ),
+                        Offstage(
+                          offstage: false,
+                          child: Container(
+                            child: Row(
+                              children: <Widget>[
+                                Padding(
+                                  padding: EdgeInsets.only(left: 10),
+                                  child:Text("北控-咨询",style: TextStyle(fontSize: 18,color: Colors.black)),
+                                ),
+                                Expanded(
+                                    flex: 1,
+                                    child: Text("")
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(right: 6),
+                                  child:Text("更多",style: TextStyle(fontSize: 18,color: Colors.grey)),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(right: 12,top: 3),
+                                  child: Image.asset(
+                                    "images/icon_jiantou_you.png",
+                                    width: 18,
+                                    height: 17,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            width: MediaQuery.of(context).size.width,
+                            height: 35,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                                color: Colors.white54,
+                                border: Border.all(color: Colors.grey,width: 0.2)
+                            ),
+                          ),
+                        ),
+                        ListView.
+                        separated(
+                            itemBuilder: _buildWidget,
+                            shrinkWrap: true,
+                            controller: new ScrollController(),
+                            physics: NeverScrollableScrollPhysics(),
+                            separatorBuilder: (BuildContext context,int index){
+                              return Container(
+                                width: MediaQuery.of(context).size.width,
+                                height: 0.1,
+                                color: Colors.greenAccent,
+                              );
+                            },
+                            itemCount: zxArr.length
                         ),
                       ],
                     ),
                   ),
-                  Container(
-                    height: 200,
-                    color: Colors.green,
-                  ),
-                  Container(
-                    height: 300,
-                    color: Colors.blue,
-                  )
                 ],
               )
             )
@@ -203,7 +316,21 @@ class SearchPageState extends BaseWidgetState<SearchPage> {
 
   Widget _buildWidget(BuildContext context, int index) {
     return Container(
-      color: Colors.black,
+        child: ListTile(
+          leading: Image.asset("images/admin.png"),
+        )
     );
+  }
+
+  Future<Null> _searchData(String text) async{
+    CommonService().getSearchResult((SearchEntity entity){
+      setState(() {
+        showContent();
+        print("sadflasdlkf;lsad" + entity.returnCode.toString());
+//        zwArr = entity.returnData.zwArr;
+//        zcArr = entity.returnData.zcArr;
+//        zxArr = entity.returnData.zxArr;
+      });
+    }, text);
   }
 }

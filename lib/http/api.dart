@@ -21,4 +21,6 @@ class Api{
   static const String GET_NEWS_LIST = BASE_URL + "zx/xxzx/xxzxlbCx";
   //新闻列表猜你喜欢接口
   static const String LIKE_LIST = BASE_URL + "zx/cnxh/cnxhzxlbCx";
+  //首页搜索
+  static const String FIRST_SEARCH = BASE_URL  + "tjsy/tjsy/syrmssCx";
 }
