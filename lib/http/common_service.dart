@@ -109,12 +109,10 @@ class CommonService{
         "ssgjz" : searchContent
       });
       dio.
-      get(Api.FIRST_SEARCH).
+      get(Api.FIRST_SEARCH,queryParameters: map).
       then((response){
-        print("搜索结果" + response.headers.toString());
-        SearchEntity entity = EntityFactory.generateOBJ(response.data.toString());
+        SearchEntity entity = EntityFactory.generateOBJ(response.data);
         callBack(entity);
-
       });
     }
 }

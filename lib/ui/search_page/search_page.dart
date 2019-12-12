@@ -8,6 +8,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 
 class SearchPage extends BaseWidget{
+
   @override
   BaseWidgetState<BaseWidget> getState() {
     // TODO: implement getState
@@ -16,7 +17,10 @@ class SearchPage extends BaseWidget{
 }
 
 class SearchPageState extends BaseWidgetState<SearchPage> {
-
+  bool isResult = true;
+  bool isEmptyPosition = true;
+  bool isEmptyPolicy = true;
+  bool isEmptyConsult = true;
   List<SearchReturndataZwarr> zwArr = new List();
   List<SearchReturndataZxarr> zxArr = new List();
   List<SearchReturndataZcarr> zcArr = new List();
@@ -70,8 +74,16 @@ class SearchPageState extends BaseWidgetState<SearchPage> {
                         textInputAction: TextInputAction.search,
                         //提交按钮(搜索/回车/确认)
                         onSubmitted: (text){
+                          setState(() {
+                            zcArr.clear();
+                            zwArr.clear();
+                            zxArr.clear();
+                          });
                           showLoading();
                           _searchData(text);
+                          isEmptyPosition = true;
+                          isEmptyConsult = true;
+                          isEmptyPolicy = true;
                         },
                       )
                     ),
@@ -100,6 +112,7 @@ class SearchPageState extends BaseWidgetState<SearchPage> {
                   child:GestureDetector(
                     child: Text("取消",style: TextStyle(fontSize: 15)),
                     onTap: (){
+                      Navigator.of(context).pop(this);
                       Fluttertoast.showToast(msg: "取消按钮！");
                     },
                   )
@@ -118,7 +131,7 @@ class SearchPageState extends BaseWidgetState<SearchPage> {
       body: Column(
         children: <Widget>[
           Offstage(
-              offstage: false,
+              offstage: isResult,
               child: Container(
                 alignment: Alignment.center,
                 width: MediaQuery.of(context).size.width,
@@ -135,17 +148,17 @@ class SearchPageState extends BaseWidgetState<SearchPage> {
               child: Column(
                 children: <Widget>[
                   Container(
-                    color: Colors.cyanAccent,
+                    color: Colors.white,
                     child: Column(
                       children: <Widget>[
                         Offstage(
-                          offstage: false,
+                          offstage: isEmptyPosition,
                           child: Container(
                             child: Row(
                               children: <Widget>[
                                 Padding(
                                   padding: EdgeInsets.only(left: 10),
-                                  child:Text("北控-职位",style: TextStyle(fontSize: 18,color: Colors.black)),
+                                  child:Text("北控-职位",style: TextStyle(fontSize: 16,color: Colors.black)),
                                 ),
                                 Expanded(
                                     flex: 1,
@@ -153,7 +166,7 @@ class SearchPageState extends BaseWidgetState<SearchPage> {
                                 ),
                                 Padding(
                                   padding: EdgeInsets.only(right: 6),
-                                  child:Text("更多",style: TextStyle(fontSize: 18,color: Colors.grey)),
+                                  child:Text("更多",style: TextStyle(fontSize: 16,color: Colors.grey)),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.only(right: 12,top: 3),
@@ -171,13 +184,13 @@ class SearchPageState extends BaseWidgetState<SearchPage> {
                             alignment: Alignment.center,
                             decoration: BoxDecoration(
                                 color: Colors.white54,
-                                border: Border.all(color: Colors.grey,width: 0.2)
+                                border: Border.all(color: Colors.grey,width: 0.1)
                             ),
                           ),
                         ),
                        ListView.
                         separated(
-                            itemBuilder: _buildWidget,
+                            itemBuilder: _buildWidgetPosition,
                             shrinkWrap: true,
                             controller: new ScrollController(),
                             physics: NeverScrollableScrollPhysics(),
@@ -191,13 +204,13 @@ class SearchPageState extends BaseWidgetState<SearchPage> {
                             itemCount: zwArr.length
                        ),
                         Offstage(
-                          offstage: false,
+                          offstage: isEmptyPolicy,
                           child: Container(
                             child: Row(
                               children: <Widget>[
                                 Padding(
                                   padding: EdgeInsets.only(left: 10),
-                                  child:Text("北控-政策",style: TextStyle(fontSize: 18,color: Colors.black)),
+                                  child:Text("北控-政策",style: TextStyle(fontSize: 16,color: Colors.black)),
                                 ),
                                 Expanded(
                                     flex: 1,
@@ -205,7 +218,7 @@ class SearchPageState extends BaseWidgetState<SearchPage> {
                                 ),
                                 Padding(
                                   padding: EdgeInsets.only(right: 6),
-                                  child:Text("更多",style: TextStyle(fontSize: 18,color: Colors.grey)),
+                                  child:Text("更多",style: TextStyle(fontSize: 16,color: Colors.grey)),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.only(right: 12,top: 3),
@@ -223,13 +236,13 @@ class SearchPageState extends BaseWidgetState<SearchPage> {
                             alignment: Alignment.center,
                             decoration: BoxDecoration(
                                 color: Colors.white54,
-                                border: Border.all(color: Colors.grey,width: 0.2)
+                                border: Border.all(color: Colors.grey,width: 0.1)
                             ),
                           ),
                         ),
                         ListView.
                         separated(
-                            itemBuilder: _buildWidget,
+                            itemBuilder: _buildWidgetPolicy,
                             shrinkWrap: true,
                             controller: new ScrollController(),
                             physics: NeverScrollableScrollPhysics(),
@@ -243,13 +256,13 @@ class SearchPageState extends BaseWidgetState<SearchPage> {
                             itemCount: zcArr.length
                         ),
                         Offstage(
-                          offstage: false,
+                          offstage: isEmptyConsult,
                           child: Container(
                             child: Row(
                               children: <Widget>[
                                 Padding(
                                   padding: EdgeInsets.only(left: 10),
-                                  child:Text("北控-咨询",style: TextStyle(fontSize: 18,color: Colors.black)),
+                                  child:Text("北控-咨询",style: TextStyle(fontSize: 16,color: Colors.black)),
                                 ),
                                 Expanded(
                                     flex: 1,
@@ -257,7 +270,7 @@ class SearchPageState extends BaseWidgetState<SearchPage> {
                                 ),
                                 Padding(
                                   padding: EdgeInsets.only(right: 6),
-                                  child:Text("更多",style: TextStyle(fontSize: 18,color: Colors.grey)),
+                                  child:Text("更多",style: TextStyle(fontSize: 16,color: Colors.grey)),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.only(right: 12,top: 3),
@@ -275,13 +288,13 @@ class SearchPageState extends BaseWidgetState<SearchPage> {
                             alignment: Alignment.center,
                             decoration: BoxDecoration(
                                 color: Colors.white54,
-                                border: Border.all(color: Colors.grey,width: 0.2)
+                                border: Border.all(color: Colors.grey,width: 0.1)
                             ),
                           ),
                         ),
                         ListView.
                         separated(
-                            itemBuilder: _buildWidget,
+                            itemBuilder: _buildWidgetConsult,
                             shrinkWrap: true,
                             controller: new ScrollController(),
                             physics: NeverScrollableScrollPhysics(),
@@ -289,7 +302,7 @@ class SearchPageState extends BaseWidgetState<SearchPage> {
                               return Container(
                                 width: MediaQuery.of(context).size.width,
                                 height: 0.1,
-                                color: Colors.greenAccent,
+                                color: Colors.grey,
                               );
                             },
                             itemCount: zxArr.length
@@ -314,10 +327,35 @@ class SearchPageState extends BaseWidgetState<SearchPage> {
   }
 
 
-  Widget _buildWidget(BuildContext context, int index) {
+  Widget _buildWidgetPosition(BuildContext context, int index) {
+    return Container(
+        child:ListTile(
+            leading: Image.network(
+              zwArr[index].dwlgsc + zwArr[index].dwlgfwdmc,
+              width: 40,
+              height: 40,
+              fit: BoxFit.fill,
+            ),
+            title: Text(zwArr[index].zwmc),
+            subtitle: Text(zwArr[index].dwmc),
+          )
+    );
+  }
+
+  Widget _buildWidgetPolicy(BuildContext context, int index) {
     return Container(
         child: ListTile(
-          leading: Image.asset("images/admin.png"),
+          title: Text(zcArr[index].bt,maxLines: 1,overflow: TextOverflow.ellipsis),
+          subtitle: Text(zcArr[index].appZxnr,maxLines: 2,overflow: TextOverflow.ellipsis),
+        )
+    );
+  }
+
+  Widget _buildWidgetConsult(BuildContext context, int index) {
+    return Container(
+        child: ListTile(
+          title: Text(zxArr[index].bt,maxLines: 1,overflow: TextOverflow.ellipsis),
+          subtitle: Text(zxArr[index].appZxnr,maxLines: 2,overflow: TextOverflow.ellipsis),
         )
     );
   }
@@ -326,10 +364,24 @@ class SearchPageState extends BaseWidgetState<SearchPage> {
     CommonService().getSearchResult((SearchEntity entity){
       setState(() {
         showContent();
-        print("sadflasdlkf;lsad" + entity.returnCode.toString());
-//        zwArr = entity.returnData.zwArr;
-//        zcArr = entity.returnData.zcArr;
-//        zxArr = entity.returnData.zxArr;
+        zwArr = entity.returnData.zwArr;
+        zcArr = entity.returnData.zcArr;
+        zxArr = entity.returnData.zxArr;
+        if(zxArr == null || zxArr.length == 0){
+          isEmptyConsult = true;
+        }else{
+          isEmptyConsult = false;
+        }
+        if(zwArr == null || zwArr.length == 0){
+          isEmptyPosition = true;
+        }else{
+          isEmptyPosition = false;
+        }
+        if(zcArr == null || zcArr.length == 0){
+          isEmptyPolicy = true;
+        }else{
+          isEmptyPolicy = false;
+        }
       });
     }, text);
   }

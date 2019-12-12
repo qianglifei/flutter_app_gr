@@ -24,7 +24,7 @@ class EntityFactory {
       return FavouriteEntity.fromJson(json) as T;
     }else if (T.toString() == "SecondBannerEntity") {
       return SecondBannerEntity.fromJson(json) as T;
-    } else if (T.toString() == "SearchEntityEntity") {
+    } else if (T.toString() == "SearchEntity") {
       return SearchEntity.fromJson(json) as T;
     } else {
       return null;
