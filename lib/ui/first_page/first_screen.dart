@@ -56,7 +56,7 @@ class FirstPageState extends BaseWidgetState<FirstPage> {
                         _chooseTab(),
                       ],
                     ),
-                    MarqueeContinuousWidget(),
+                    MarqueeContinuousWidget(stepOffset: 60),
                     BannerSecond(),
                     KeyServiceEnterPrisesWidget(),
                     Container(

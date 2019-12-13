@@ -5,7 +5,7 @@ import 'package:flutter_app_gr/custom_widget/custom_app_bar.dart';
 import 'package:flutter_app_gr/entity/search_entity.dart';
 import 'package:flutter_app_gr/http/common_service.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
+import 'package:cached_network_image/cached_network_image.dart';
 
 class SearchPage extends BaseWidget{
 
@@ -24,11 +24,12 @@ class SearchPageState extends BaseWidgetState<SearchPage> {
   List<SearchReturndataZwarr> zwArr = new List();
   List<SearchReturndataZxarr> zxArr = new List();
   List<SearchReturndataZcarr> zcArr = new List();
-
+  TextEditingController controller = TextEditingController();
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+
   }
   @override
   CustomAppBar getAppBar() {
@@ -69,6 +70,7 @@ class SearchPageState extends BaseWidgetState<SearchPage> {
                       width: MediaQuery.of(context).size.width - 135,
                       margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
                       child: TextField(
+                        controller: controller,
                         decoration: InputDecoration.collapsed(hintText: "搜索"),
                         autofocus: true,
                         textInputAction: TextInputAction.search,
@@ -84,6 +86,7 @@ class SearchPageState extends BaseWidgetState<SearchPage> {
                           isEmptyPosition = true;
                           isEmptyConsult = true;
                           isEmptyPolicy = true;
+                          isResult = true;
                         },
                       )
                     ),
@@ -96,6 +99,7 @@ class SearchPageState extends BaseWidgetState<SearchPage> {
                           fit: BoxFit.cover,
                         ),
                         onTap: (){
+                          controller.clear();
                           Fluttertoast.showToast(msg: "删除搜索框内容");
                         },
                       ),
@@ -119,7 +123,6 @@ class SearchPageState extends BaseWidgetState<SearchPage> {
               ),
             ],
           )
-
         )
     );
   }
@@ -203,6 +206,12 @@ class SearchPageState extends BaseWidgetState<SearchPage> {
                             },
                             itemCount: zwArr.length
                        ),
+                        Container(
+                          width: double.infinity,
+                          height: 15,
+                          color: Color.fromRGBO(250, 250, 250, 1),
+                          child: Text(""),
+                        ),
                         Offstage(
                           offstage: isEmptyPolicy,
                           child: Container(
@@ -234,6 +243,7 @@ class SearchPageState extends BaseWidgetState<SearchPage> {
                             width: MediaQuery.of(context).size.width,
                             height: 35,
                             alignment: Alignment.center,
+                            margin: EdgeInsets.only(top: 10),
                             decoration: BoxDecoration(
                                 color: Colors.white54,
                                 border: Border.all(color: Colors.grey,width: 0.1)
@@ -328,27 +338,39 @@ class SearchPageState extends BaseWidgetState<SearchPage> {
 
 
   Widget _buildWidgetPosition(BuildContext context, int index) {
-    return Container(
-        child:ListTile(
-            leading: Image.network(
-              zwArr[index].dwlgsc + zwArr[index].dwlgfwdmc,
+      return Container(
+          child:ListTile(
+            leading: CachedNetworkImage(
               width: 40,
               height: 40,
               fit: BoxFit.fill,
+              imageUrl: zwArr[index].dwlgsc + zwArr[index].dwlgfwdmc,
+              placeholder: (context, url){
+                return Image.asset(
+                   "images/mr.png",
+                  width: 40,
+                  height: 40,
+                  fit: BoxFit.cover,
+                );
+              },
+              errorWidget: (context, url, error) => Icon(Icons.error),
             ),
             title: Text(zwArr[index].zwmc),
             subtitle: Text(zwArr[index].dwmc),
           )
-    );
+      );
+
   }
 
   Widget _buildWidgetPolicy(BuildContext context, int index) {
-    return Container(
-        child: ListTile(
-          title: Text(zcArr[index].bt,maxLines: 1,overflow: TextOverflow.ellipsis),
-          subtitle: Text(zcArr[index].appZxnr,maxLines: 2,overflow: TextOverflow.ellipsis),
-        )
-    );
+
+      return Container(
+          child: ListTile(
+            title: Text(zcArr[index].bt,maxLines: 1,overflow: TextOverflow.ellipsis),
+            subtitle: Text(zcArr[index].appZxnr,maxLines: 2,overflow: TextOverflow.ellipsis),
+          )
+      );
+
   }
 
   Widget _buildWidgetConsult(BuildContext context, int index) {
@@ -382,6 +404,7 @@ class SearchPageState extends BaseWidgetState<SearchPage> {
         }else{
           isEmptyPolicy = false;
         }
+        isResult = false;
       });
     }, text);
   }

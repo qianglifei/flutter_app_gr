@@ -6,48 +6,6 @@ import 'package:flutter_app_gr/entity/notice_data_entity.dart';
 import 'package:flutter_app_gr/http/common_service.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-//class MarqueeSingle<T> extends StatefulWidget {
-//  final Widget child;
-//
-//  MarqueeSingle({Key key, this.child}) : super(key: key);
-//
-//  @override
-//  _MarqueeSingleState<T> createState() => _MarqueeSingleState();
-//}
-//
-//class _MarqueeSingleState<T> extends State<MarqueeSingle> with SingleTickerProviderStateMixin {
-//  AnimationController _controller;
-//  Animation<Offset> _animation;
-//  List marqueeDataList = new List();
-//
-//  @override
-//  void initState() {
-//    super.initState();
-//    _controller =
-//        AnimationController(vsync: this, duration: Duration(seconds: 10));
-//    _animation = Tween<Offset>(begin: Offset(1.0, 0.0), end: Offset(-1.0, 0.0))
-//        .animate(_controller);
-//    _animation.addListener(() {
-//      setState(() {});
-//    });
-//    _controller.repeat();
-//  }
-//
-//  @override
-//  Widget build(BuildContext context) {
-//    return ClipRect(child: FractionalTranslation(
-//        translation: _animation.value,
-//        child: SingleChildScrollView(
-//            scrollDirection: Axis.horizontal, child: widget.child)));
-//  }
-//
-//  @override
-//  void dispose() {
-//    _controller.dispose();
-//    super.dispose();
-//  }
-//}
-
 class MarqueeContinuousWidget extends StatefulWidget {
   final Widget child;
   final Duration duration;
@@ -56,7 +14,7 @@ class MarqueeContinuousWidget extends StatefulWidget {
   MarqueeContinuousWidget({Key key,
         this.child,
         this.duration = const Duration(seconds: 2),
-        this.stepOffset = 42.0,
+        this.stepOffset = 40.0,
         this.listData,
       }) : super(key: key);
 
@@ -81,15 +39,10 @@ class _MarqueeContinuousWidgetState extends State<MarqueeContinuousWidget> {
       if (newOffset != _offset) {
         _offset = newOffset;
         _controller.animateTo(_offset, duration: Duration(seconds: 1), curve: Curves.linear);
-       // _controller.jumpTo(1);
         _index++;
         print(_index++);
         if(_index == _noticeListData.length){
           _index = 0;
-          _controller.jumpTo(1);
-          //_controller.animateTo(0.0, duration: widget.duration, curve: Curves.linear);
-        }else{
-
         }
       }
     });
@@ -106,7 +59,7 @@ class _MarqueeContinuousWidgetState extends State<MarqueeContinuousWidget> {
   Widget build(BuildContext context) {
       return GestureDetector(
             child: Container(
-            height: 70,
+            height: 60,
             margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
             width: MediaQuery.of(context).size.width,
             color: Colors.white,
@@ -122,40 +75,51 @@ class _MarqueeContinuousWidgetState extends State<MarqueeContinuousWidget> {
                   ),
                 ),
                 Container(
-                    height: 40,
+                    height: 60,
                     width: MediaQuery.of(context).size.width - 80,
                     margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                    child: ListView.builder(
+                    child: ListView.separated(
                         itemCount: _noticeListData.length,
                         scrollDirection: Axis.vertical,
                         controller: _controller,
+                        separatorBuilder: (context,index){
+                          return Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: 1,
+                            color: Colors.black,
+                          );
+                        },
                         physics: new NeverScrollableScrollPhysics(),
                         itemBuilder: (context,index){
-                          return Container(
-                              child: Row(
-                                children: <Widget>[
-                                  Container(
-                                    width: 6,
-                                    height: 6,
-                                    decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: Colors.black
+                            return Container(
+                              color: Colors.blue,
+                                height: 30,
+                                child: Row(
+                                  children: <Widget>[
+                                    Container(
+                                      width: 6,
+                                      height: 6,
+                                      decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: Colors.black
+                                      ),
                                     ),
-                                  ),
-                                  Container(
-                                    width: MediaQuery.of(context).size.width - 150,
-                                    height: 20,
-                                    padding: EdgeInsets.fromLTRB(10, 0, 0, 10),
-                                    color: Colors.white,
-                                    child: Text(
-                                      _noticeListData[index].bt,
-                                      maxLines: 1,
-                                      overflow: TextOverflow.visible,
-                                    ),
-                                  )
-                                ],
-                              )
-                          );
+                                    Container(
+                                      width: MediaQuery.of(context).size.width - 150,
+                                      height: 30,
+                                      padding: EdgeInsets.fromLTRB(10, 4, 0, 10),
+                                      color: Colors.white,
+                                      child: Text(
+                                        _noticeListData[index].bt,
+                                        maxLines: 1,
+                                        overflow: TextOverflow.visible,
+                                        style: TextStyle(fontSize: 15),
+                                      ),
+                                    )
+                                  ],
+                                )
+                            );
+
                         })
                 )
               ],
