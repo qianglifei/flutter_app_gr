@@ -48,7 +48,8 @@ class _MarqueeState extends State<Marquee> {
             return widget.itemBuilder(buildContext,0);
           }
         },
-        //
+        //在原数据末尾加一笔数据（即第一笔数据）
+        //用于实现无限循环滚动效果
         itemCount: widget.count + 1,
         controller: _controller,
         scrollDirection: Axis.vertical,

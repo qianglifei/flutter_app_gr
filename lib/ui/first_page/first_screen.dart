@@ -34,6 +34,7 @@ class FirstPageState extends BaseWidgetState<FirstPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
+
   }
 
   @override
@@ -56,7 +57,7 @@ class FirstPageState extends BaseWidgetState<FirstPage> {
                         _chooseTab(),
                       ],
                     ),
-                    MarqueeContinuousWidget(stepOffset: 60),
+                    MarqueeContinuousWidget(),
                     BannerSecond(),
                     KeyServiceEnterPrisesWidget(),
                     Container(
