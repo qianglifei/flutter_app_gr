@@ -29,7 +29,7 @@ class CommonService{
        then((response){
          NoticeDataEntity noticeDataEntity =  EntityFactory.generateOBJ(response.data);
          callBack(noticeDataEntity);
-         print(response.toString());
+         print("通知公告：" + noticeDataEntity.returnData.zzzx.length.toString());
        });
     }
 

@@ -10,7 +10,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'banner.dart';
 import 'package:flutter_app_gr/entity/notice_data_entity.dart';
 import 'key_service_enterprises_widget.dart';
-import 'marquee.dart';
+import 'marquees.dart';
 import 'dart:math' as math;
 import 'package:barcode_scan/barcode_scan.dart';
 class FirstPage extends BaseWidget{
