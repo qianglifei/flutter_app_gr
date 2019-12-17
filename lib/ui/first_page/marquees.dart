@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_app_gr/entity/notice_data_entity.dart';
@@ -8,8 +9,7 @@ import 'package:flutter_app_gr/ui/first_page/marquee.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class MarqueeContinuousWidget extends StatefulWidget {
-  List<String> listDataEvenNumber = new List();
-  List<String> listDataAddEvenNumber = new List();
+
   MarqueeContinuousWidget({Key key}) : super(key: key);
 
   @override
@@ -18,7 +18,8 @@ class MarqueeContinuousWidget extends StatefulWidget {
 
 class _MarqueeContinuousWidgetState extends State<MarqueeContinuousWidget> {
   List<NoticeDataReturndataZzzx> _noticeListData = new List();
-
+  List<String> listDataEvenNumber = new List();
+  List<String> listDataAddEvenNumber = new List();
   @override
   void initState() {
     super.initState();
@@ -33,46 +34,38 @@ class _MarqueeContinuousWidgetState extends State<MarqueeContinuousWidget> {
 
   @override
   Widget build(BuildContext context) {
-      return GestureDetector(
-            child: Container(
+      return Container(
             height: 60,
-            margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
             width: MediaQuery.of(context).size.width,
+            margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
             color: Colors.white,
-            child: Row(
+            child: Flex(
+              direction: Axis.horizontal,
+              mainAxisSize: MainAxisSize.max,
               children: <Widget>[
                 Container(
                   margin: EdgeInsets.fromLTRB(20, 0, 0, 0),
                   child: Image.asset(
                     "images/rencaizixun.png",
-                    height: 41,
+                    height: 40,
                     width: 36,
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fill,
                   ),
                 ),
                 Container(
-                  width: 350,
+                  width: MediaQuery.of(context).size.width - 80,
                   height: 60,
-                  color: Colors.greenAccent,
-                  child: Marquee(widget.listDataEvenNumber.length, (BuildContext context, int index){
+                  margin: EdgeInsets.only(left: 8),
+                  color: Colors.green,
+                  child: Marquee(listDataEvenNumber.length, (BuildContext context,int index){
                     return Container(
-                      child: Column(
-                        children: <Widget>[
-                          Text(widget.listDataEvenNumber[index],overflow: TextOverflow.ellipsis),
-                          Text(widget.listDataAddEvenNumber[index],overflow: TextOverflow.ellipsis),
-                        ],
-                      ),
+                      child: Text(""),
                     );
-                  })
+                  }),
                 )
               ],
             ),
-          ),
-          onTap: (){
-              Fluttertoast.showToast(msg: "item 点击事件");
-          },
         );
-
   }
 
   ///加载首页通知公告
@@ -85,13 +78,13 @@ class _MarqueeContinuousWidgetState extends State<MarqueeContinuousWidget> {
          }
          for(int index = 0 ; index < _noticeListData.length ; index ++){
             if(index % 2 == 0){
-              widget.listDataEvenNumber.add(_noticeListData[index].bt);
+              listDataEvenNumber.add(_noticeListData[index].bt);
             }else{
-              widget.listDataAddEvenNumber.add(_noticeListData[index].bt);
+              listDataAddEvenNumber.add(_noticeListData[index].bt);
             }
          }
-         print("偶数" + widget.listDataEvenNumber.toString());
-         print("奇数" + widget.listDataAddEvenNumber.toString());
+         print("偶数" + listDataEvenNumber.toString());
+         print("奇数" + listDataAddEvenNumber.toString());
       });
     });
   }
