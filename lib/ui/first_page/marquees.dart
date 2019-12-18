@@ -56,10 +56,59 @@ class _MarqueeContinuousWidgetState extends State<MarqueeContinuousWidget> {
                   width: MediaQuery.of(context).size.width - 80,
                   height: 60,
                   margin: EdgeInsets.only(left: 8),
-                  color: Colors.green,
+                  color: Colors.white,
                   child: Marquee(listDataEvenNumber.length, (BuildContext context,int index){
                     return Container(
-                      child: Text(""),
+                      child: Column(
+                        children: <Widget>[
+                          Flex(
+                            direction: Axis.horizontal,
+                            children: <Widget>[
+                              Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.black,
+                                  borderRadius: BorderRadius.circular(30),
+                                ),
+                                width: 8,
+                                height: 8,
+                                margin: EdgeInsets.only(top: 8,left: 10),
+                              ),
+                              Container(
+                                width: MediaQuery.of(context).size.width - 110,
+                                margin: EdgeInsets.only(top : 5 ,left: 10),
+                                child: Text(listDataEvenNumber[index],
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(fontSize: 16)
+                                ),
+                              )
+                            ],
+                          ),
+                          Flex(
+                            direction: Axis.horizontal,
+                            children: <Widget>[
+                              Container(
+                                margin: EdgeInsets.only(top:5,left: 10),
+                                decoration: BoxDecoration(
+                                  color: Colors.black,
+                                  borderRadius: BorderRadius.circular(30),
+                                ),
+                                width: 8,
+                                height: 8,
+                              ),
+                              Container(
+                                width: MediaQuery.of(context).size.width - 110,
+                                margin: EdgeInsets.only(top:3,left: 10),
+                                child: Text(listDataAddEvenNumber[index],
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(fontSize: 16)
+                                ),
+                              )
+                            ],
+                          ),
+                        ],
+                      )
                     );
                   }),
                 )

@@ -17,7 +17,7 @@ class BannerSecond extends StatefulWidget{
 
 class _BannerSecondState extends State<BannerSecond>{
   List<SecondBannerReturndataBanner> _listData = new List();
-  bool _isVisible;
+  bool _isVisible = false;
 
   @override
   void initState() {
@@ -30,7 +30,7 @@ class _BannerSecondState extends State<BannerSecond>{
   Widget build(BuildContext context) {
     // TODO: implement build
     return Offstage(
-      offstage: _isVisible,
+      offstage: true,
       child:Container(
         height: 63,
         margin: EdgeInsets.fromLTRB(15, 0, 15, 10),

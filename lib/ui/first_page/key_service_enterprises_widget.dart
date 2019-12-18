@@ -22,7 +22,6 @@ class _KeyServiceEnterPrisesWidget extends State<KeyServiceEnterPrisesWidget>{
   Widget build(BuildContext context) {
     // TODO: implement build
     return Container(
-      height: 190,
       color: Colors.white,
       child: Column(
         children: <Widget>[
@@ -71,18 +70,23 @@ class _KeyServiceEnterPrisesWidget extends State<KeyServiceEnterPrisesWidget>{
   }
 
   Widget _enterprisesListWidget() {
-    return Container(
-      margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
-      height: 125,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        controller: _controller,
-        itemCount: _listData.length,
-        itemBuilder: (context,index){
-          return buildItemWidget(context,index);
-        },
-      ),
+    return GridView.builder(
+          scrollDirection: Axis.vertical,
+          controller: _controller,
+          itemCount: _listData.length,
+          padding: EdgeInsets.all(10),
+          shrinkWrap: true,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 4,
+            mainAxisSpacing: 10,
+            crossAxisSpacing: 10,
+            childAspectRatio: 0.6
+          ),
+          itemBuilder: (context,index){
+            return buildItemWidget(context,index);
+          },
     );
+
   }
 
   Future<Null> _getKeyServiceEnterprises() async{
@@ -104,7 +108,7 @@ class _KeyServiceEnterPrisesWidget extends State<KeyServiceEnterPrisesWidget>{
       color: Colors.white,
       child:Center(
         child: Container(
-          width: 75,
+          width:95,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(9)),
             color: Color.fromRGBO(238, 242, 248, 1)
