@@ -70,7 +70,7 @@ class KeyServiceEnterprisesReturndataZdqylb {
 	String dwlgkhdmc;
 	String dwxxId;
 	String dwxz;
-	String dwlgsc;
+	String dwlgsc = "";
 	String dwlgfwdmc;
 
 	KeyServiceEnterprisesReturndataZdqylb({this.dwzprs, this.dwmc, this.sshy, this.szdqmc, this.pageSize, this.zpzws, this.pageNum, this.zprs, this.szdqq, this.dwlgkhdmc, this.dwxxId, this.dwxz, this.dwlgsc, this.dwlgfwdmc});

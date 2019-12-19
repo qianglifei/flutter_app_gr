@@ -108,7 +108,7 @@ class _KeyServiceEnterPrisesWidget extends State<KeyServiceEnterPrisesWidget>{
       color: Colors.white,
       child:Center(
         child: Container(
-          width:95,
+          width:85,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(9)),
             color: Color.fromRGBO(238, 242, 248, 1)

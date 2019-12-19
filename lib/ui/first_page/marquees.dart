@@ -76,7 +76,7 @@ class _MarqueeContinuousWidgetState extends State<MarqueeContinuousWidget> {
                               Container(
                                 width: MediaQuery.of(context).size.width - 110,
                                 margin: EdgeInsets.only(top : 5 ,left: 10),
-                                child: Text(listDataEvenNumber[index],
+                                child: Text(listDataEvenNumber.length == 0 ? "":listDataEvenNumber[index],
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
                                     style: TextStyle(fontSize: 16)

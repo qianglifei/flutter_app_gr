@@ -39,6 +39,7 @@ abstract class BaseWidgetState <T extends BaseWidget> extends State<T>{
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       appBar: getBaseAppBar(),
       body: Container(
         //背景颜色，自己可以更具需求变更
@@ -235,8 +236,14 @@ abstract class BaseWidgetState <T extends BaseWidget> extends State<T>{
   ///正在加载页面
   Widget getLoadingWidget() {
     return Center(
-      child: CupertinoActivityIndicator(
-        radius: 15.0, //值越大加载的图形越大
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+       // color: Color.fromRGBO(238, 242, 248, 1),
+        color: Colors.white,
+        child: CupertinoActivityIndicator(
+          radius: 30.0, //值越大加载的图形越大
+        ),
       ),
     );
   }

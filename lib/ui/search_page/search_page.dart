@@ -25,6 +25,7 @@ class SearchPageState extends BaseWidgetState<SearchPage> {
   List<SearchReturndataZxarr> zxArr = new List();
   List<SearchReturndataZcarr> zcArr = new List();
   TextEditingController controller = TextEditingController();
+  String _searchContent = "";
   @override
   void initState() {
     // TODO: implement initState
@@ -48,7 +49,7 @@ class SearchPageState extends BaseWidgetState<SearchPage> {
             children: <Widget>[
               Container(
                 width: MediaQuery.of(context).size.width - 60,
-                height: 50,
+                height: 40,
                 margin: EdgeInsets.only(top: top,bottom: 10,left: 10),
                 decoration: BoxDecoration(
                     color: Colors.white,
@@ -80,6 +81,10 @@ class SearchPageState extends BaseWidgetState<SearchPage> {
                             zcArr.clear();
                             zwArr.clear();
                             zxArr.clear();
+                            _searchContent = text;
+                            if(text != ""){
+                              _searchContent += "-";
+                            }
                           });
                           showLoading();
                           _searchData(text);
@@ -131,6 +136,7 @@ class SearchPageState extends BaseWidgetState<SearchPage> {
   Widget getContentWidget(BuildContext context) {
     // TODO: implement getContentWidget
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       body: Column(
         children: <Widget>[
           Offstage(
@@ -140,7 +146,7 @@ class SearchPageState extends BaseWidgetState<SearchPage> {
                 width: MediaQuery.of(context).size.width,
                 height: 30,
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey,width: 0.2)
+                  border: Border.all(color: Colors.grey,width: 0.01)
                 ),
                 child: Text("搜索到的结果",style: TextStyle(color: Colors.blue,fontSize: 16)),
               )
@@ -159,9 +165,8 @@ class SearchPageState extends BaseWidgetState<SearchPage> {
                           child: Container(
                             child: Row(
                               children: <Widget>[
-                                Padding(
-                                  padding: EdgeInsets.only(left: 10),
-                                  child:Text("北控-职位",style: TextStyle(fontSize: 16,color: Colors.black)),
+                                Padding(                                  padding: EdgeInsets.only(left: 10),
+                                  child:Text("$_searchContent职位",style: TextStyle(fontSize: 16,color: Colors.black)),
                                 ),
                                 Expanded(
                                     flex: 1,
@@ -187,7 +192,7 @@ class SearchPageState extends BaseWidgetState<SearchPage> {
                             alignment: Alignment.center,
                             decoration: BoxDecoration(
                                 color: Colors.white54,
-                                border: Border.all(color: Colors.grey,width: 0.1)
+                                border: Border.all(color: Colors.grey,width: 0.09)
                             ),
                           ),
                         ),
@@ -219,7 +224,7 @@ class SearchPageState extends BaseWidgetState<SearchPage> {
                               children: <Widget>[
                                 Padding(
                                   padding: EdgeInsets.only(left: 10),
-                                  child:Text("北控-政策",style: TextStyle(fontSize: 16,color: Colors.black)),
+                                  child:Text("$_searchContent政策",style: TextStyle(fontSize: 16,color: Colors.black)),
                                 ),
                                 Expanded(
                                     flex: 1,
@@ -272,7 +277,7 @@ class SearchPageState extends BaseWidgetState<SearchPage> {
                               children: <Widget>[
                                 Padding(
                                   padding: EdgeInsets.only(left: 10),
-                                  child:Text("北控-咨询",style: TextStyle(fontSize: 16,color: Colors.black)),
+                                  child:Text("$_searchContent咨询",style: TextStyle(fontSize: 16,color: Colors.black)),
                                 ),
                                 Expanded(
                                     flex: 1,
@@ -353,7 +358,14 @@ class SearchPageState extends BaseWidgetState<SearchPage> {
                   fit: BoxFit.cover,
                 );
               },
-              errorWidget: (context, url, error) => Icon(Icons.error),
+              errorWidget: (context, url, error){
+                return Image.asset(
+                  "images/mr.png",
+                  width: 40,
+                  height: 40,
+                  fit: BoxFit.cover,
+                );
+              }
             ),
             title: Text(zwArr[index].zwmc),
             subtitle: Text(zwArr[index].dwmc),
@@ -389,6 +401,9 @@ class SearchPageState extends BaseWidgetState<SearchPage> {
         zwArr = entity.returnData.zwArr;
         zcArr = entity.returnData.zcArr;
         zxArr = entity.returnData.zxArr;
+        if(zwArr.length == 0 && zcArr.length == 0 && zxArr.length == 0){
+            showEmpty();
+        }
         if(zxArr == null || zxArr.length == 0){
           isEmptyConsult = true;
         }else{

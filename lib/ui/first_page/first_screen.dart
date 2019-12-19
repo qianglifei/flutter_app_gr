@@ -2,17 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_gr/base/base_widget.dart';
 import 'package:flutter_app_gr/custom_widget/custom_app_bar.dart';
-import 'package:flutter_app_gr/http/common_service.dart';
 import 'package:flutter_app_gr/ui/first_page/banner_second.dart';
 import 'package:flutter_app_gr/ui/search_page/search_page.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'banner.dart';
-import 'package:flutter_app_gr/entity/notice_data_entity.dart';
 import 'key_service_enterprises_widget.dart';
 import 'marquees.dart';
 import 'dart:math' as math;
 import 'package:barcode_scan/barcode_scan.dart';
+import 'dart:async';
 class FirstPage extends BaseWidget{
   @override
   BaseWidgetState<BaseWidget> getState() {
@@ -23,7 +21,7 @@ class FirstPage extends BaseWidget{
 }
 
 class FirstPageState extends BaseWidgetState<FirstPage> {
-
+  Timer _timer;
   @override
   CustomAppBar getAppBar() {
     // TODO: implement getAppBar
@@ -34,7 +32,10 @@ class FirstPageState extends BaseWidgetState<FirstPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-
+    showLoading();
+    _timer = Timer.periodic(Duration(seconds: 3),(timer){
+      showContent();
+    });
   }
 
   @override
@@ -258,6 +259,12 @@ class FirstPageState extends BaseWidgetState<FirstPage> {
     }
   }
 
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _timer.cancel();
+  }
 }
 
 //Future scan() async{
