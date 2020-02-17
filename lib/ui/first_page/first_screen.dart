@@ -3,14 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app_gr/base/base_widget.dart';
 import 'package:flutter_app_gr/custom_widget/custom_app_bar.dart';
 import 'package:flutter_app_gr/ui/first_page/banner_second.dart';
+import 'package:flutter_app_gr/ui/intelligent_roboot/intelligent_roboot_page.dart';
 import 'package:flutter_app_gr/ui/search_page/search_page.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'banner.dart';
 import 'key_service_enterprises_widget.dart';
 import 'marquees.dart';
 import 'dart:math' as math;
-import 'package:barcode_scan/barcode_scan.dart';
 import 'dart:async';
+
 class FirstPage extends BaseWidget{
   @override
   BaseWidgetState<BaseWidget> getState() {
@@ -111,7 +112,7 @@ class FirstPageState extends BaseWidgetState<FirstPage> {
   Widget _chooseTab() {
     return Container(
       height: 180,
-      margin: EdgeInsets.fromLTRB(0,210,0,0),
+      margin: EdgeInsets.fromLTRB(0,230,0,0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(topLeft: Radius.circular(10),topRight: Radius.circular(9)),
         color: Colors.white
@@ -161,12 +162,22 @@ class FirstPageState extends BaseWidgetState<FirstPage> {
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          Image.asset(
-            "images/kefubai.png",
-            height: 33,
-            width: 31,
-            fit: BoxFit.cover,
+          GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            child: Image.asset(
+              "images/kefubai.png",
+              height: 33,
+              width: 31,
+              fit: BoxFit.cover,
+            ),
+            onTap: (){
+              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
+                return IntelligentRobotScreen();
+              }));
+              Fluttertoast.showToast(msg: "智能机器人");
+            },
           ),
+
           GestureDetector(
               behavior: HitTestBehavior.deferToChild,
               child: Container(
@@ -206,6 +217,7 @@ class FirstPageState extends BaseWidgetState<FirstPage> {
                             ),
                             onTap: (){
                               scan();
+
                               Fluttertoast.showToast(msg: "扫一扫");
                             },
                           )
@@ -246,24 +258,16 @@ class FirstPageState extends BaseWidgetState<FirstPage> {
     );
   }
 
-  Future scan() async {
-    try {
-      String barcode = await BarcodeScanner.scan();
-      print('扫码结果：' + barcode);
-    } catch (e) {
-      if (e.code == BarcodeScanner.CameraAccessDenied) {
-        print('未授予APP相机权限');
-      } else {
-        print('扫码错误：$e');
-      }
-    }
-  }
 
   @override
   void dispose() {
     // TODO: implement dispose
     super.dispose();
     _timer.cancel();
+  }
+
+  Future<void> scan() async {
+    Fluttertoast.showToast(msg: "扫码成功");
   }
 }
 
