@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app_gr/base/base_widget.dart';
 import 'package:flutter_app_gr/custom_widget/custom_app_bar.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
+import 'dart:math' as math;
 // ignore: must_be_immutable
 class IntelligentRobotScreen extends BaseWidget{
   @override
@@ -20,7 +20,7 @@ class IntelligentRobotScreen extends BaseWidget{
 class IntelligentRobotScreenState extends BaseWidgetState<IntelligentRobotScreen> {
 
   TextEditingController controller = TextEditingController();
-
+  ScrollController _scrollController = ScrollController();
   @override
   CustomAppBar getAppBar() {
     // TODO: implement getAppBar
@@ -31,7 +31,7 @@ class IntelligentRobotScreenState extends BaseWidgetState<IntelligentRobotScreen
           color: Colors.green,
           margin: EdgeInsets.only(top: top),
           child: Container(
-            color: Colors.cyanAccent,
+            color: Colors.lightGreenAccent,
             child: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -86,30 +86,51 @@ class IntelligentRobotScreenState extends BaseWidgetState<IntelligentRobotScreen
         body: Stack(
           children: <Widget>[
               Container(
-                color: Colors.red,
+                color: Colors.white,
                 height: MediaQuery.of(context).size.height,
+                child:Row(
+                  children: <Widget>[
+                   Expanded(
+                     child: ListView.builder(
+                       controller: _scrollController,
+                       itemCount: 100,
+                       scrollDirection: Axis.vertical,
+                       itemBuilder: (BuildContext context , int index){
+                         return Container(
+                           alignment: Alignment.centerLeft,
+                           width: 100,
+                           child: Text("豆豆(*Φ皿Φ*)"),
+                         );
+                       },
+                       shrinkWrap: true,
+                     ),
+                   ),
+                   Container(
+                     width: 10,
+                     height: MediaQuery.of(context).size.height,
+                     color: Colors.lightGreenAccent,
+                     child: Text(""),
+                   ),
+                  ],
+                ),
               ),
               Align(
                 alignment: FractionalOffset.bottomCenter,
                 child: Container(
+                  color: Colors.white,
                   height: 55,
-                  color: Colors.greenAccent,
+                  width: MediaQuery.of(context).size.width,
                   child: Container(
-                    margin: EdgeInsets.only(left: 12,right: 12,top:5,bottom: 5),
+                    alignment: Alignment.center,
+                    margin: EdgeInsets.only(left: 12,right: 12,top: 4,bottom: 4 ),
                     decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(5.0),
-                      border: Border.all(color: Color.fromRGBO(238, 242, 248, 0.6))
+                        color: Colors.lightGreenAccent,
+                        border: Border.all(color: Colors.black54,width: 1.0),
+                        borderRadius: BorderRadius.circular(5.0)
                     ),
-                    padding: EdgeInsets.only(bottom: 23,left: 5),
-                    child:TextField(
-                        controller: controller,
-                        autofocus: true,
-                        decoration: InputDecoration.collapsed(hintText: "请输入你的问题"),
-                        textInputAction: TextInputAction.search,
-                      ),
+                    child:TextFormField(decoration: InputDecoration.collapsed(hintText: "请输入您的问题")),
                   ),
-                )
+                ),
               ),
           ],
         ),
