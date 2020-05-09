@@ -28,7 +28,7 @@ dependencies:
   flutter_swiper: ^1.1.4
   flutter_screenutil: ^0.4.2
   flutter_easyrefresh: ^1.2.7
-  fluttertoast: ^2.1.1
+  fluttertoast: ^4.0.0
   cached_network_image: ^2.0.0-rc
 dev_dependencies:
   flutter_test:
@@ -140,7 +140,6 @@ flutter:
     - images/icon_wd_n.png
     - images/icon_news_search.png
     - images/icon_jiantou_you.png
-    - images/mr.png
     - images/icon_back_hui.png
     - images/icon_back.png
 

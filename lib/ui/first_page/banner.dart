@@ -41,7 +41,6 @@ class _BannerWidgetState  extends State<BannerWidget>{
           },
         )
     );
-
   }
 
   Future<Null> _getBanner() async{
