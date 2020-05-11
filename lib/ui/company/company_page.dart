@@ -4,6 +4,9 @@ import 'package:flutter_app_gr/custom_widget/custom_app_bar.dart';
 
 
 class CompanyPage extends BaseWidget{
+  final String id;
+  CompanyPage(this.id);
+
   @override
   BaseWidgetState<BaseWidget> getState() {
     // TODO: implement getState
@@ -16,7 +19,7 @@ class CompanyPageState extends BaseWidgetState<CompanyPage> {
   CustomAppBar getAppBar() {
     // TODO: implement getAppBar
     return CustomAppBar(
-        child: Text("公司详情标题")
+        child: Text(widget.id)
     );
   }
 

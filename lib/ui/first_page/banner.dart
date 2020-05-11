@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_app_gr/entity/banner_data_entity.dart';
 import 'package:flutter_app_gr/http/common_service.dart';
@@ -40,9 +42,31 @@ class _BannerWidgetState  extends State<BannerWidget>{
           pagination: new SwiperPagination(),
           onTap: (index){
             Fluttertoast.showToast(msg: "banner 点击了$index" + "个item");
-            Navigator.push(context, MaterialPageRoute(builder: (_){
-                  return new CompanyPage();
-            }));
+//            Navigator.push(context, MaterialPageRoute(builder: (_){
+//                  return new CompanyPage();
+//            }));
+            String ggnrlx = _bannerList[index].ggnrlx;
+            String id = _bannerList[index].ljbs;
+            //Navigator.pushNamed(context,"company/CompanyPage",arguments: <String,String>{"dwxx_id":id});
+            Navigator.push(context, MaterialPageRoute(builder: (context) => CompanyPage(id)));
+//            switch(ggnrlx){
+//              //单位详情
+//              case "10":{
+//
+//              }break;
+//              //外部链接
+//              case "30":{
+//
+//              }break;
+//              //政策咨询
+//              case "50":{
+//
+//              }break;
+//              //活动详情
+//              case "60":{
+//
+//              }break;
+//            }
           },
         )
     );
@@ -71,3 +95,4 @@ class _BannerWidgetState  extends State<BannerWidget>{
     );
   }
 }
+
