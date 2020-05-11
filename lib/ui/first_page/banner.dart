@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_gr/entity/banner_data_entity.dart';
 import 'package:flutter_app_gr/http/common_service.dart';
+import 'package:flutter_app_gr/ui/company/company_page.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class BannerWidget extends StatefulWidget{
   _BannerWidgetState createState() => new _BannerWidgetState();
@@ -37,7 +39,10 @@ class _BannerWidgetState  extends State<BannerWidget>{
           autoplay: true,
           pagination: new SwiperPagination(),
           onTap: (index){
-
+            Fluttertoast.showToast(msg: "banner 点击了$index" + "个item");
+            Navigator.push(context, MaterialPageRoute(builder: (_){
+                  return new CompanyPage();
+            }));
           },
         )
     );
