@@ -4,8 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app_gr/entity/banner_data_entity.dart';
 import 'package:flutter_app_gr/http/common_service.dart';
 import 'package:flutter_app_gr/ui/company/company_page.dart';
+import 'package:flutter_app_gr/ui/company_h5/company_h5_screen.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+
+import '../policy_consult_screen.dart';
 
 class BannerWidget extends StatefulWidget{
   _BannerWidgetState createState() => new _BannerWidgetState();
@@ -48,25 +51,25 @@ class _BannerWidgetState  extends State<BannerWidget>{
             String ggnrlx = _bannerList[index].ggnrlx;
             String id = _bannerList[index].ljbs;
             //Navigator.pushNamed(context,"company/CompanyPage",arguments: <String,String>{"dwxx_id":id});
-            Navigator.push(context, MaterialPageRoute(builder: (context) => CompanyPage(id)));
-//            switch(ggnrlx){
-//              //单位详情
-//              case "10":{
-//
-//              }break;
-//              //外部链接
-//              case "30":{
-//
-//              }break;
-//              //政策咨询
-//              case "50":{
-//
-//              }break;
-//              //活动详情
-//              case "60":{
-//
-//              }break;
-//            }
+            print(ggnrlx);
+            switch(ggnrlx){
+              //单位详情
+              case "10":{
+                Navigator.push(context, MaterialPageRoute(builder: (context) => CompanyPage(id)));
+              }break;
+              //外部链接
+              case "30":{
+                Navigator.push(context, MaterialPageRoute(builder: (context) => CompanyH5Screen(id)));
+              }break;
+              //政策咨询
+              case "50":{
+                Navigator.push(context, MaterialPageRoute(builder: (context) => PolicyConsultScreen(id)));
+              }break;
+              //活动详情
+              case "60":{
+
+              }break;
+            }
           },
         )
     );
