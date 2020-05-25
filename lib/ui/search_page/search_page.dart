@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_gr/base/base_widget.dart';
@@ -70,9 +72,20 @@ class SearchPageState extends BaseWidgetState<SearchPage> {
                     Container(
                       width: MediaQuery.of(context).size.width - 135,
                       margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                      child: TextField(
+                      child:TextField(
                         controller: controller,
-                        decoration: InputDecoration.collapsed(hintText: "搜索"),
+                        textAlign: TextAlign.left,
+//                        decoration:  InputDecoration.collapsed(
+//                          hintText: "搜索",
+//                          border: InputBorder.none,
+//                          style: TextStyle(textBaseline: TextBaseline.alphabetic),
+//                        ),
+                        decoration: InputDecoration(
+                           //这行代码是关键，设置这个之后，居中
+                            contentPadding: EdgeInsets.only(left: 10,bottom: 10),
+                            hintText: '搜索',
+                            border:InputBorder.none
+                        ),
                         autofocus: true,
                         textInputAction: TextInputAction.search,
                         //提交按钮(搜索/回车/确认)
@@ -93,7 +106,7 @@ class SearchPageState extends BaseWidgetState<SearchPage> {
                           isEmptyPolicy = true;
                           isResult = true;
                         },
-                      )
+                      ),
                     ),
                     Padding(
                       child:GestureDetector(

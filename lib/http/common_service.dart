@@ -21,6 +21,20 @@ class CommonService{
          print(response.toString());
        });
     }
+    
+    ///进入首页新闻咨询详情
+    void getBannerNewsDetails(Function callBack,String _newsId){
+        Map<String,String> map = new Map();
+        map.addAll({
+          "zx_id":_newsId
+        });
+        dio.
+        get(Api.GET_NEWS_DETAIL,queryParameters: map).
+        then((response){
+          print("===新闻咨询详情：" + response.data);
+        });
+        print("===新闻咨询详情：" + _newsId);
+    }
 
     ///获取首页通知公告
     void getNoticeData(Function callBack){

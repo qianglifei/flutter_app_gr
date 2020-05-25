@@ -30,6 +30,8 @@ dependencies:
   flutter_easyrefresh: ^1.2.7
   fluttertoast: ^4.0.0
   cached_network_image: ^2.0.0-rc
+  webview_flutter: ^0.3.21
+  provider: ^3.2.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -143,7 +145,7 @@ flutter:
     - images/icon_back_hui.png
     - images/icon_back.png
     - images/genduo.png
-
+    - images/mr.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
