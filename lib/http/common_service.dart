@@ -24,14 +24,14 @@ class CommonService{
     
     ///进入首页新闻咨询详情
     void getBannerNewsDetails(Function callBack,String _newsId){
-        Map<String,String> map = new Map();
+        Map<String,dynamic> map = new Map();
         map.addAll({
           "zx_id":_newsId
         });
         dio.
         get(Api.GET_NEWS_DETAIL,queryParameters: map).
         then((response){
-          print("===新闻咨询详情：" + response.data);
+          print("===新闻咨询详情：" + response.toString());
         });
         print("===新闻咨询详情：" + _newsId);
     }
