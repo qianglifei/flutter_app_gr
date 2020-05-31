@@ -6,7 +6,6 @@ import 'notice_data_entity.dart';
 import 'favourite_entity.dart';
 import 'second_banner_entity.dart';
 import 'search_entity.dart';
-import 'banner_news_entity.dart';
 
 class EntityFactory {
   static T generateOBJ<T>(json) {

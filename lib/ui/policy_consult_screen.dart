@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_gr/base/base_widget.dart';
 import 'package:flutter_app_gr/custom_widget/custom_app_bar.dart';
+import 'package:flutter_app_gr/entity/banner_news_detail_entity.dart';
 import 'package:flutter_app_gr/entity/second_banner_entity.dart';
 import 'package:flutter_app_gr/http/common_service.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -25,11 +26,12 @@ class PolicyConsultScreenState extends BaseWidgetState<PolicyConsultScreen> {
   String _newsTitle = "";
   String _newsCreateTime = "";
   String _newsCommentCount = "";
+  String _html = "";
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    _getDataContent();
+  //  _getDataContent();
   }
   @override
   CustomAppBar getAppBar() {
@@ -114,7 +116,7 @@ class PolicyConsultScreenState extends BaseWidgetState<PolicyConsultScreen> {
             width: MediaQuery.of(context).size.width,
             height: 300,
             child: WebView(
-              initialUrl: "https://www.baidu.com",
+              initialUrl: "http://gyspdb.beikongyun.com/3e9932855e6344eead862b91d8352bde/85f0a2b787e74595b66fe76c15081315-a6b6c149f7810da25831be9c33321735-ld.mp4",
               //这里支持JS
               javascriptMode: JavascriptMode.unrestricted,
             ),
@@ -130,9 +132,14 @@ class PolicyConsultScreenState extends BaseWidgetState<PolicyConsultScreen> {
   }
 
   /// 新闻咨询详情
-  Future<Null> _getDataContent() async{
-    CommonService().getBannerNewsDetails((SecondBannerEntity ss){
-
-    },widget.zx_id);
-  }
+//  Future<Null> _getDataContent() async{
+//    CommonService().getBannerNewsDetails((BannerNewsDetailEntity bannerNewsDetailEntity){
+//      setState(() {
+//        BannerNewsDetailReturnDataZxxq b = bannerNewsDetailEntity.returnData.zxxq;
+//        _html = b.zxnr;
+//        print(_html);
+//      });
+//    },widget.zx_id);
+//
+//  }
 }

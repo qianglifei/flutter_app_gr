@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_app_gr/entity/banner_data_entity.dart';
+import 'package:flutter_app_gr/entity/banner_news_detail_entity.dart';
 import 'package:flutter_app_gr/entity/entity_factory.dart';
 import 'package:flutter_app_gr/entity/key_service_enterprises_entity.dart';
 import 'package:flutter_app_gr/entity/news_parent_list_entity.dart';
@@ -31,9 +32,9 @@ class CommonService{
         dio.
         get(Api.GET_NEWS_DETAIL,queryParameters: map).
         then((response){
-          print("===新闻咨询详情：" + response.toString());
+          BannerNewsDetailEntity bannerNewsDetailEntity = BannerNewsDetailEntity().fromJson(response.data);
+          callBack(bannerNewsDetailEntity);
         });
-        print("===新闻咨询详情：" + _newsId);
     }
 
     ///获取首页通知公告
